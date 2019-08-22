@@ -1,2 +1,2 @@
 # simplemath
-Repositorio con solucionados de diversos libros de matemáticas
+Repositorio con solucionarios de diversos libros de matemáticas
