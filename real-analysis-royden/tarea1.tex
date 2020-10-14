@@ -1,0 +1,203 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+%\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{mathpazo,amsfonts}
+\usepackage[margin=0.95in]{geometry}
+
+\pagestyle{fancy}
+
+\lhead{Tarea 1}
+\chead{Luis González Rivas}
+\rhead{2 de octubre de 2020}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+
+\newenvironment{problem}[2][Problema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+
+\begin{problem}{4} Demuestre que el principio del buen orden  implica el  principio de inducción matemática.
+\end{problem}
+
+\begin{proof}
+Sea $P(n)$ una proposición definida para toda $n\in \N$. Suponga que $P(1)$ es verdadero y si $P(k)$ es verdadero para un natural $k$, entonces $P(k + 1)$ también es verdadero. Demostraremos que $P(n)$ es verdadero para todo $n \in \N$. 
+
+Para esto, considere el conjunto $A = \{n \in \N: P(n) \text{ es falso.} \}$ y suponga que es no vacío. Entonces, por el principio del buen orden, $A$ contiene un primer elemento, digamos $m$. Como $P(1)$ es verdadero, entonces $m > 1$. Por la definición de $m$, $m - 1$ no pertenece a $A$. Entonces $P(m - 1)$ es verdadero, lo cual implica que $P((m - 1) + 1) = P(m)$ también es verdadero. Pero entonces $m$ no pertenece a $A$, lo cual es una contradicción. 
+Por tanto, el supuesto que $A$ es no vacío es falso. Luego, $P(n)$ es verdadero para todo $n\in \N$. 
+\end{proof}
+
+\text{ }
+%---------------------------------
+
+\begin{problem}{5} Utilice inducción matemática para demostrar el principio del buen orden. 
+
+\end{problem}
+\begin{proof}
+Sea $S$ un subconjunto no vacío de $\N$ y consideremos la proposición $P(n)$: si $n \in S$, entonces $S$ tiene un primer elemento. Demostraremos por inducción que $P(n)$ es verdadero para toda $n \in \N$. 
+
+Observe que $1 < m$ para todo $m \in N$. Luego, si $1 \in S$, entonces $1$ es el elemento mínimo de $S$. Es decir, $P(1)$ es verdadero.
+Suponga ahora que $P(k)$ es verdadero para todo natural $k < m$ y suponga que $P(m)$ es falso. Es decir, $m \in S$,  pero $S$ no tiene primer elemento. Como $m \in S$, este no es el primer elemento de $S$ y por tanto existe $n \in S$ tal que $n < m$. Pero, $P(n)$ es verdadero, entonces $S$ tiene primer elemento, lo cual es una contradicción. 
+
+\end{proof}
+\text{ }
+%---------------------------------
+\begin{problem}{6}
+Sea $f: X \rightarrow Y$ una función de un conjunto $X$ no vacío en un conjunto $Y$. Demuestre que $f$ es $1-1$ si y solo si existe una función $g: Y \rightarrow X$ tal que $g \circ f$ es la función identidad en $X$. 
+\end{problem}
+
+\begin{proof}
+ Suponga que $f$ es $1-1$. Sea $x_0 \in X$. Defininamos la función $g: Y \rightarrow X$ como $g(y) = x$ si $f(x) = y$. Luego, $(g \circ f)(x_0) = g(f(x_0)) = x_0 $.  Hemos demostrado que $(g \circ f)$ es la función identidad en $X$.
+
+Suponga que existe una función $g: Y \rightarrow X$ tal que $g \circ f$ es la identidad en $X$. Sean $x_1, x_2$ en $X$ tales que $f(x_1) = f(x_2)$. Entonces $x_1 = g(f(x_1)) = g(f(x_2)) = x_2$. Por tanto $f$ es $1-1$.
+\end{proof}
+\text{ }
+%---------------------------------
+\begin{problem}{7}
+Sea $f: X \rightarrow Y$ una función de $X$ en $Y$. Demuestre que $f$ es \textit{sobre} si y solo si existe una función $g: Y \rightarrow X$ tal que $f \circ g$ es la función identidad en $Y$. 
+\end{problem}
+
+\begin{proof}
+Suponga que existe una función $g: Y \rightarrow X$ tal que $f \circ g$ es la función identidad en $Y$. Sea $y \in Y$. Por definición $(f \circ g)(y) = y$. Entonces $g(y)$ es un elemento de $X$ que satisface  $f(g(y)) = y$. Por tanto $f$ es una función sobre. \textbf{Incompleto.}
+\end{proof}
+\text{ }
+
+%---------------------------------
+\begin{problem}{16} Demuestre que:
+\begin{itemize}
+    \item [a)] $f[\bigcup A_\lambda ] = \bigcup f[A_\lambda]$.
+    \item [b)] $f[\bigcap A_\lambda ] \subset \bigcap f[A_\lambda]$.
+    \item[c)] De un ejemplo donde 
+    $$f[\bigcap A_\lambda ] \neq \bigcap f[A_\lambda].$$
+\end{itemize}
+
+\end{problem}
+En lo siguiente asumiremos que $\{A_\lambda\}$ está indexada por un conjunto $\Lambda$.
+
+
+\begin{proof}
+\text{ }
+\begin{itemize}
+    \item[a)] Demostraremos primero que $f[\bigcup A_\lambda ] \subset \bigcup f[A_\lambda]$. Sea $y \in f[\bigcup A_\lambda ]$. Entonces existe $x \in \bigcup A_\lambda $ tal que $f(x) = y$. Luego existe $\Bar{\lambda}  \in \Lambda$ tal que $x \in A_{ \Bar{\lambda}}$. Entonces $y = f(x) \in f[A_{\Bar{\lambda}}] \subset \bigcup f[A_\lambda]$. Por tanto, $f[\bigcup A_\lambda ] \subset \bigcup f[A_\lambda]$. Para demostrar la segunda contención, sea $y\in \bigcup f[A_\lambda]$. Entonces existe $\Bar{\lambda} \in \Lambda$ tal que $y \in f[A_{\Bar{\lambda}}]$. Entonces existe $x \in A_{\Bar{\lambda}}$ tal que $f(x) = y$. Como $A_{\Bar{\lambda}} \subset \bigcup A_\lambda $, entonces  $ y = f(x) \in f[A_{\Bar{\lambda}}] \subset f[\bigcup A_\lambda]$. Por tanto, $f[\bigcup A_\lambda ] \supset \bigcup f[A_\lambda]$. Podemos concluir que $f[\bigcup A_\lambda ] = \bigcup f[A_\lambda]$.
+    
+    \item[b)] Sea $y \in f[\bigcap A_\lambda ]$. Entonces existe $x \in \bigcap A_\lambda $ tal que $f(x) = y$. Entonces, para toda $\lambda \in \Lambda$, $x \in A_\lambda$. Esto implica que $y = f(x) \in f[A_\lambda]$ para todo $\lambda \in \Lambda$. Luego, $y = f(x) \in \bigcap f[A_\lambda]$. Por tanto, $f[\bigcap A_\lambda ] \subset \bigcap f[A_\lambda]$. 
+    
+    \item[c)] Considere la función $f: \R \rightarrow \R$ definida como $f(x) = x^2$ para todo $x \in \R$. Observe que $f[[0, \infty)] = [0, \infty) = f[(-\infty, 0]]$. Entonces $[0, \infty) = f[[0, \infty)] \cap f[(-\infty, 0]] \neq f[(-\infty, 0] \cap [0, \infty) ] = f[\{0\}] =  \{0\}.$
+\end{itemize}
+\end{proof}
+\text{ }
+
+%---------------------------------
+\begin{problem}{17} Demuestre que:
+\begin{itemize}
+    \item [a)] $f^{-1}[\bigcup B_\lambda ] = \bigcup f^{-1}[B_\lambda]$.
+    \item [b)] $f^{-1}[\bigcap B_\lambda ] = \bigcap f^{-1}[B_\lambda]$.
+    \item[c)] $f^{-1}[B^c] = f^{-1}[B]^c$, para $B \subset Y$. 
+\end{itemize}
+
+\end{problem}
+
+En lo siguiente asumiremos que $\{B_\lambda\}$ está indexada por un conjunto $\Lambda$.
+
+\begin{proof}
+\text{ }
+\begin{itemize}
+    \item[a)] Primero demostraremos  que  $f^{-1}[\bigcup B_\lambda ] \subset \bigcup f^{-1}[B_\lambda]$. Sea $x \in f^{-1}[\bigcup B_\lambda ]$. Entonces $f(x) \in \bigcup B_\lambda$. Luego, existe un $\Bar{\lambda} \in \Lambda$ tal que $f(x) \in B_{\Bar{\lambda}}$. Entonces $x \in f^{-1}[B_{\Bar{\lambda}}] \subset \bigcup f^{-1}[B_\lambda].$ Por tanto, $f^{-1}[\bigcup B_\lambda ] \subset \bigcup f^{-1}[B_\lambda]$. 
+    
+    Ahora bien, sea $ x \in  \bigcup f^{-1}[B_\lambda]$. Entonces existe $\Bar{\lambda} \in \Lambda$ tal que $x \in f^{-1}[B_{\Bar{\lambda}}]$. Esto implica que $f(x) \in B_{\Bar{\lambda}} \subset \bigcup B_\lambda$. Lo cual implica que $x \in f^{-1}[\bigcup B_\lambda ].$ Por tanto, $f^{-1}[\bigcup B_\lambda ] \supset \bigcup f^{-1}[B_\lambda]$.
+    
+    Se concluye que $f^{-1}[\bigcup B_\lambda ] = \bigcup f^{-1}[B_\lambda]$.
+    
+    \item[b)] Sea $x \in f^{-1}[\bigcap B_\lambda ]$. Entonces $f(x) \in \bigcap B_\lambda $; esto es, $f(x) \in B_\lambda$, para todo $\lambda \in \Lambda$. Luego, $x \in f^{-1}[B_\lambda]$ para todo $\lambda \in \Lambda$. Lo cual, implica que $x \in \bigcap f^{-1}[B_\lambda]$. Por tanto, $f^{-1}[\bigcap B_\lambda ] \subset  \bigcap f^{-1}[B_\lambda]$.
+    
+    Para la segunda contención, sea $x \in \bigcap f^{-1}[B_\lambda]$. Entonces, $x \in f^{-1}[B_\lambda]$, para todo $\lambda \in \Lambda$. Esto implica que $f(x) \in B_\lambda$ para todo $\lambda \in \Lambda$; es decir, $f(x) \in \bigcap B_\lambda$. Se sigue que $x \in f^{-1}[\bigcap B_\lambda ].$ Por tanto, $f^{-1}[\bigcap B_\lambda ] \supset  \bigcap f^{-1}[B_\lambda]$.
+    
+    Concluimos que $f^{-1}[\bigcap B_\lambda ] = \bigcap f^{-1}[B_\lambda]$.
+
+    
+    \item[c)] Sea $x \in f^{-1}[B^c]$. Entonces $f(x) \in B^c$; es decir, $f(x) $ no pertence a $B$. Luego, $x$ no pertenece a $f^{-1}[B]$. Entonces $f(x) \in f^{-1}[B]^c$. Por tanto, $f^{-1}[B^c] \subset f^{-1}[B]^c$.
+    
+    Sea $x \in f^{-1}[B]^c$. Entonces $x$ no pertenece a $f^{-1}[B]$. Luego, $f(x)$ no es elemento de $B$; es decir, $f(x) \in B^c$. Esto implica que $x \in f^{-1}[B]$. Por tanto, $f^{-1}[B^c] \supset f^{-1}[B]^c$.
+    
+    Por lo anterior, podemos concluir que  $f^{-1}[B^c] = f^{-1}[B]^c$.
+\end{itemize} 
+
+\end{proof}
+\text{ }
+
+
+%---------------------------------
+\begin{problem}{18} Demuestre que si $f$ mapea $X$ en $Y$ y $A \subset X $, $B \subset Y$, entonces:
+\begin{itemize}
+    \item [a)] $f[f^{-1}[B]] \subset B$ y $f^{-1}[f[A]] \supset A$.
+    \item [b)] De ejemplos que muestre que no se cumple la igualdad de conjuntos.
+    \item[c)] Demuestre que si $f$ mapea $X$ sobre $Y$ y $B \subset Y$, entonces $$f[f^{-1}[B]] = B. $$ 
+\end{itemize}
+
+\end{problem}
+\begin{proof}\text{ }
+\begin{itemize}
+    \item[a)] Sea $y \in f[f^{-1}[B]].$ Entonces existe $x \in f^{-1}[B]$ tal que $f(x) = y$. Como $x \in  f^{-1}[B]$, entonces $f(x) = y \in B$. Por tanto $f[f^{-1}[B]] \subset B$.
+    
+    Ahora, sea $x \in A$. Entonces $f(x) \in f[A]$. Luego, $x \in f^{-1}[f[A]]$. Por tanto  $f^{-1}[f[A]] \supset A$.
+    
+    \item [b)] Sea $f: \R \rightarrow \R$ definida como $f(x) = x^2$ para toda $x \in \R$. Observe que, si $B = [-1, \infty)$, entonces $f[f^{-1}[B]] = f(\R) = [0, \infty) \neq B$.
+    
+    Por otro lado, si $A = B$, entonces $f^{-1}[f[A]] = f^{-1}[[0, \infty)] = \R \neq A $.
+    
+    \item [c)] Suponga que $f$ es sobre. Sea $y \in B$. Entonces existe $x \in X$ tal que $f(x) = y$. Luego $x \in f^{-1}[B]$. Esto implica que $y = f(x) \in f[f^{-1}[B]].$ Por tanto $f[f^{-1}[B]] \supset  B$. Con lo anterior y con el inciso a), se concluye que $f[f^{-1}[B]] = B.$
+\end{itemize}
+\end{proof}
+
+\text{ }
+
+%---------------------------------
+\begin{problem}{20} Sea $f: X \rightarrow Y$ una función sobre. Entonces existe una función $g: Y \rightarrow X$ tal que $f \circ g$ es la función identidad en $Y$.
+
+\end{problem}
+
+\begin{proof}
+Sea $C$ el conjunto definido como $$C = \{A \subset X: \text{existe } y \in Y \text{ tal que } A = f^{-1}[\{y\}] \}. $$
+Por el axioma de elección, existe una función $F: C \rightarrow \bigcup_{A \in C} A$ que asigna a cada elemento $A \in C$ un elemento $F(A) \in A$. Como $f$ es sobre, $f^{-1}[\{y\}] \neq \emptyset$, para todo $y \in Y$. Luego  $f^{-1}[\{y\}]\in C$ para todo $y \in Y$. Entonces podemos definir $g: Y \rightarrow X$ como $g(y) = F(f^{-1}[\{y\}]) $, para todo $y \in Y.$ Si $y \in Y$, entonces $(f \circ g)(y) = f(g(y)) = f(F(f^{-1}[\{y\}])) = y $, ya que $F(f^{-1}[\{y\}]) \in f^{-1}[\{y\}]$. Por tanto, $f \circ g$ es la función identidad en $Y$.
+\end{proof}
+\text{ }
+
+%---------------------------------
+\begin{problem}{22} Demuestre la Proposición 6 utilizando las Proposiciones 4 y 5.
+
+\end{problem}
+\begin{proof}
+Sea $f$ una función definida como sigue: 
+\begin{eqnarray*}
+(p, q, 1) & \longmapsto & \frac{p}{q}\\	
+(p, q, 2) & \longmapsto & \frac{-p}{q}\\	
+(1, 1, 3) & \longmapsto & 0
+\end{eqnarray*}
+donde $p, q$ son números naturales.
+Esta es una función definida en un subconjunto del conjunto de todas las suceciones finitas de $\N$ y rango igual a $\Q$. Como $\N$ es numerable,  por la Proposición 5, el conjunto de todas las suceciones finitas de $\N$ es numerable. Por la Proposición 4, el dominio de $f$ es numerable. Luego, $\Q$ se puede poner en correspondencia 1 a 1 con el conjunto de los números naturales. Por tanto $\Q$ es numerable.
+\end{proof}
+
+
+%---------------------------------
+\begin{problem}{23} Demuestre que el conjunto $E$ de sucesiones infinitas de $\{0, 1\}$ es no numerable.
+
+\end{problem}
+\begin{proof}
+Suponga que $E$ es numerable. Entonces $E$ es el rango de una función $f$ definida en $\N$. Note que, para toda $m \in \N$, $f(m) = (a_{m n})_{n=1}^\infty$  con $\{a_n\} \subset \{0, 1\}$. Ahora bien, definamos la sucesión $(b_n)_{n=1}^\infty $ como $b_n = 1 - a_{nn}$. Observe que $\{b_n\} \subset \{0, 1\}$, y por tanto $(b_n)_{n=1}^\infty \in E$ . Pero $(b_n)_{n=1}^\infty \neq (a_{m n})_{n=1}^\infty = f(m)$ para toda $m \in \N$. Es decir, encontramos un elemento de $E$ que no está en el rango de $f$, lo cual es una contradicción. Por tanto, la suposición de que $E$ es numerable es falsa.  
+\end{proof}
+\text{ }
+%---------------------------------
+\begin{problem}{29} De un ejemplo de un conjunto parcialmente ordenado que tiene un elemento mínimo único pero que no tiene primer elemento.
+
+\end{problem}
+\noindent
+\textit{Ejemplo}. Sea $E = \{(-\frac{1}{n}, \frac{1}{n}): n \in \N \}  \cup \{ \{2\} , \{2, 3\}\}$. Consideremos el orden parcial $\subset$ usual de conjuntos. Observe que el elemento $\{2\}$ es minimal en $E$ y es único. Sin embargo, el conjunto $E$ no tiene primer elemento.  
+
+\end{document}

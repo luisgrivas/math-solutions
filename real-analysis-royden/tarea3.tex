@@ -1,0 +1,244 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{mathpazo,amsfonts}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{appendix}
+\usepackage[symbol]{footmisc}
+
+
+
+\pagestyle{fancy}
+
+\lhead{Tarea 3}
+\chead{Luis González Rivas}
+\rhead{16 de octubre de 2020}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\M}{\mathcal{M}}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\newenvironment{problem}[2][Problema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+%\renewcommand\qedsymbol{$\blacksquare$}
+
+\newtheorem{prop}{Proposición}
+
+
+%--------------------------------------
+%--------------------------------------
+
+\begin{document}
+
+%--------------------------------------
+\begin{problem}{1}
+Si $A$ y $B$ son dos conjuntos en $\mathcal{M}$ con $A \subset B$, entonces $m A \leq m B.$
+
+\end{problem}
+
+\begin{proof}
+Como $A \subset B$, entonces $B = (B\setminus A ) \cup (A \cap B) = (B\setminus A ) \cup A $. Los conjuntos $(B\setminus A ) $ y $A$ son disjuntos y pertenecen a $\mathcal{M}$. Luego,  $m B = m (B\setminus A)  + m A$, que implica que $m B \geq m A.$
+\end{proof}
+
+
+%--------------------------------------
+\begin{problem}{2}
+Sea $(E_n)$ una sucesión de conjuntos en $\M$. Entonces $m(\bigcup E_n) \leq \sum m E_n$.
+\end{problem}
+
+\begin{proof}
+Por la \textbf{Proposición} \ref{p1}, existe una sucesión $(A_n)$ de conjuntos de $\M$ tales que $A_m \cap A_n = \emptyset$ para $n \neq m$; $A_n \subset E_n$ para toda $n\in \N$ y 
+$$\bigcup_{n=1}^{\infty}E_n = \bigcup_{n=1}^{\infty}A_n.$$
+Por el \textbf{Problema 1}, $A_n \subset E_n$ implica que $0 \leq m A_n \leq m E_n$, por lo que $\sum m A_n \leq \sum E_n.$ Luego, 
+\begin{eqnarray*}
+m \left(\bigcup_{n=1}^{\infty}E_n\right) &=& m \left( \bigcup_{n=1}^{\infty}A_n \right)\\
+&=& \sum_{n=1}^{\infty} A_n \\
+&\leq&  \sum_{n=1}^{\infty} E_n.
+\end{eqnarray*}
+
+\end{proof}
+
+
+%--------------------------------------
+\begin{problem}{3}
+Si existe un conjunto $A$ in $\M$ tal que $m A < \infty$, entonces $m \emptyset = 0$. 
+\end{problem}
+\begin{proof}
+Como $\emptyset \subset A$, por el \textbf{Problema 1}, $m \emptyset \leq m A < \infty.$ Suponga que $m \emptyset > 0$. Entonces existe $k \in \N$ tal que $k (m \emptyset) > m A.$ Luego, $m \emptyset =  m (\bigcup_{n=1}^{k} \emptyset) = k (m \emptyset) > m A,$ lo cual es una contradicción. Por tanto $m \emptyset = 0.$
+
+\end{proof}
+
+
+%%%% PENDIENTE
+%--------------------------------------
+\begin{problem}{4}
+Sea $n E$ igual a $\infty$,  si $E$ es un conjunto infinito; y sea $n E$ el número de elementos de $E$, si $E$ es finito. Demuestre que $n$ es una función aditiva numerable, invariante bajo traslaciones y está definida para todo conjunto de números reales. 
+\end{problem}
+
+\begin{proof} \textbf{Pendiente. }
+Como todo subconjunto de $\R$ es finito o infinito, $n$ es una función definida para todo subconjunto de $\R$. Sea $y \in \R$ y sea $A \subset \R$. Si $A$ es infinito, entonces $A + y$ es infinito y por tanto $n A = n (A + y).$ Si $A$ es finito, digamos con $k$ elementos, entonces existe una correspondencia biyectiva entre $\{1, \ldots, k \}$ y el conjunto $A$. Para todo $a \in A$, el mapeo $a \mapsto a + y$, establece una correspondencia biyectiva entre el conjunto $A$ y $A + y$. Por tanto, existe una correspondencia biyectiva entre el conjunto  $\{1, \ldots, k \}$ y el conjunto $A + y $, es decir, $A + y$ tiene $k$ elementos. Por tanto, $n A = n (A + y).$ Finalmente, sea $(E_n)$ una sucesión disjunta de subconjuntos de $\R$.  Si algún elemento de la sucesión es infinito, entonces $n(\bigcup E_n) = \sum n E_n = \infty.,...$ 
+
+\end{proof}
+
+
+%--------------------------------------
+\begin{problem}{5}
+Sea $A$ el conjunto de números racionales entre $0$ y $1$, y sea $\{I_n\}$ una colección finita de intervalos abiertos que cubren a $A$. Entonces $\sum l(I_n) \geq 1.$
+\end{problem}
+
+
+\begin{proof}
+Como  $\Q \subset \bigcup_{n=1}^{k} I_n$ y $\Q$ es denso en $[0, 1]$, entonces $[0, 1] = \overline{\Q \cap [0, 1]} \subset \overline{\bigcup_{n=1}^{k} I_n} = \bigcup_{n=1}^{k} \overline{I_n}$ \footnote[2]{Aquí es importante señalar que esto sólo es válido si la unión es finita.}. Además, como $l(I_n) = l(\overline{I_n})$, entonces $1 = l([0, 1]) \leq m^*(\bigcup_{n=1}^{k} \overline{I_n}) \leq \sum_{n=1}^k l(\overline{I_n}) = \sum_{n=1}^k l(I_n)$.
+
+\end{proof}
+
+%% PENDIENTE
+%--------------------------------------
+\begin{problem}{6}
+Demuestre la Proposición 5.
+\end{problem}
+\begin{proof} \textbf{PENDIENTE}
+Sea $\epsilon >0 $ y $A \subset \R$. Si $m^*A = \infty$, entonces $\R$ es un abierto que contiene a $A$ y $m^*\R = \infty \leq m^* A + \epsilon = \infty + \epsilon.$ Suponga que $m^* A < \infty$. Entonces existe una colección de intervalos abiertos $\{I_n\}$ que cubren a $A$ y $\sum l(I_n) < m^* A + \epsilon.$ Sea $O = \bigcup_{n=1}^{\infty} I_n$. Entonces $O$ es un abierto que contiene a $A$ y $m^*O \leq \sum_{n=1}^{\infty} l(I_n) < m^* A + \epsilon.$
+
+
+\end{proof}
+
+
+
+%--------------------------------------
+\begin{problem}{7}
+Demuestre que $m^*$ es invariante a traslaciones.
+\end{problem}
+\begin{proof}
+Sea $y \in \R$ y sea $I = (a, b)$ un intervalo abierto y acotado. Note que, $I + y = (a + y, b + y)$. Por lo que $l(I + y) = (b+y) - (a + y) = b - a$. Por tanto, $I$ e $I + y$ tienen la misma longitud. Si $I$ es no acotado, $I + y$ es no acotado y por tanto $I$ e $I+y$ tienen longitud infinita. 
+
+Sea $A$ un subconjunto de $\R$ y sea $\{I_n\}$ una colección de intervalos abiertos que cubren a $A$. Entonces $\{I_n + y \}$ es una colección de intervalos abiertos que cubren a $A + y$. Se tiene que $\sum I_n = \sum (I_n + y) $ . Luego  $m^* (A + y) \leq m^* A.$
+
+
+Sea ahora $\{I_n\}$ una colección de intervalos abiertos que cubren a $A + y$. Entonces $\{I_n - y\}$ es una colección de intervalos abiertos que cubren a $A$. Como $\sum I_n = \sum(I_n - y)$, entonces $m^*A \leq m^*(A + y).$
+
+\end{proof}
+
+
+
+
+%--------------------------------------
+\begin{problem}{8}
+Demuestre que si $m^* A = 0$, entonces $m^* (A \cup B) = m^* B$.
+\end{problem}
+
+\begin{proof}
+Claramente, $m^* B \leq m^* (A \cup B).$ Por otro lado, $m^*(A \cup B) \leq m^* A + m^*B = m^* B.$ Por tanto, $m^* (A \cup B) = m^* B$.
+
+\end{proof}
+
+
+
+%--------------------------------------
+\begin{problem}{9}
+Demuestre que si $E$ es un conjunto medible, entonces cualquier traslación $E + y$ es también medible.
+\end{problem}
+
+\begin{proof}
+Sea $A \subset \R$ y sea $y \in \R$. Como $E$ es medible, entonces $m^* A =   m^*(A \cap E) + m^*(A \cap E^c).$ Por el problema 
+
+\end{proof}
+
+
+
+%--------------------------------------
+\begin{problem}{10}
+Demuestre que si $E_1$ y $E_2$ son medibles, entonces $m(E_1 \cup E_2) + m(E_1 \cap E_2) = m E_1 + m E_2. $
+\end{problem}
+\begin{proof}
+Si alguno de los conjuntos $E_1$, $E_2$ tiene medida infinita, entonces la igualdad se cumple. Por tanto suponga que $m E_1 < \infty $ y $m E_2 < \infty$. Como $E_1 = (E_1 \cap E_2^c) \cup (E_1 \cap E_2)$,  $E_2 = (E_1^c \cap E_2) \cup (E_1 \cap E_2)$ y $E_1 \cup E_2 = (E_1^c \cap E_2) \cup (E_1 \cap E_2^c)  \cup (E_1 \cap E_2)$ \footnote[3]{Todas estas son uniones de conjuntos disjuntos.}, entonces 
+$mE_1 = m(E_1 \cap E_2^c) + m(E_1 \cap E_2) $,  $mE_2 = m(E_1^c \cap E_2) + m(E_1 \cap E_2)$ y $m(E_1 \cup E_2) = m(E_1 \cap E_2^c) + m(E_1^c \cap E_2) + m(E_1 \cap E_2)$. Luego,
+
+\begin{eqnarray*}
+m (E_1\cup E_2) &=& m(E_1 \cap E_2^c) + m(E_1^c \cap E_2) + m(E_1 \cap E_2)\\
+                &=& [m(E_1 \cap E_2^c) + m(E_1 \cap E_2)] + [m(E_1^c \cap E_2) + m(E_1 \cap E_2)] - m(E_1 \cap E_2) \\
+                &=& m E_1 + mE_2 - m(E_1 \cap E_2),
+\end{eqnarray*}
+que es el resultado deseado.
+
+\end{proof}
+
+
+%--------------------------------------
+\begin{problem}{11}
+Muestre que la condición $m E_1 < \infty$ es necesaria en la Proposición 14 dando un ejemplo de una sucesión decreciente $(E_n)$ de conjuntos medibles tales que $\emptyset = \bigcap E_n$ y $m E_n = \infty $ para toda $n$.
+\end{problem}
+\begin{proof}
+
+Sea $E_n = [n, \infty)$ para $n \in \N$. $E_n$ es medible, $E_{n+1} \subset E_n$ y $m E_n = \infty $ para toda $n \in \N$. Se comprueba que $\bigcap E_n  = \emptyset$, por lo que $m( \bigcap E_n) = 0$. Pero $\lim_{n \to \infty} m E_n = \infty.$
+    
+\end{proof}
+
+
+%--------------------------------------
+\begin{problem}{12}
+Sea $(E_n)$ una sucesión disjunta de conjuntos medibles y sea $A$ un conjunto. Entonces $$ m^* \left(A \cap \bigcup_{n=1}^{\infty} E_n \right) = \sum_{n=1}^{\infty} m^*(A \cap E_n).$$
+\end{problem}
+
+
+
+%--------------------------------------
+\begin{problem}{13}
+
+\end{problem}
+
+
+
+%--------------------------------------
+\begin{problem}{14}
+\text{ }
+\begin{itemize}
+    \item[a. ] Demuestre que el conjunto de Cantor tiene medida cero.
+    \item[b. ] Sea $F$ un subconjunto de $[0, 1]$ construido de la misma manera que el conjunto de Cantor, excepto que cada intervalo removido en el $n-$ésimo paso tiene longitud  $\alpha 3^{-n}$ con $0 < \alpha < 1$. Entonces $F$ es cerrado, $F^c$ es denso en $[0, 1]$ y $m F = 1 - \alpha$.
+\end{itemize}
+\end{problem}
+
+
+
+%--------------------------------------
+\begin{problem}{15}
+Demuestre que si $E$ es medible y $E \subset P$, entonces $m E = 0.$
+\end{problem}
+
+
+
+%--------------------------------------
+\begin{problem}{16}
+Demuestre que, si $A$ es cualquier conjunto con $m^* A > 0$, entonces existe un conjunto no medible $E \subset A.$
+\end{problem}
+
+
+
+%--------------------------------------
+\begin{problem}{17}
+\text{ }
+\begin{itemize}
+    \item[a. ] De un ejemplo donde $(E_n)$ es una sucesión disjunta de conjuntos y $m^*(\bigcup E_n) < \lim m^* E_n$.
+    \item[b. ] De un ejemplo de una sucesión de conjuntos $(E_n)$ con $E_n \supset E_{n+1}$, $m^* E_n < \infty $, y $m^*(\bigcap E_n) < \lim m^* E_n.$
+\end{itemize}
+
+
+\end{problem}
+
+\newpage
+\appendix
+
+\begin{prop} \label{p1}
+Sea $\mathcal{A}$ una álgebra de conjuntos y sea $(A_n)$ una sucesión de conjuntos de $\mathcal{A}$. Entonces existe una sucesión $(B_n)$ de conjuntos de $\mathcal{A}$ tal que $B_n \cap B_m = \emptyset$ para $n \neq m$ y 
+$$\bigcup_{n=1}^{\infty}B_n = \bigcup_{n=1}^{\infty}A_n .$$
+\end{prop}
+
+\end{document}
