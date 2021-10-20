@@ -1,0 +1,38 @@
+\documentclass[12p]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{mathpazo,amsfonts}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+%\pagestyle{fancy}
+
+\newenvironment{problem}[2][Problem]{
+\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\begin{document}
+\title{Solutions for \\ Introduction to differential topology \\ by TH. Bröker and K. Jänich}
+\author{Luis Felipe González Rivas}
+\date{October 2021}
+\maketitle
+
+\tableofcontents
+
+% Chapter 1
+\input{diff-top-broker/chapter1}
+
+% Chapter 2
+\input{diff-top-broker/chapter2}
+\end{document}
