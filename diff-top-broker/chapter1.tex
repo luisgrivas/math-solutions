@@ -1,18 +1,38 @@
-\chapter{Manifolds and differentiable Structures}
+\chapter{Manifolds and differentiable structures}
 
 \begin{problem}{1}
 Show that every (differentiable) manifold possesses a countable (differentiable) atlas.
 \end{problem}
+\begin{proof}
+Let $\mathcal{A} = \{(U_\alpha, h_\alpha) \mid \alpha \in A \}$ be an atlas for $M.$ Since $M$ is second countable, there exists a countable basis $B = \{V_n \mid n \in \N \}.$ For each $p \in M$ there exist $V_k \in B$ and $(U_\beta, h_\beta) \in \mathcal A$ such that $p \in V_k \subset U_\beta.$ Since $B$ is countable, there is a sequence $\{\alpha_{k}\}_{k}^\infty \subset A$ such that $\bigcup_k U_{\alpha_k} = M$. It follows that $\{(U_{\alpha_k}), h_{\alpha_l} \mid k \in \N \}$ is a countable atlas of $M.$
+\end{proof}
 
 \begin{problem}{2}
 Show that the sphere $S^n$ possesses a differentiable atlas with precisely two charts. Also, one with only one chart?
 \end{problem}
+\begin{proof}
+Let $p_1 = (0, \ldots, 0, 1) \in S^n$ and $p_2 = (0,\ldots,0, -1) \in S^n$. Then the sets $U_ 1 = S^n - {p_1}$ and $U_2 = S^n - \{p_2\}$ are open. Define $h_1: U_1 \rightarrow \R^n$ and $h_2: U_2 \rightarrow \R^n$ by 
+$$
+h_1(x_1, \ldots, x_{n+1}) = \left(\frac{x_1}{1-x_{n+1}}, \ldots, \frac{x_n}{1-x_{n+1}}\right),
+$$
+$$
+h_2(x_1, \ldots, x_{n+1}) = \left(\frac{x_1}{1+x_{n+1}}, \ldots, \frac{x_n}{1+x_{n+1}}\right).
+$$
 
+A direct argument shows that these functions are homeomorphisms from $U_1, U_2$ onto $\R^{n}.$ Their inverses, $h_1^{-1}, h_2^{-1}$, are defined in the following way:
+$$
+h_1^{-1}(x_1, \ldots, x_n) = \left( \frac{2x_1}{1 + r^2}, \ldots,  \frac{2 x_n}{1+r^2}, \frac{r^2-1}{1+r^2} \right),
+$$
+$$
+h_2^{-1}(x_1, \ldots, x_n) = \left( \frac{2x_1}{1 - r^2}, \ldots,  \frac{2 x_n}{1-r^2}, \frac{r^2}{1-r^2} \right).
+$$
 
+with $r^2 = \sum_{k=1}^n x_k^2.$ Then $h_2 \circ h_1^{-1}: \R^n \rightarrow \R^n$ is defined 
+$$ (h_2 \circ h_1^{-1}) (x_1, \ldots, x_n) = h_2 \left( \frac{2x_1}{1 + r^2}, \ldots,  \frac{2 x_n}{1+r^2}, \frac{r^2-1}{1+r^2} \right) = \frac{1}{r^2}(x_1, \ldots, x_n).$$
 
-\begin{problem}{2}
-Show that the sphere $S^n$ possesses a differentiable atlas with precisely two charts. Also, one with only one chart?
-\end{problem}
+Hence $h_2 \circ h_1^{-1}$ is differentiable. In a similar way, $h_1 \circ h_2^{-1}$ is differentiable. Therefore, the atlas $\{(U_1, h_1), (U_2, h_2)\}$ defines a differentiable structure.
+
+\end{proof}
 
 
 \begin{problem}{3}
@@ -21,15 +41,26 @@ Describe the chart transformation for the atlas $\R P^n$ in (1.5(c)), and show t
 
 
 \begin{problem}{4}
-Let $M$ be a differentiable manifold and $\tau: M \rightarrow M$ a fixed point free involution, that is, $\tau$ is a diffeomorfphism with $\tau \circ \tau = Id_M$ and $\tau(x) \neq x$ for all $x.$ 
+Let $M$ be a differentiable manifold and $\tau: M \rightarrow M$ a fixed point free involution, that is, $\tau$ is a diffeomorphism with $\tau \circ \tau = Id_M$ and $\tau(x) \neq x$ for all $x.$ 
 
 Show that the quotient space $M/\tau$, which is obtained from $M$ by identification of points corresponding to each other under $\tau$, is a topological manifold which possesses exactly one differentiable structure with respect to which the projection $M \rightarrow M/\tau$ is locally diffeomorphic.
 \end{problem}
+\begin{proof}
+Let $p: M \rightarrow M/\tau$ be the canonical projection and let $\mathcal A$ be a maximal atlas of $M$. Since $M$ is Hausdorff, for each $x \in M$ there exist open sets $U, V$ such that $x\in U$, $\tau(x) \in V$ and $U \cap V = \varnothing.$ Since $\tau$ is continuous, $W = U \cap \tau^{-1}(V)$ is a non-empty open set. This open set satisfies $W \cap \tau(W) = \varnothing$; then the set $\mathcal B = \{(W, k) \in \mathcal A \mid W \cap \tau(W) \}$ is non-empty.
 
+For each $(W, k)\in \mathcal B$, the function $p$ is injective in $W$. Let $x, y \in W$ with $p(x) = p(y)$, that is, $x,y$ belong to the same equivalence class. But $W \cap \tau(W) = \varnothing$, hence $x=y.$ Since by definition $p$ is surjective, we have shown that $p$ is bijective in $W.$
+
+A direct argument shows that the set $\mathcal C = \{(p(W), k \circ p^{-1}) \mid (W, k) \in \mathcal B \}$ induces a differentiable structure in $M/\tau$. To show that $p$ is locally diffeomorphic with respect to these differentiable structures, let $x \in M$ and $(W, k)\in \mathcal B$ with $x\in W$. The composition $(k \circ p^{-1}) \circ p \circ k^{-1} = Id_{\R^n}$ is differentiable. The inverse $p^{-1}: p(W) \rightarrow W$ of $p$ is also differentiable, since the composition $k \circ p^{-1}\circ (k \circ p^{-1})^{-1} = k \circ p^{-1} \circ (p \circ k^{-1}) = Id_{\R^n}$ is differentiable.
+
+UNIQUENESS
+\end{proof}
 
 \begin{problem}{5}
-Show that $\R P^1 \simeq S^1.$
+Show that $\R P^1 \cong S^1.$
 \end{problem}
+\begin{proof}
+
+\end{proof}
 
 \begin{problem}{6}
 Provide the surface of a cube $\{x\in \R^{n+1} \mid \max \{\lvert x_i \rvert\ = 1 \}$ with the structure of a differentiable manifold. 
