@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{mathpazo,amsfonts}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{tikz}
+
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+
+%\addbibresource{blb.bib}
+
+%\pagestyle{fancy}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+
+
+\author{Luis F. Gonz\'alez Rivas}
+\title{Solutions to Dugundji's Topology}
+\begin{document}
+\maketitle
+\section*{Chapter III. Topological Spaces}
+\subsection*{Section I}
+
+\newenvironment{problem}[2][Problema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{problem}{5} In $\Z^+$, define $U \subset \Z^+$ to be open if it satisfies the condition: $n \in U \Rightarrow $ every divisor of $n$ belongs to $U$. Show that this is a topology in $\Z^+$ and it is not the discrete topology.  
+\end{problem}
+
+\begin{proof}
+%Notice that $Z^+$ and $\emptyset$ are both open. Let $\{U_\alpha: \alpha \in \mathcal{A} \}$ be an arbitrary family of open sets and let $n \in U = \bigcup_{\alpha \in \mathcal{A}} U_\alpha$. Then, there is an $\beta \in \mathcal{A}$, such that $n \in U_\beta.$ Since $U_\beta$ is open, all divisors of $n$ are in $U_\beta$. Thus, all divisors of $n$ are in $U$. Therefore, $U$ is open. Now, let $\{V_i: i \in \Z^+\}$ be a numerable family of open sets, and let $m \in V = \bigcap_{i \in \Z^+} V_i.$ By definition, $m$ belongs to all sets $V_i$, $i \in \Z^+$. Thus, the divisors of $m$ are elements of every $V_i$, $i \in \Z^+$. Therefore $V$ is an open set.
+
+Clearly this is not the discrete topology. For example, the set $\{6\}$ is not open.
+\end{proof}
+
+\begin{problem}{6} Prove: $\tau$ is the discrete topology if and only if every point is an open set.
+\end{problem}
+\begin{proof}
+Let $\tau$ be the discrete topology of some nonempty set $X$. By definition, every subset of $X$ is open, in particular, every point is an open set. 
+
+Suppose that every point is open and let $U$ be a subset of $X.$  Notice that $U = \bigcup_{u \in U} \{u\}$. Therefore, $U$ is open, since it is the union of open sets.
+\end{proof}
+
+
+\subsection*{Section 3}
+
+
+\subsection*{Section 4}
+\begin{problem}{1} Determine the closure, derived set, interior, and boundary, of the following sets: (a) The rationals in $\E$; (b) the Cantor set in $\E$; the set $\{(r_1, r_2): r_1, r_2 \in \Q \} \subset \E^2$; (d) $\{(x, 0): 0 < x < 1 \} \subset \E^2$.
+\end{problem}
+\begin{proof}
+    \begin{itemize}
+        \item[(a)]  
+    \end{itemize}
+\end{proof}
+\end{document}
