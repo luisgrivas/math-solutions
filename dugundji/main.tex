@@ -32,10 +32,12 @@ sorting=ynt
 \title{Solutions to Dugundji's Topology}
 \begin{document}
 \maketitle
-\section*{Chapter III. Topological Spaces}
-\subsection*{Section I}
 
-\newenvironment{problem}[2][Problema]{\begin{trivlist}
+\section*{Chapter III. Topological Spaces}
+
+\subsection*{Section 1}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 
 \begin{problem}{5} In $\Z^+$, define $U \subset \Z^+$ to be open if it satisfies the condition: $n \in U \Rightarrow $ every divisor of $n$ belongs to $U$. Show that this is a topology in $\Z^+$ and it is not the discrete topology.  
@@ -52,7 +54,7 @@ Clearly this is not the discrete topology. For example, the set $\{6\}$ is not o
 \begin{proof}
 Let $\tau$ be the discrete topology of some nonempty set $X$. By definition, every subset of $X$ is open, in particular, every point is an open set. 
 
-Suppose that every point is open and let $U$ be a subset of $X.$  Notice that $U = \bigcup_{u \in U} \{u\}$. Therefore, $U$ is open, since it is the union of open sets.
+Suppose that every point is open and let $U$ be a subset of $X.$  Notice that $U = \bigcup_{u \in U} \{u\}$. Therefore $U$ is open, since it is the union of open sets.
 \end{proof}
 
 
@@ -64,7 +66,86 @@ Suppose that every point is open and let $U$ be a subset of $X.$  Notice that $U
 \end{problem}
 \begin{proof}
     \begin{itemize}
-        \item[(a)]  
+        \item[(a)] We are going to show that $\Q$ is dense in $\E$, that is, $\overline{\Q} = \E.$ Let $x \in Q^c$ and $\epsilon \in \E$ such that$\epsilon > 0.$ By the archimedean property, there exists $m \in \N$ such that $m \epsilon  > 1.$ Let $n$ be the smallest integer with $m(x + \epsilon) < n.$ Then
+        $$ mx < n-1 < m(x + \epsilon) < n.$$
+        Therefore $\frac{n-1}{m} \in (x, x + \epsilon)$, showing that $\Q$ is dense in $\E.$
     \end{itemize}
 \end{proof}
+
+\begin{problem}{3} Let $A \subset \E$ be a bounded set. Prove that $\sup A \in \overline{A}.$ Under what conditions is $\sup A \in A^\prime$.
+\end{problem}
+\begin{proof} %REVISAR
+Let $\alpha = \sup A$ and let $V_\alpha$ be a neighborhood of $\alpha.$ Since $V_\alpha$ is open, there exists $r > 0$ such that $(\alpha - r, \alpha + r) \subset V_\alpha.$ Since $\alpha - r < \alpha$, there exists $a \in A$ such that $\alpha - r < a < \alpha.$ But this means that $V_\alpha \cap A \neq \varnothing.$ Therefore $\alpha \in \overline{A}.$
+\end{proof}
+
+\begin{problem}{5}
+Show that $A^\prime = \varnothing \Rightarrow A$ is closed.
+\end{problem}
+\begin{proof}
+    Since $\overline{A} = A \cup A^\prime$, we have that $\overline{A} = A.$ But this means that $A$ is closed.
+\end{proof}
+
+
+\begin{problem}{8}
+    Prove: $Fr(A) = \varnothing$ if and only if $A$ is both open and closed.
+\end{problem}
+\begin{proof}
+Suppose that $Fr(A) = \varnothing.$ Then $\overline{A} = int(A) \cup Fr(A) = int(A)$. Since $int(A) \subset A \subset \overline{A}$, we have that $A = \overline{A} = int A.$ That is, $A$ is both open and closed.
+
+Suppose that $A$ is both open and closed. Then $\overline{A} = A = int(A).$ But this means that $Fr(A) = \overline{A} - int(A) = A - A = \varnothing.$
+\end{proof}
+
+\begin{problem}{11}
+        For what spaces $X$ is the only dense set $X$ itself?
+\end{problem}
+\begin{proof}
+    
+\end{proof}
+
+\begin{problem}{12} Let $E$ and $G$ be dense in $X$. Prove: If $E$ and $G$ are open, then $E \cap G$ is also dense in $X.$
+\end{problem}
+\begin{proof}
+    Let $p$ be a point in $X$ and let $V_p$ be a neighborhood of $p.$ Since $V_p \cap (E \cap G) = (V_p \cap E) \cap G$ and $V_p \cap E$ is open, then $(V_p \cap E) \cap G \neq \varnothing.$ Therefore $p \in \overline{E \cap G}$; but since $p$ an arbitrary point in $X$, we have $\overline{E \cap G} = X.$
+\end{proof}
+%REVISAR
+\begin{problem}{13} Let $D$ be dense in $X$. Prove $\overline{D \cap G} = \overline{G}$ for every open $G \subset X.$
+\end{problem}
+\begin{proof}
+    Clearly $\overline{D \cap G} \subset \overline{G}$. Let $p \in \overline{G}$ and $V_p$ a neighborhood of $p.$ Notice that $V_p \cap G$ is open, since $G$ is open. Then, $V_p \cap (D \cap G) = (V_p \cap G) \cap D \neq \varnothing$. Therefore $p \in \overline{D \cap G}$. We conclude that $\overline{D \cap G} = \overline{G}$.
+\end{proof}
+
+\begin{problem}{19} If every countable subset of a space is closed, is the topology necessarily discrete?
+\end{problem}
+\begin{proof}
+Let $X$ be such space. Then $X$ is countable, since $X$ is closed. Let $\{x\}$ be a singleton in $X$. Then $\{x\}$ is open, since $X - \{x\}$ is countable. Since every singleton is open in this topology, this topology is necessarily discrete.
+\end{proof}
+
+\subsection*{Section 7}
+\begin{problem}{3} Show that the rationals, as a subspace of $\E$, do not have the discrete topology.
+\end{problem}
+\begin{proof}
+    Let $p$ be a rational and suppose that $\{p\}$ is open in $\Q$. Then $\{p\} = \Q \cap U$, where $U$ is open in $\E.$ Let $x \in U$ be a point different from $p.$ Since $U$ is open, there exists a neighborhood $V_x$ of $x$ such that $V_x \subset U.$ By definition, $V_x \cap \Q = \varnothing$. But this means that $\Q$ is not dense in $\E$, a contradiction. Thus, the hypothesis that $\{p\}$ is open in $\Q$ must be false. Therefore, the relative topology of $\Q$ is not discrete.
+\end{proof}
+
+\subsection*{Section 11}
+
+\begin{problem}{1} Let $p: \E \times \E \rightarrow \E$ be the projection $(x, y) \mapsto x.$ Show: (a) that $p$ is an open mapping; (b) that $p$ is not a closed map.
+\end{problem}
+\begin{proof}
+    Let $U \subset \E \times \E$ an open set. Then 
+    $$U = \bigcup_{x \in U} V_x \times W_x,$$
+    where $V_x$ and $W_x$ are open sets in $\E.$ Thus
+    $$p(U) = p\left(\bigcup_{x \in U} V_x \times W_x \right) = \bigcup_{x \in U}p(V_x \times W_x) = \bigcup_{x \in U}V_x.$$
+    Note that $\bigcup_{x \in U}V_x$. Therefore $p$ is an open map.
+
+Let $F = \{(t, 1/t): t \neq 0 \}$. Notice that $F$ is closed in $\E \times \E$, since is the graph of the map $t \mapsto 1/t.$ But $p(F) = (-\infty, 0) \cup (0, \infty)$, which is not closed in $\E.$ Therefore $p$ is not a closed map.
+\end{proof}
+
+\begin{problem}{2} Let $p(x)$ be a polynomial on $\E$. Show that the map $x \mapsto p(x)$ is a closed map of $\E$.
+\end{problem}
+\begin{proof}
+Let $F$ be a closed subset of $\E.$ 
+    
+\end{proof}
+
 \end{document}

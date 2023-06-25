@@ -1,0 +1,162 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{mathpazo,amsfonts}
+\usepackage[margin=0.95in]{geometry}
+
+\pagestyle{fancy}
+
+\lhead{Problemario de Análisis}
+\chead{Luis González Rivas}
+\rhead{21 de junio de 2023}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+
+\newenvironment{problem}[2][Problema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+
+\begin{problem}{1} Sea $\mathcal{C}$ el conjunto de Cantor y $\lambda$ la medida de Lebesgue en $[0, 1]$. Pruebe las siguientes afirmaciones:
+\begin{itemize}
+    \item[a)] $\mathcal{C}$ tiene medida cero.
+    \item[b)] Considera el subconjunto $\mathcal{F} \subset [0, 1]$ construido como $\mathcal{C}$, excepto que cada uno de los intervalos removidos en el n-ésimo paso tiene longitud $\alpha 3^{-n}$, con $0 < \alpha < 1$. Entonces $\mathcal{F}$ es cerrado, su complemento es denso $[0,1]$ y $\lambda(F) = 1 - \alpha$.
+\end{itemize}
+\end{problem}
+\begin{proof}
+
+\begin{itemize}
+    \item[a)] Recuerde que $\mathcal{C}$ se define como sigue. Sea $P_0 = [0, 1]$ y definimos recursivamente a $P_{n+1}$ como el conjunto resultante de remover los tercios centrales de los intervalos de $P_n$. La familia resultante es la siguiente.
+    \begin{eqnarray*}
+    P_0  &=& [0, 1]\\
+    P_1 &=& \left[0, \frac{1}{3}\right] \cup \left[\frac{2}{3}, 1\right] \\
+    P_2 &=& \left[0, \frac{1}{9}\right]\cup \left[\frac{2}{9}, \frac{3}{9}\right]\cup \left[\frac{6}{9}, \frac{7}{9} \right]\cup \left[\frac{8}{9}, 1\right] \\
+    & \vdots &
+    \end{eqnarray*}
+\end{itemize}
+El conjunto de Cantor se define como 
+
+$$\mathcal{C} = \bigcap_{n=0}^\infty P_n.$$
+
+Note que $\mathcal{C}$ es cerrado y no vacío, pues es la intersección de una familia anidada de compactos. Como $P_n$ es medible para toda $n \geq 0$, se tiene que 
+$$\lambda(\mathcal{C}) = \lambda\left(\bigcap_{n=0}^{\infty} P_n \right) = \lim_{n\to \infty}\lambda(P_n) =  \lim_{n\to \infty} \left(\frac{2}{3} \right)^n = 0 $$
+
+
+
+\item[b)] Consideremos la sucesión $P_{n, \alpha}$ construida similarmente que la sucesión del inciso a), pero ahora removiendo los intervalos centrales de longitud  $\frac{\alpha}{3^n}$. Por definición, cada $P_{n, \alpha}$ es compacto y $P_{n+1} \subset P_n$ para toda $n\geq 0$, entonces
+
+$$ \mathcal{F} = \bigcap_{n=0}^\infty P_{n, \alpha} \neq \emptyset.$$
+
+Puesto que $\mathcal{F}$ es la intersección numerable de cerrados, este es cerrado. Por otro lado, observe que para $n \geq 1$, se tiene que
+$$\lambda(P_{n, \alpha}) = 1 - \sum_{i=1}^{n}{ \alpha \frac{2^{i-1}}{3^i}} = 1 - \frac{\alpha}{3} \sum_{i=0}^{n-1}{ \left(\frac{2}{3}\right)^i} .$$
+
+Luego, dado que cada $P_{n,\alpha}$ es medible, se tiene que 
+
+$$\lambda(\mathcal{F}) = \lambda\left(\bigcap_{n=0}^{\infty} P_{n, \alpha} \right) = \lim_{n\to \infty}\lambda(P_{n, \alpha}) =  \lim_{n\to \infty}1 - \frac{\alpha}{3} \sum_{i=0}^{n-1}{ \left(\frac{2}{3}\right)^i} = 1 - \alpha.  $$
+
+%% FALTA DENSIDAD
+\end{proof}
+
+\text{ }
+%---------------------------------
+\begin{problem}{2}  Considera el espacio de medida $([0, 1], \mathbf{\mathcal{B}}([0, 1]), \lambda)$. Supón que existe $E \in \mathbf{\mathcal{B}}$ y $\alpha \in (0, 1)$ que satisfacen 
+
+$$ \lambda(E \cap J) \geq  \alpha \lambda(J)$$
+
+para todo $J\subset [0, 1]$ subintervalo. Demuestra que $\lambda(E) = 1.$
+\end{problem}
+\begin{proof}
+AVANZADO... FALTA TEMA DE DIFERENCIACION.
+% Initially observe that �� has positive measure. Then use Lebesgue's differentiation theorem to obtain that 1��≥�� pointwise almost everywhere in [0,1]. Now if ��(��)<1 we would have ��([0,1]∖��)>0. But then we could find ��∈[0,1] so that ��∉�� and 1��(��)≥�� which implies that ��≤0 which cannot happen from premise of the problem.
+\end{proof}
+%---------------------------------
+
+\begin{problem}{3} Si $m$ es una medida aditiva numerable definida en $\mathcal M$. Demuestre que 
+
+\begin{itemize}
+    \item[a)] Si $A, B \in \mathcal M$ y $A \subset B $, entonces $m A \leq m B$. 
+    \item[b)] Sea $\{ E_n \}$ una sucesión en $\mathcal M$. Entonces 
+    $$ m\left( \bigcup E_n \right) \leq \sum m E_n.$$
+    \item[c)] Si $A \in \mathcal M$ es tal que $m A < \infty $, entonces $m \emptyset = 0.$
+\end{itemize}
+\end{problem}
+
+\begin{proof}
+\begin{itemize}
+    \item[a)] Note que $B = (B \setminus A) \cup (A \cap B) = (B \setminus A) \cup A$. Entonces, $m B = m  (B \setminus A) + m A$. Como $m  (B \setminus A) \geq 0$, entonces $m B \geq m A.$
+    \item[b)] Definamos la sucesión $\{ F_i \}_{i=1}^\infty$ como $F_1 = E_1$ y 
+    $$F_n = E_n - \bigcup_{i=1}^{n-1} E_i.$$
+Note que esta es una sucesión disjunta en $\mathcal M$, $F_i \subset E_i$ para toda $i \geq 1$ y 
+$$\bigcup_{i=1}^{\infty} E_i  = \bigcup_{i=1}^{\infty} F_i.$$
+Entonces 
+\begin{eqnarray*}
+    m \bigcup_{i=1}^{\infty} E_i  &=& m \bigcup_{i=1}^{\infty} F_i \\
+    &=& \sum_{i=1}^{\infty} m F_i \\
+    &\leq& \sum_{i=1}^{\infty} m E_i.
+\end{eqnarray*}
+
+\item[c)] Como $A = A \cup \emptyset$, entonces 
+$m A = m A + m \emptyset$. Luego $m \emptyset = 0.$
+\end{itemize}
+\end{proof}
+
+
+\begin{problem}{4} Sea $A$ el conjunto de números racionales en $[0, 1]$, y sea $\{I_n\}$ una colección finita de intervalos abiertos que cubren a $A$. Demuestre que $\sum l(I_k) \geq 1. $  
+\end{problem}
+\begin{proof}
+Denotemos a los intervalos de la colección como $I_n = (a_n, b_n)$, para $i=1, \ldots, k$. Sean $a = \min \{ a_i: i=1, \ldots, k \}$ y $b = \max \{b_i: i=1, \ldots k \}$. Entonces $a \leq 0$ y $b \geq 1.$ Redefinamos el  índice de la colección de tal manera que $a_1 = a$ y $b_k = b$. Entonces 
+
+\begin{eqnarray*}
+     \sum_{n=1}^k l(I_n) &=&  \sum_{n=1}^k (b_n - a_n)\\
+     &=& (b_1 - a_1) + \cdots + (b_k - a_k) \\
+     &=& (b_k - a_1) + (b_1 - a_k) PENDIENTE
+\end{eqnarray*}
+
+
+
+\end{proof}
+
+
+\begin{problem}{5} Dado cualquier conjunto $A$ y $\epsilon > 0$, existe un conjunto abierto $O$ tal que $A \subset O $ y $m^\ast O \leq m^\ast A + \epsilon$. Además, existe un conjunto $G \in \mathcal G_\delta$ tal que $A \subset G$ y $m^\ast A = m^\ast G$.
+\end{problem}
+\begin{proof}
+Si $m^\ast A$ no es finito, entonces $O = \mathbb R$ satisface la desigualdad. Suponga pues, que $m^\ast A < \infty$. Sea $\{I_n\}$ una colección de intervalos abiertos que cubren a $A$ tal que 
+$m^\ast A \leq \sum l(I_n) \leq m^\ast A + \epsilon.$ Este existe, por la definición de de la medida exterior. Definamos $O = \bigcup I_n$; este conjunto es abierto y $ A \subset O$. Más aún, por la definición de medida exterior,  $m^\ast O \leq \sum l(I_n)$, pues $\{ I_n \}$ es una colección de intervalos abiertos que cubren a $O$. Por tanto, $m^\ast O \leq m^\ast A + \epsilon$.
+
+Para toda $n \in \mathbb N$, sea $O_n$ un abierto que cubre a $A$ tal que 
+$m^\ast A + \frac{1}{n} \geq m^\ast O_n$. Sea $\epsilon > 0$. Por el principio de Arquímedes existe $k \in \mathbb N$ tal que $\frac{1}{k} < \epsilon$. Definamos $G = \bigcap O_n$. Este conjunto es $\mathcal G_\delta$ y 
+$$m^\ast G \leq m^\ast O_k \leq m^\ast A + \frac{1}{k} < m^\ast A + \epsilon.$$
+
+Como la elección de $\epsilon$ fue arbitraria y $m^\ast A \leq m^\ast G$, tenemos que $m^\ast G = m^\ast A.$
+\end{proof}
+
+\begin{problem}{6} Demuestre que, 
+\begin{itemize}
+    \item[a)] $m^\ast$ es invariante por traslaciones. 
+    \item[b)] si $m^\ast A = 0$, entonces $m^\ast (A \cup B) = m^\ast B.$ 
+\end{itemize} 
+\end{problem}
+
+\begin{proof}
+    \begin{itemize}
+        \item[a)] Sea $A$ un conjunto en $\mathbb R$. Sea $\{ I_n \}$ una colección de intervalos abiertos que cubren a $A$. Note que, para $k \in \mathbb R$, La $\{ I_n + k \}$ es una colección de intevalos abiertos que cubren a $A + k.$ Como $l(I_n) = l(I_n + k)$ para cualquier intervalo, entonces $m^\ast( A + k ) \leq  m^\ast A.$ Pero por simetría, si $\{ I_n \}$ es una colección de intervalos abiertos que cubren a $A + k$, entonces la colección $\{ I_n - k \}$ es una colección de intervalos abiertos que cubren a $A$. Luego, $ m^\ast A \leq  m^\ast( A + k ).$  Por tanto, $m^\ast( A + k ) = m^\ast A.$
+
+        \item[b)] Como $B \subset A \cup B$, entonces $m^\ast B \leq m^\ast(A \cup B) \leq m^\ast A + m^\ast B = m^\ast B$. Por tanto, $m^\ast B = m^\ast(A \cup B)$
+     \end{itemize}
+\end{proof}
+
+
+\begin{problem}{7} Da una sucesión decreciente $\{E_n \}$ de conjuntos medibles con $\emptyset  = \bigcap_{i=1}^\infty E_n $ y $m E_n = \infty $ para todo $n$.     
+\end{problem}
+\begin{proof}
+Definamos la sucesión $\{ E_n \}$ como 
+    
+\end{proof}
+\end{document}
