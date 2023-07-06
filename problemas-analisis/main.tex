@@ -107,7 +107,7 @@ $m A = m A + m \emptyset$. Luego $m \emptyset = 0.$
 \end{itemize}
 \end{proof}
 
-
+%---------------------------------
 \begin{problem}{4} Sea $A$ el conjunto de números racionales en $[0, 1]$, y sea $\{I_n\}$ una colección finita de intervalos abiertos que cubren a $A$. Demuestre que $\sum l(I_k) \geq 1. $  
 \end{problem}
 \begin{proof}
@@ -123,7 +123,7 @@ Denotemos a los intervalos de la colección como $I_n = (a_n, b_n)$, para $i=1, 
 
 \end{proof}
 
-
+%---------------------------------
 \begin{problem}{5} Dado cualquier conjunto $A$ y $\epsilon > 0$, existe un conjunto abierto $O$ tal que $A \subset O $ y $m^\ast O \leq m^\ast A + \epsilon$. Además, existe un conjunto $G \in \mathcal G_\delta$ tal que $A \subset G$ y $m^\ast A = m^\ast G$.
 \end{problem}
 \begin{proof}
@@ -137,6 +137,7 @@ $$m^\ast G \leq m^\ast O_k \leq m^\ast A + \frac{1}{k} < m^\ast A + \epsilon.$$
 Como la elección de $\epsilon$ fue arbitraria y $m^\ast A \leq m^\ast G$, tenemos que $m^\ast G = m^\ast A.$
 \end{proof}
 
+%---------------------------------
 \begin{problem}{6} Demuestre que, 
 \begin{itemize}
     \item[a)] $m^\ast$ es invariante por traslaciones. 
@@ -152,11 +153,123 @@ Como la elección de $\epsilon$ fue arbitraria y $m^\ast A \leq m^\ast G$, tenem
      \end{itemize}
 \end{proof}
 
-
+%---------------------------------
 \begin{problem}{7} Da una sucesión decreciente $\{E_n \}$ de conjuntos medibles con $\emptyset  = \bigcap_{i=1}^\infty E_n $ y $m E_n = \infty $ para todo $n$.     
 \end{problem}
 \begin{proof}
-Definamos la sucesión $\{ E_n \}$ como 
-    
+Definamos la sucesión $\{ E_n \}$ como $E_n = \bigcup_{k=n}^\infty (k, k +\frac{1}{k})$. Note que esta sucesión es decreciente. Además, 
+$$ m(E_n) = \sum_{k=n}^\infty m \left(k, k + \frac{1}{k} \right) = \sum_{k=n}^\infty \frac{1}{k} = \infty,$$
+para toda $n.$ Afirmamos que $ E = \bigcap E_n = \emptyset$. Si $x \in E$, entonces $x \in E_n$ para toda $n.$ Por el principio de Arquímedes existe un entero $k$ tal que $k > x$. Entonces $x \notin E_n$ para $n \geq k$, lo cual una contradicción. Por tanto $E = \emptyset .$
 \end{proof}
+
+%---------------------------------------
+\begin{problem}{8} Demuestre los siguientes lemas.
+\begin{itemize}
+    \item[a)] Dada una función medible $f$ en $[a, b]$ que toma valores $\pm \infty $ únicamente en un conjunto de medida cero, y dado $\epsilon > 0$, existe $M$ tal que $\lvert f \rvert \leq M$ excepto en un conjunto de medida menor que $\epsilon / 3.$
+    \item[b)] Sea $f$ una función medible en $[a, b]$. Dado $M $ y $\epsilon > 0$, existe una función simple $\varphi$ tal que $\lvert f - \varphi \rvert  < \epsilon $ excepto donde $\lvert f \rvert \geq M .$ Si $m \leq f \leq M$, entonces podemos escoger a $\varphi$ de tal manera que $m \leq \varphi \leq M$. 
+    \item[c)] Dada una función simple $\varphi$ en $[a, b]$, existe una función a pasos $g$ en $[a, b]$ tal que $g(x) = \varphi(x)$ excepto en un conjunto de medida menor que $\epsilon / 3$. 
+\end{itemize}
+\end{problem}
+\begin{proof}
+    \begin{itemize}
+        \item[a)] Note que $A = \{x: f(x) = \infty \} = \bigcap_{n=1}^\infty \{x: f(x) > n\}$ y $ B = \bigcap_{n=1}^\infty \{ x: f(x) < -n \}$. Por hipótesis, $m A \cup B = 0$, por tanto, existe $k \in \mathbb N$ tal que $m \bigcap_{n=k}^\infty \{x: f(x) > n\} < \epsilon / 6$ y $m \bigcap_{n=k}^\infty \{ x: f(x) < -n \} < \epsilon / 6$. Entonces $\lvert f \rvert < k$ excepto en un conjunto de medida menor que $\epsilon / 3.$
+        \item[b)] Sea $N$ el natural más pequeño tal que $r = \frac{2M}{N} < \epsilon.$ Sea $m = $ Definamos la siguiente partición del intervalo $[-M, M]$ como
+        $$I_k = \left [-M + (k-1)r, -M +   k r \right), $$
+para $k = 1, 2, \ldots, N-1$ e $I_N = [-M - (N-1) r, -M + Nr]$. Defina $A_k = f^{-1}(I_k)$. Puesto que $f$ es medible, cada $A_k$ es medible. Entonces podemos definir una función simple $\varphi:[a, b] \rightarrow \R $ como sigue.
+
+$$\varphi(x) = \begin{cases}
+-M + (k-1) r & \text{ si } x \in A_k \\
+0 & \text{ de otro modo.}  
+\end{cases} $$
+
+Note que, si $x$ es tal que $-M \leq f(x) \leq M$, entonces $x \in A_k$ para alguna $k \in \{1, 2, \ldots, N\}$. Luego
+$$\lvert f(x) - \varphi(x) \rvert = \lvert f(x) - (-M + (k-1)r) \rvert < r < \epsilon.$$
+
+Si $m \leq f \leq M$, entonces podemos repetir la construcción anterior, pero haciendo $r = \frac{M - m}{N}$, donde $N$ es el natural más pequeño tal que $\frac{M - m}{N} < \epsilon.$
+
+\item[c)] Si $\varphi$ toma $n$ valores distintos, sean $\{a_1, \ldots, a_n \}$ el conjunto de los distintos valores que toma $\varphi$; esto es, $\{a_1, \ldots, a_k \} = \varphi([a, b])$. Definamos para $k=1,2, \ldots n$, el conjunto $A_k = \varphi^{-1}(a_k)$. Dado que cada $A_k$ es medible, existe un abierto $O_k$ en $\R$ tal que $A_k \subset O_k$ y $m (O_k \setminus A_k) < \epsilon / 6n$. Cada $O_k$ es la unión numerable de intervalos abiertos disjuntos; es decir, 
+$$O_k = \bigcup_{j=1}^\infty I_{j,k},$$
+con $I_{r, k} \cap I_{s, k} = \emptyset $, para $r \neq s$. La colección $\mathcal{F} =  \{ I_{j, r} \}_{r \in [n],  j \in \N}$ es numerable y cubre a $[a, b]$. Puesto que $[a, b]$ es compacto, existe una subcolección finita de $\mathcal{F}$ que cubre a $[a, b]$, digamos
+
+$$I_1, I_2, \ldots, I_p. $$
+
+PENDIENTE
+
+    \end{itemize}
+\end{proof}
+
+%---------------------------------------
+\begin{problem}{9} Sea $f$ una función real definida en todo $\R$. Demostrar que el conjunto donde $f$ es continua es $\mathcal{G}_\delta$. 
+\end{problem}
+
+En lo siguiente, la bola centrada en $x$ con radio $r > 0$ es el conjunto $B(x, r) = \{y \in \R: \lvert x - y \lvert < r \}$. Daremos por hecho que este es un conjunto abierto.
+\begin{proof}
+Sea $E = \{x \in \R : f \text{ es continua en } x \}$. Para cada $n \in \N$ sea 
+$$A_n = \bigcup_{x\in E} B(x, \delta_{x, n}), $$
+donde $B(x, \delta_{x, n})$ satisface  
+$$ f[B(x, \delta_{x, n})] \subset B(f(x), 1/n), $$
+para toda $x \in E$ y toda $n \in \N.$ Observe que $A_n$ es abierto, ya que es la unión de abiertos. Definamos ahora $G = \bigcap_{n=1}^{\infty} A_n$. Este es un conjunto $\mathcal{G}_\delta$ y observe que $E \subset G$. Demostraremos que $G \subset E$.
+
+Sea $y \in G$ y sea $\epsilon > 0.$ Entonces existe $k \in \N$ tal que $1/k < \epsilon/ 2 $. Como $y \in G$, entonces $y \in A_k$. Entonces existe $x \in E$ tal que $y \in B(x, \delta_{x, k})$. Como $B(x, \delta_{x, k})$ es abierto, existe $\delta > 0 $ tal que $B(y, \delta) \subset B(x, \delta_{x, k})$. Entonces 
+$$f[B(y, \delta)] \subset f[B(x, \delta_{x, k})] \subset B(f(x), 1/k). $$
+Pero $ B(f(x), 1/k) \subset B(f(y), \epsilon)$, ya que si $z \in B(f(x), 1/k)$, entonces $$\lvert z - f(y) \lvert \leq \lvert z - f(x) \lvert + \lvert f(x) - f(y) \lvert < 1/k + 1/k < \epsilon.$$
+Luego $f[B(y, \delta)] \subset B(f(y), \epsilon)$. Hemos probado que $f$ es continua en $y$. Por tanto $G = E$.
+\end{proof}
+
+%---------------------------------
+\begin{problem}{10} Sea $T$ la función ternaria de Cantor y defina $f$ como $f(x) = T(x) + x.$
+\begin{itemize}
+    \item[a)] Demuestre que $f$ es un homeomorfismo de $[0, 1]$ sobre $[0, 2].$ 
+    \item[b)] Demuestre que $f$ mapeo al conjunto de Cantor a un conjunto $F$ de medida 1.
+    \item[c)] Sea $g = f^{-1}$. Demuestre que existe un conjunto medible $A$ tal que $g^{-1}(A)$ es no medible.
+    \item[d)] Demuestre que existe un conjunto medible que \textbf{no es} Borel medible. 
+\end{itemize}
+\end{problem}
+
+%---------------------------------
+\begin{problem}{11}
+Sea $F$ un conjunto cerrado en $\R$ y $f: F \rightarrow \R$ una función continua. Demuestre que existe una función continua $g$ definida en $\R$ tal que $g\mid_F = f.$
+\end{problem}
+\begin{proof}
+Sea $O = F^c$. Note que $O$ es un abierto en $\R$. Entonces $O$ se puede expresar como la unión de una colección numerable \textbf{disjunta} $\{ (a_n, b_b) \}$ de intervalos abiertos. Definamos a $g$ de la siguiente manera. Si $x \in F$, entonces $g(x) = f(x);$ si $x \in (a_n, b_n)$, con $-\infty < a_n, b_n < \infty$, entonces
+
+$$g(x) = \frac{f(b_n) - f(a_n)}{b_n - a_n} (x - a_n) + f(a_n);$$
+y si $x \in (a_n, b_n)$ con $a_n = -\infty$ o $b_n = \infty$, entonces
+$$ g(x) = f(b_n) \text{ o } g(x) = f(a_n), \text{ respectivamente.}$$
+Es claro que $g\mid_F = f.$ Para demostrar que $g$ es continua en $\R$, solo hace falta demostrarlo en alguno de los puntos interantes: $\{ a_1, b_1, a_2, b_2 \ldots \}$. Lo probaremos solo para los puntos $a_k \neq - \infty$, siendo el otro caso similar. Sea $\epsilon > 0$. Dado que $f$ es continua en $F$, existe un $\delta_1 > 0$ tal que
+$$\lvert f(x) - f(a_k) \rvert < \epsilon/2 $$
+
+FALTAN COSAS
+\end{proof}
+
+%---------------------------------
+\begin{problem}{12}
+Demuestre que el número real $l$ es el límite superior de una sucesión $(x_n)$ si y solo si (i) dado $\epsilon > 0 $, existe $n$ tal que $x_k < l + \epsilon$ para todo $k \geq n$; y (ii) dado $\epsilon > 0$ y $n\in \N$, existe $k \geq n$ tal que $x_k > l - \epsilon$. 
+\end{problem}
+\begin{proof} Recuerde que $\limsup x_n = \inf_{n} \sup_{k \geq n} x_k$.
+    \begin{itemize}
+        \item[i)] Note que $l + \epsilon$ \textbf{no es} cota inferior del conjunto $\{ \sup_{k \geq n} x_k:  n \in \N \}$, por lo que existe $m$ tal que 
+        $\sup_{k \geq m} x_k < l + \epsilon.$ Pero por definición, $x_k \leq \sup_{k \geq m} x_k$ para toda $k \geq m$. La desigualdad deseada se sigue de las dos desigualdades anteriores. 
+        \item[ii)] Suponga, por el contrario, que $x_k \leq l - \epsilon$ para toda $k \geq n.$ Entonces $\sup_{k \geq m} x_k \leq l - \epsilon$ para toda $m \geq n.$ Luego, $l = \limsup x_k \leq \inf_{m \geq n} \sup_{k \geq m} x_k \leq l - \epsilon.$ Lo cual, es una contradicción.
+    \end{itemize} 
+\end{proof}
+
+%---------------------------------
+\begin{problem}{13} Suponga que $(X, S, \mu)$ es un espacio de medida y $\{f_n\}_{n\in \N}$ es una sucesión de funciones $S$-medibles de $X$ en $\R$ tales que $\sum_{k=1}^\infty \int \lvert f_k \rvert d \mu < \infty$. Demuestre que existe un conjunto $E \in S$ tal que $\mu(X \setminus E) = 0$ y $\lim_{k \to \infty} f_k(x) = 0$ para toda $x \in E.$ 
+\end{problem}
+
+\begin{problem}{14} Sea $(X, \Sigma, \mu)$ un espacio de medida. Sea $\{f_n\}_{n \in \N}$ una sucesión de funciones con la propiead $f_n \in L^1(X, \Sigma, \mu)$ para toda $n \in \N$. Suponiendo que
+$$\sum_{n=1}^\infty \int_{X} \lvert f_n \rvert d \mu < \infty,$$
+prueba que existe una función $f \in L^1(X, \Sigma, \mu)$ tal que $\sum_{n=1}^\infty f_n$
+converge a $f$ casi dondequiera con respecto a la medida $\mu$ y que 
+$$\int_X f d \mu = \sum_{n=1}^\infty \int_X f_n d \mu.$$
+\end{problem}
+\begin{proof}
+    De la primera desigualdad se deduce que 
+    $$\lim_{n \to \infty} \int_X \lvert f_n \rvert d \mu  = 0.$$
+\end{proof}
+
+
+
+
 \end{document}

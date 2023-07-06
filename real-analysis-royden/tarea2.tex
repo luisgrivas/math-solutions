@@ -1,0 +1,282 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{mathpazo,amsfonts}
+\usepackage[margin=0.95in]{geometry}
+
+\pagestyle{fancy}
+
+\lhead{Tarea 2}
+\chead{Luis González Rivas}
+\rhead{9 de octubre de 2020}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+
+\newenvironment{problem}[2][Problema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+%--------------------------------------
+\begin{document}
+\begin{problem}{7} Demuestre que $l$ es un \textit{cluster point} de $(x_n)$ si y solo si existe una subsucesión $(x_{n_j})$ que converge a $l$.
+\end{problem}
+\begin{proof}
+Suponga que $l$ es un \textit{cluster point} de $(x_n)$. Entonces, existe un $n_1 \in \N$ tal que $n_1 > 1$ y $\lvert x_{n_1}  - l \lvert < 1.$ Definamos recursivamente la sucesión $(n_j)_{j=1}^\infty$ como $n_{k+1}$ tal que $n_{k+1} > n_k$ y $\lvert x_{n_{k+1}}  - l \lvert < \frac{1}{k+1}$. Se comprueba que la subsucesión $(x_{n_j})$ converge a $l$.
+
+
+Sea $(x_{n_j})$ una subsucesión que converge a $l$, sea $\epsilon > 0$ y sea $m \in \N$. Entonces existe $N \in \N$ tal que $\lvert x_{n_j} - l \lvert < \epsilon$ si $n_j \geq N$. Luego, si $n_k = \max\{N, m\} + 1$, entonces $\lvert x_{n_k} - l \lvert < \epsilon$. Por tanto $l$ es un \textit{cluster point} de $(x_n)$.
+\end{proof}
+
+
+%--------------------------------------
+\begin{problem}{8}
+\text{ }
+\begin{itemize}
+    \item[a.] Demuestre que $\limsup{x_n}$ y $\liminf{x_n}$ son los \textit{cluster points} más grandes y más chicos de la sucesión $(x_n).$
+    \item[b.] Demuestre que toda sucesión acotada tiene una subsucesión convergente.
+\end{itemize}
+
+\end{problem}
+\begin{proof}
+\text{ }
+\begin{itemize}
+    \item[a.] Demostremos que $\alpha = \limsup{x_n}$ es un \textit{cluster point} de $(x_n)$. Sea $\epsilon > 0$ y sea $N \in \N$. Entonces existe $m \in \N$ tal que $ \alpha \leq \sup_{k \geq m} x_k < \alpha + \epsilon$. Entonces existe un $j \in \N$ con $j \geq m$ tal que $\alpha - \epsilon < x_j$. \textbf{Incompleto.}
+    
+    \item[b.] Si $(x_n)$ es acotada, entonces $\alpha = \limsup{x_n}$ es un número real. Por a., $\alpha$ es un \textit{cluster point}. Por el \textbf{Problema 7}, existe una subsucesión de $(x_n)$ que converge a $\alpha.$
+\end{itemize}
+\end{proof}
+
+
+%--------------------------------------
+\begin{problem}{10}
+\text{ }
+\begin{itemize}
+    \item[a.] Demuestre que una sucesión $(x_n)$ que converge a un número real $l$ es una sucesión de Cauchy.
+    \item[b.] Demuestre que toda sucesión de Cauchy es acotada. 
+    \item[c.] Demuestre que si una sucesión de Cauchy tiene una subsucesión que converge a $l$, entonces la sucesión original converge a $l$.
+    \item[d.] Establezca el criterio de Cauchy: $(x_n)$ converge a $l$ si y solo si $(x_n)$ es una sucesión de Cauchy. 
+\end{itemize}
+
+\end{problem}
+\begin{proof}
+\text{ }
+\begin{itemize}
+    \item[a.] Sea $\epsilon > 0$. Entonces existe $N \in \N$ tal que $\lvert x_n - l \lvert < \frac{\epsilon}{2}$ si $n \geq N$. Luego, si $m, n \geq N$, se tiene que 
+    $$\lvert x_m - x_n \lvert \leq \lvert x_m - l \lvert + \lvert l - x_n \lvert < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon. $$
+    Por tanto $(x_n) $ es una sucesión de Cauchy.
+    \item[b.] Si $(x_n)$ es sucesión de Cauchy, existe $N \in \N$ tal que $\lvert x_n - x_m \lvert < 1$ si $n, m \geq N$. Sea $K = \max_{1 \leq i < N} \lvert x_N - x_i \lvert$. Entonces, se tiene que 
+    $$\lvert x_n \lvert = \lvert x_n - x_N + x_N \lvert \leq \lvert x_n - x_N \lvert + \lvert x_N \lvert  < K + \lvert x_N \lvert  + 1$$ 
+    para toda $n \in \N$. Esto demuestra que $(x_n)$ es acotada.
+    \item[c.] Sea $(x_{n_j})$ una subsucesión que converge a $l$ y sea $\epsilon > 0.$ Como $(x_n)$ es una sucesión de Cauchy, existe $N \in \N$ tal que $\lvert x_n - x_m \lvert < \epsilon/2$ si $n, m \geq N$. Como $(x_{n_k})$ converge a $l$, existe un $M\in \N$ tal que $\lvert x_{n_j} - l \lvert < \epsilon/2$ si $n_j \geq M$. Sea $n_j \geq \max\{N, M\}$. Luego,
+    $$\lvert x_n - l \lvert \leq \lvert x_n - x_{n_j} \lvert + \lvert x_{n_j} - l \lvert < \epsilon/2 + \epsilon/2 = \epsilon, $$
+    si $n \geq \max\{N, M\}.$ Por tanto, $(x_n)$ converge a $l$.
+    
+    \item[d.] Solo nos queda demostrar que si $(x_n)$ es una sucesión de Cauchy, entonces converge. Por a., $(x_n)$ es acotada. Entonces $(x_n)$ tiene una subsucesión $(x_{n_j})$ que converge a un número real $l$. Por c., $(x_n)$ converge a $l$.
+ \end{itemize}
+
+\end{proof}
+
+\begin{problem}{12}
+Demuestre que el número real $l$ es el límite superior de una sucesión $(x_n)$ si y solo si (i) dado $\epsilon > 0 $, existe $n$ tal que $x_k < l + \epsilon$ para todo $k \geq n$; y (ii) dado $\epsilon > 0$ y $n\in \N$, existe $k \geq n$ tal que $x_k > l - \epsilon$. 
+\end{problem}
+
+\begin{proof}
+Sea $l = \limsup{x_n}$ y sea $\epsilon > 0.$ Entonces $l + \epsilon$ no es una cota inferior del conjunto $\{ \sup_{k \geq n} x_k: n \in \N \}.$ Entonces existe $m \in \N$ tal que $l \leq  \sup_{k \geq m} x_k < l + \epsilon$. Entonces, para toda $k \geq m$, $x_k < l + \epsilon$. Esto establece (i).
+Por otro lado, sea $m \in \N$. Entonces $l - \epsilon < \sup_{k \geq m} x_k $. Como $l - \epsilon $ no es una cota superior del conjunto $\{ x_k: k \geq m \}$, entonces existe $r \in \N$ tal que $r \geq m$ y $l - \epsilon < x_r$. \textbf{Incompleto.}
+
+\end{proof}
+
+\begin{problem}{21}
+Sea $p$ un entero mayor que $1$ y $x$ un número real, $0 < x < 1.$ Demuestre que existe una sucesión $(a_n)$ de enteros con $0 \leq a_n < p$ tal que 
+$$x = \sum_{n=1}^{\infty}\frac{a_n}{p^n} $$
+y que esta sucesión es única excepto cuando $x$ es de la forma $\frac{q}{p^n}$, en cuyo caso existen exactamente dos sucesiones. Demuestre, conversamente, que si  $(a_n)$ es una sucesión de enteros con $0 \leq a_n < p$, la serie
+$$\sum_{n=1}^{\infty}\frac{a_n}{p^n} $$
+converge a un número real $x$ con $0\leq x \leq 1$.
+
+\end{problem}
+\begin{proof}
+\text{ }
+\begin{itemize}
+    \item[i.] Sea $a_1$ el entero más grande que satisface $ 0\leq a_1 < p$ y $$\frac{a_1}{p} \leq x.$$
+Definamos recursivamente la sucesión $(a_n)$ como sigue: sea $a_{n+1}$ el entero más grande que satisface $0 \leq a_{n+1} < p$ y $$\frac{a_{n+1}}{p^{n+1}} \leq  x - \sum_{i=1}^n \frac{a_i}{p^i}.$$ Demostraremos que la serie 
+$$\sum_{n=1}^{\infty}\frac{a_n}{p^n} $$
+converge a $x$. Definamos $s_n =  \sum_{i=1}^n \frac{a_i}{p^i}.$ Observe que $s_{n+1} - s_n = \frac{a_{n+1}}{p^{n+1}} \geq  0$, es decir, $(s_n)$ es una sucesión creciente. Además, por definición, $(s_n)$ está acotada superiormente por $x$.
+Sea $\epsilon > 0$. Entonces existe un natural $k$ tal que $\frac{1}{p^k} < \epsilon$. Entonces,
+
+\begin{equation}\label{eq1}
+0 \leq \frac{a_{k+1}}{p^{k+1}} \leq x - s_k <  \frac{a_{k+1} + 1}{p^{k+1}} \leq \frac{1}{p^{k}} < \epsilon.
+\end{equation} 
+Pero como $(s_n)$ es creciente y está acotada superiormente por $x$, (\ref{eq1}) implica que 
+$$ 0 \leq x - s_n < \epsilon, $$
+para toda $n \geq  k$. Esto implica que la sucesión $(s_n)$ converge a $x$; es decir la serie converge a $x$. 
+
+\item[ii.] Si $x = \frac{q}{p^k}$ con $0\leq q < p$, entonces, bajo el procedimiento descrito en i., $x = \sum_{n=1}^\infty \frac{a_n}{p^n}$, con $a_n = 0$ para toda $n \neq k$ y $a_k = q$. Pero también, $x = \sum_{n=1}^{\infty} \frac{b_n}{p^n}$, con $b_n = 0$ para toda $n<k$, $b_k = q - 1$ y $b_n = p-1$ para toda $n > k$. Para comprobar esto, observe que
+\begin{eqnarray*}
+ \sum_{n=1}^{\infty} \frac{b_n}{p^n} &=& (p-1) \left( \sum_{n=1}^{\infty} \frac{1}{p^n} - \sum_{n=1}^{k} \frac{1}{p^n} \right) + \frac{q-1}{p^k}\\
+ &=& (p-1) \left( \frac{1}{1 - \frac{1}{p}} - \frac{1 - \frac{1}{p^{k+1}}}{1 - \frac{1}{p}} \right) + \frac{q-1}{p^k}\\
+ &=& (p-1) \frac{p}{(p-1)p^{k+1}} + \frac{q-1}{p^k}\\
+ &=& \frac{q}{p^k}  = x.
+\end{eqnarray*}
+
+
+\item[iii.] Sea $(a_n)$ es una sucesión de enteros con $0 \leq a_n < p$. Observe que $0 \leq \frac{a_n}{p^n} \leq \frac{p-1}{p^n},$ para toda $n \in \N$ y 
+
+\begin{equation}\label{eq2}
+    0 \leq \sum_{n=1}^{\infty}\frac{a_n}{p^n} \leq (p-1) \sum_{n=1}^{\infty}\frac{1}{p^n} = (p - 1) \frac{1}{1 - \frac{1}{p}} =  1.
+\end{equation}
+Entonces $\sum_{n=1}^{\infty}\frac{a_n}{p^n}$ converge a un número real $x$ y (\ref{eq2}) demuestra que $x \in [0, 1]$.
+
+
+\end{itemize}
+\end{proof}
+
+
+\begin{problem}{22}
+Demuestre que $\R$ es no numerable.
+\end{problem}
+\begin{proof}
+Basta demostrar que el conjunto $[0, 1] \subset \R$ es no numerable. Por el \textbf{Problema 21}, existe una correspondencia entre el conjunto $[0, 1]$ \textit{sobre} el conjunto de todas las sucesiones con rango en $\{0, 1\}$. Suponga que $[0, 1]$ es numerable. Entonces el conjunto de las sucesiones con rango en $\{0, 1\}$ es también numerable. Sin embargo, esto contradice un resultado de la Tarea 1. 
+
+%, para todo número real $x \in [0, 1]$ existe una sucesión $(x_n)$ con rango en $\{0, 1\}$ tal que 
+%$$x = \sum_{n=1}^{\infty}\frac{x_n}{2^n}. $$
+%Entonces tenemos una correspondencia entre los números reales en $[0, 1]$ y todas las sucesiones 
+
+\end{proof}
+
+
+\begin{problem}{34}
+Deduzca la Proposición 16 del Teorema de Heine-Borel utilizando las leyes de De Morgan.
+
+\end{problem}
+\begin{proof}
+Sea $F_0 \in \mathcal{C}$ un conjunto acotado. Suponga que $\bigcap_{F \in \mathcal{C}} F = \emptyset$. Entonces $F_0 \subset \bigcup_{F \in \mathcal{C}} F^c$. Como cada $F^c$ es abierto, la colección $\{F^c: F \in \mathcal{C} \}$ es una cubierta abierta de $F_0$. Como $F_0$ es cerrado y acotado en $\R$, existe una subcubierta finita de $F_0$, es decir, 
+$$F_0 \subset F_1^c \cup \ldots \cup F_n^c, $$
+con $F_j \in C$, $j = 1, \dots, n.$ Luego, $F_0 \cap (F_1 \cap \ldots \cap  F_n) = \emptyset$. Por tanto, el supuesto que $\bigcap_{F \in \mathcal{C}} F = \emptyset$ es falso.
+\end{proof}
+
+
+\begin{problem}{35}
+Sea $(F_n)_{n=1}^\infty$ una sucesión de conjuntos cerrados no vacíos de números reales con $F_{n+1} \subset F_n$. Demuestre que si uno de los conjuntos $F_n$ es acotado, entonces $\bigcap_{i=1}^\infty F_i  \neq \emptyset.$ De un ejemplo que demuestre que la conclusión es falsa si no se requiere que alguno de los conjuntos sea acotado.
+
+\end{problem}
+\begin{proof}
+Sea $A$ un subconjunto finito de $\N$ y sea $m$ el elemento máximo de $A$. Entonces $F_m \subset F_k$ para toda $k \in A$. Luego $F_m \subset \bigcap_{n \in A}F_n $, es decir, esta intersección es no vacía. Por tanto, podemos aplicar el problema 34, para concluir que 
+$\bigcap_{i=1}^\infty F_i  \neq \emptyset.$\\
+
+
+\textit{Ejemplo.} Para toda $n\in \N$, sea $F_n = [n, \infty)$.  Para toda $n \in \N$, $F_n$ es no vacío, no acotado y cerrado. Además, $F_{n+1} \subset F_n$ para toda $n\in \N$. Pero,
+$$ \bigcap_{n=1}^{\infty}F_n = \emptyset. $$
+\end{proof}
+
+\begin{problem}{36}
+El conjunto de Cantor $C$ se define como el conjunto de números reales en $[0, 1]$ cuya expansión ternaria $(a_n)$ satisface que $a_n \neq 1$ para toda $n \in \N.$ Demuestre que $C$ es un conjunto cerrado, y que $C$ se puede obtener removiendo $(\frac{1}{3}, \frac{2}{3})$ de $[0, 1]$, después removiendo $(\frac{1}{9}, \frac{2}{9})$ y $(\frac{7}{9}, \frac{8}{9})$ de los intervalos restantes, etcétera.
+\end{problem}
+%\textbf{Nota:} en caso que un elemento de $[0, 1]$ sea de la forma $\frac{q}{3^n}$, entonces se selecciona la representación ternaria encontrada bajo el procedimiento descrito en el \textbf{Problema 21}, i.
+\begin{proof}
+\text{ }
+\begin{itemize}
+    \item[i.] Sea $x \notin C$. Entonces existe una representación ternaria $(x_n)$ de $x$ tal que $x_n = 1$ para algún $n \in \N$. Sea $k$ el entero positivo más pequeño tal que $x_k = 1.$ Definamos $(a_n)$ como $a_n = x_n$ para $n < k$, $a_k = 0$ y $a_n = 2$ para $n > k$. Definamos también $(b_n)$ como $b_n = x_n$ para $n < k$, $b_k = 2$ y $b_n = 0$ para $n > k$. Si $a$ y $b$ son los números reales cuya representación ternaria es $(a_n)$ y $(b_n)$ respectivamente, entonces $a$ y $b$ son elementos de $C$, y por tanto $a < x < b$. Sea $y \in (a, b)$ con $x \neq y$. Entonces existe una representación ternaria $(y_n)$ de $y$ que satisface que $y_n = a_n = b_n$ para $n < k$. Observe que si $y_k = 0$, entonces $y \leq a$ y si $y_k = 2$, entonces $y \geq b.$ Entonces $y_k = 1$. Además, si $y_n = 2$ para todo $n > k$, entonces $y = b$. Por tanto $y_n \neq 2$ para algún $n > k$. Entonces $y$ no es un elemento de $C$.  Hemos demostrado que $x \in (a, b)$ y $(a, b) \cap  C = \emptyset$. Por tanto $x$ no es un punto límite de $C$. Luego, $C$ es cerrado.
+    
+    \item[ii.] La construcción que se menciona en la descripción del problema es la siguiente: sea $P_0 = [0, 1]$ y sea $P_1$ el conjunto removiendo el tercio central $(\frac{1}{3}, \frac{2}{3})$ del conjunto $P_0$. Por tanto $P_1 = [0, \frac{1}{3}] \cup [\frac{2}{3}, 1] $. Definamos $P_2$ removiendo los tercios centrales de los intervalos de $P_1$. Entonces $P_2 = [0, \frac{1}{9}] \cup [\frac{2}{9}, \frac{3}{9}] \cup [\frac{6}{9}, \frac{7}{9}] \cup [\frac{8}{9}, 1]$. Procediendo recursivamente, se define $P_{n+1}$ removiendo los tercios centrales de los intervalos de $P_n$.
+    Hagamos 
+    
+    $$P = \bigcap_{n=1}^{\infty}P_n.$$
+    
+    Por \textbf{Problema 35}, $P \neq \emptyset.$ Demostraremos que $P = C.$ Sea $x \in P$ y sea $(x_n)$ su representación ternaria. Como $x \in P_1$ y $(\frac{1}{3}, \frac{2}{3}) \cap P_1 = \emptyset$, entonces $x_1 \neq 1$ (si $x_1 = 1$, entonces $ x = \frac{1}{3}$ que se puede expresar como $x_1 = 0$ y $x_k = 2$ para $k > 1$). Como $x \in P_2$ y $[(\frac{1}{9}, \frac{2}{9}) \cup (\frac{7}{9}, \frac{8}{9})] \cap P_2 = \emptyset $, entonces $x_2 \neq 1$ (si $x_2 = 1$, entonces $x$ es un punto extremo de los intervalos de $P_2$ y este se puede expresar de la forma $x_2 = 0$ y $x_k = 2$ para todo $k > 2$). Continuando de esta forma, se observa que $x_n \neq 1$ para toda $n \in \N$. Por tanto, $x \in C$. 
+    
+    Sea $x \in C$ y sea $(x_n)$ su representación ternaria. Definamos, para toda $k \in \N$ la sucesión $(s^{(k)}_n)$ como $s^{(k)}_n = x_n$ para $n \leq k$ y $s^{(k)}_n = 0$ para $n > k.$ Sea $s^{(k)}$ el número real cuya representación ternaria es $(s^{(k)}_n)$. Entonces  $ s^{(k)} \leq x \leq s^{(k)} + \frac{1}{3^k} $. \textbf{Incompleto.}
+    
+    \item[iii.] De la construcción descrita en $ii.$, $C$ es la intersección numerable de conjuntos cerrados. Por tanto, se deduce directamente que $C$ es un conjunto cerrado.
+\end{itemize}
+
+\end{proof}
+
+
+\begin{problem}{37}
+Demuestre que el conjunto de Cantor se puede poner en correspondencia $1-1$ con el intervalo $[0, 1]$.
+
+\end{problem}
+
+\begin{proof}
+Sea $x$ un elemento en el conjunto de Cantor y sea $(a_n)$ la representación ternaria tal que $a_n$ es igual a $0$ o $2$ para toda $n \in \N$. Definamos $(a'_n)$ como $a'_n = \frac{a_n}{2}$ para toda $n \in \N$. El mapeo $(a_n) \mapsto (a'_n)$ establece una correspondencia entre el conjunto de Cantor sobre el conjunto de todas las sucesiones con rango en $\{0, 1\}$.
+
+Demostremos que este mapeo es $1-1$. Para esto, sean $x, y \in C$ con $x \neq y$ y representaciones ternarias $(x_n)$ y $(y_n)$ respectivamente. Entonces existe un $k\in \N$ tal que $x_k \neq y_k$. Sin pérdida de generalidad, suponga que $x_k = 0$ y $y_k = 2$. Entonces $x'_k = 0$ y $y'_k=1$. Esto implica que $(x'_n) \neq (y'_n)$.
+
+Hemos demostrado que este mapeo establece una correspondencia $1-1$ y sobre entre el conjunto de Cantor y el conjunto de todas las sucesiones con rango $\{0, 1\}$. Por el \textbf{Problema 21}, el conjunto $[0, 1]$ se puede poner en correspondencia $1-1$ y sobre con el conjunto de todas las sucesiones con rango $\{0, 1\}$. Por tanto, existe una correspondencia $1-1$ entre el conjunto de Cantor y el conjunto $[0, 1]$.
+
+\end{proof}
+
+%-------------------------------------------------------------------
+\begin{problem}{38}
+Demuestre que el conjunto de puntos de acumulación del conjunto de Cantor es este mismo.
+\end{problem}
+\begin{proof}
+Sea $p \in C$. Demostraremos que $p$ es un punto límite de $C$. Sea $r > 0$ y sea $B(p, r)$ la bola centrada en $p$ con radio $r.$ Por la construcción definida en el \textbf{Problema 36, } ii., para toda $n\in \N$, $  p \in P_n$. Denotamos $I_{n,p}$ al intervalo de $P_n$ tal que $p \in I_{n,x}$. Observe que la longitud de los intervalos  de $P_n$ es $3^{-n}$. Entonces existe $k \in \N$ tal que $I_{k, x} \subset B(x, r)$. Sea $x_k$ un extremo de este intervalo tal que $x_k \neq p$. De nuevo, por la construcción de $C$, se tiene que $x_k \in C$. Entonces, $(C\setminus \{p\}) \cap B(p, r) \neq \emptyset$, es decir, $p$ es un punto límite de $C$.
+
+
+\end{proof}
+
+
+%------------------------------------------------------------------
+\begin{problem}{40}
+Sea $f$ una función de valores reales con dominio $E.$ Demuestre que $f$ es continua si y solo si para cada abierto $O$ existe un abierto $U$ tal que $f^{-1}[O] = E \cap U.$ 
+\end{problem}
+\begin{proof}
+Suponga que $f$ es continua en $E$ y sea $O$ un abierto en $\R$. Como $O$ es abierto, para todo $p\in f^{-1}[O]$ existe $\epsilon_{p} > 0$ tal que $B(f(p), \epsilon_p) \subset O$. Como $f$ es continua en $p$, existe $\delta_{p, \epsilon} > 0$ tal que $f[B(p, \delta_{p, \epsilon_p} ) \cap E] \subset B(f(p), \epsilon_p).$ Sea $U = \bigcup_{p\in f^{-1}[O]} B(p, \delta_{p, \epsilon_p})$. Entonces $U$ es un abierto y claramente satisface que $U \cap E \supset f^{-1}[O].$ También $U \cap E \subset f^{-1}[O]$, ya que si $x \in U \cap E$, entonces $x \in B(p, \delta_{p,\epsilon_p})$ para algún $p \in f^{-1}[O]$; de manera que $f(x) \in O$ y por tanto $x \in f^{-1}[O]$. Concluimos que $U \cap E = f^{-1}[O]$.
+
+Sea $p \in E$ y $\epsilon > 0$. Como $B(f(p), \epsilon)$ es abierto, existe un abierto $U$ tal que $f^{-1}[B(f(p), \epsilon)] = E \cap U.$ Como $U$ es abierto y $p \in U$, existe un $\delta > 0$ tal que $B(p, \delta) \subset U$. Luego, si $\lvert x - p \lvert < \delta $ y $x \in E$, entonces $\lvert f(x) - f(p) \lvert < \epsilon$. Por tanto $f$ es continua en $p$.
+\end{proof}
+
+\begin{problem}{41} Sea $(f_n)_{n=1}^\infty$ una sucesión de funciones continuas definidas en un conjunto $E$. Si $(f_n)_{n=1}^\infty$ converge uniformemente a $f$ en $E$, demuestre que $f$ es continua en $E$.
+ 
+\end{problem}
+
+\begin{proof}
+Sea $\epsilon > 0$ y sea $p \in E$. Como $(f_n)$ converge uniformemente a $f$, existe un $N \in \N$, tal que para toda $x \in E$, $\lvert f_n(x) - f(x) \lvert < \frac{\epsilon}{3}$, si $n \geq N$. Como $f_n$ es continua en $p$ para toda $n \in \N$, existe un $\delta > 0$ tal que $\lvert f_N(x) - f_N(p) \lvert < \frac{\epsilon}{3}$ si $\lvert x - p \lvert < \delta$. Entonces 
+\begin{eqnarray*}
+\lvert f(x) - f(p) \lvert &\leq& \lvert f(x) - f_N(x) \lvert + \lvert f_N(x) - f(p) \lvert\\
+&\leq& \lvert f(x) - f_N(x) \lvert + \lvert f_N(x) - f_N(p) \lvert + \lvert f_N(p) - f(p) \lvert \\
+& < & \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3}\\
+&=& \epsilon,
+\end{eqnarray*}
+si $\lvert x - p \lvert < \delta.$ Por tanto, $f$ es continua en $p$ y como la elección de $p$ fue arbitraria en $E$, $f$ es continua en $E.$
+\end{proof}
+
+\begin{problem}{46}
+Sea $x$ un número real en $[0, 1]$ con expansión ternaria $(a_n).$ Sea $N=\infty$ si ninguno de los $a_n$ son $1$, y de otro modo, sea $N$ el menor natural $n$ tal que $a_n = 1$. Sea $b_n = \frac{1}{2}a_n$ para $n < N$ y $b_N = 1.$ Demuestre que 
+$$ \sum_{n=1}^N \frac{b_n}{2^n} $$
+es independiente de la expansión ternaria de $x$ y que la función definida como 
+$$f(x) =  \sum_{n=1}^N \frac{b_n}{2^n}$$
+es continua y monótona en $[0, 1]$. Demuestre que $f$ es constante en cada intervalo contenido en el complemento del conjunto de Cantor y que $f$ mapea a $C$ sobre $[0, 1]$. 
+
+\end{problem}
+
+\begin{proof}
+\textbf{Incompleto.}
+\end{proof}
+
+\begin{problem}{51} Sea $f$ una función real definida en todo $\R$. Demostrar que el conjunto donde $f$ es continua es $\mathcal{G}_\delta$. 
+\end{problem}
+
+En lo siguiente, la bola centrada en $x$ con radio $r > 0$ es el conjunto $B(x, r) = \{y \in \R: \lvert x - y \lvert < r \}$. Daremos por hecho que este es un conjunto abierto.
+\begin{proof}
+Sea $E = \{x \in \R : f \text{ es continua en } x \}$. Para cada $n \in \N$ sea 
+$$A_n = \bigcup_{x\in E} B(x, \delta_{x, n}), $$
+donde $B(x, \delta_{x, n})$ satisface  
+$$ f[B(x, \delta_{x, n})] \subset B(f(x), 1/n), $$
+para toda $x \in E$ y toda $n \in \N.$ Observe que $A_n$ es abierto, ya que es la unión de abiertos. Definamos ahora $G = \bigcap_{n=1}^{\infty} A_n$. Este es un conjunto $\mathcal{G}_\delta$ y observe que $E \subset G$. Demostraremos que $G \subset E$.
+
+Sea $y \in G$ y sea $\epsilon > 0.$ Entonces existe $k \in \N$ tal que $1/k < \epsilon/ 2 $. Como $y \in G$, entonces $y \in A_k$. Entonces existe $x \in E$ tal que $y \in B(x, \delta_{x, k})$. Como $B(x, \delta_{x, k})$ es abierto, existe $\delta > 0 $ tal que $B(y, \delta) \subset B(x, \delta_{x, k})$. Entonces 
+$$f[B(y, \delta)] \subset f[B(x, \delta_{x, k})] \subset B(f(x), 1/k). $$
+Pero $ B(f(x), 1/k) \subset B(f(y), \epsilon)$, ya que si $z \in B(f(x), 1/k)$, entonces $$\lvert z - f(y) \lvert \leq \lvert z - f(x) \lvert + \lvert f(x) - f(y) \lvert < 1/k + 1/k < \epsilon.$$
+Luego $f[B(y, \delta)] \subset B(f(y), \epsilon)$. Hemos probado que $f$ es continua en $y$. Por tanto $G = E$.
+\end{proof}
+
+
+\end{document}
