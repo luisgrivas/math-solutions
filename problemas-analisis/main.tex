@@ -257,7 +257,21 @@ Demuestre que el número real $l$ es el límite superior de una sucesión $(x_n)
 %---------------------------------
 \begin{problem}{13} Suponga que $(X, S, \mu)$ es un espacio de medida y $\{f_n\}_{n\in \N}$ es una sucesión de funciones $S$-medibles de $X$ en $\R$ tales que $\sum_{k=1}^\infty \int \lvert f_k \rvert d \mu < \infty$. Demuestre que existe un conjunto $E \in S$ tal que $\mu(X \setminus E) = 0$ y $\lim_{k \to \infty} f_k(x) = 0$ para toda $x \in E.$ 
 \end{problem}
+\begin{proof}
+Defina para toda $k\in \N$, la sucesión
+$$g_k = \sum_{i=1}^k \lvert f_i \rvert.$$
+Dado que la sucesión $\{ g_k \}$ es monótona creciente, esta converge a una función medible $g: X \rightarrow [0, \infty].$ Por el Teorema de Convergencia Monótona, se tiene que
+$$\int g \ d\mu = \int \lim_{k \to \infty} g_k d \mu = \sum_{i=1}^\infty \int \lvert f_i \rvert \ d \mu < \infty.$$
 
+El hecho de que $\sum_{k=1}^\infty \int \lvert f_k \rvert d \mu < \infty$, implica que los conjuntos $F_k = \{x \in X: \lvert f_k(x) \rvert = \infty \}$ tienen medida cero para toda $k \in \N.$ 
+Defina $E = \bigcap_{k=1}^\infty F_k^c$. Observe que, si $x\in E$, entonces $\sum_{k=1}^\infty \lvert f_k(x) \rvert < \infty $ y por tanto $g(x) < \infty$. Así pues, $g < \infty$, excepto en $X - E$, cuya medida es cero. 
+
+Por otro lado, defina para toda $k \in \N$, la sucesión 
+$$h_k = \sum_{i=1}^k  f_i.$$
+La convergencia de la sucesión $\{g_k\}$, implica que $\lim_{k \to \infty} h_k < \infty$ en $E$. Luego, $\lim_{k \to \infty } f_k = 0$ en $E.$
+
+\end{proof}
+%---------------------------------
 \begin{problem}{14} Sea $(X, \Sigma, \mu)$ un espacio de medida. Sea $\{f_n\}_{n \in \N}$ una sucesión de funciones con la propiead $f_n \in L^1(X, \Sigma, \mu)$ para toda $n \in \N$. Suponiendo que
 $$\sum_{n=1}^\infty \int_{X} \lvert f_n \rvert d \mu < \infty,$$
 prueba que existe una función $f \in L^1(X, \Sigma, \mu)$ tal que $\sum_{n=1}^\infty f_n$
@@ -265,11 +279,117 @@ converge a $f$ casi dondequiera con respecto a la medida $\mu$ y que
 $$\int_X f d \mu = \sum_{n=1}^\infty \int_X f_n d \mu.$$
 \end{problem}
 \begin{proof}
-    De la primera desigualdad se deduce que 
-    $$\lim_{n \to \infty} \int_X \lvert f_n \rvert d \mu  = 0.$$
+Sean $g$ y $\{h_k\}$ como en el Problema 13. La conclusión del Problema establece que existe una función $f: X \rightarrow [-\infty, \infty]$ tal que $\sum_{i=1}^\infty f_i = f$. Note que 
+$$\lvert h_k \rvert = \lvert \sum_{i=1}^k f_i \rvert \leq \sum_{i=1}^k \lvert f_i \rvert \leq g. $$
+Como $\int g d \mu < \infty$, por el Teorema de Convergencia Dominada, se tiene que 
+$$\lim_{k \to \infty} \int h_k d \mu = \sum_{i=1}^\infty \int f_i = \int f.$$ 
+\end{proof}
+
+%---------------------------------------
+
+\begin{problem}{15}
+    Suponga que $(X, S, \mu)$ es un espacio de medida y $f: X \rightarrow [0, \infty]$ es una función $S$-medible. Demuestre que
+    $$\int f d \mu > 0 \iff \mu \left( \{ x \in X: f(x) > 0 \} \right) > 0. $$
+\end{problem}
+\begin{proof}
+    Sea $E = \{ x \in X: f(x) > 0 \}.$ Suponga que $\int f d \mu = 0$. Defina para toda $k \in \N$, la sucesión $E_k = \{ x\in X: f(x) > 1/k\}$. Defina, para toda $k$, la función simple 
+    $$\varphi_k = \chi_{E_k} \inf_{E_k} f.$$
+    Vea que $\int \varphi = \mu(E_k) \inf_{E_k} f \geq \mu(E_k) / k$ para toda $k\in N.$ Pero dado que $\int f d \mu = 0$ , entonces $ \mu(E_k) / k = 0$, y esto ocurre si y solo si $\mu(E_k) = 0$ para toda $k\in \N.$ Dado que $E = \bigcup_{k=1}^\infty E_k$, se tiene que $\mu(E) \leq \sum_{k=1}^\infty \mu(E_k) = 0.$
+
+    Suponga que $\mu(E) = 0.$ Sea $\varphi = \sum_{i=1}^n a_i \chi_{A_i}$ una función simple tal que $\varphi \leq f.$ Note que $\varphi = \varphi ( \chi_E  + \chi_{E^c} ).$ Entonces 
+    $$\int \varphi d \mu = \int \varphi \chi_E d \mu + \int \varphi \chi_{E^c} = \sum_{i=1}^n a_i \mu (A_i \cap E) + \sum_{i=1}^n a_i \mu(A_i \cap E^c).$$
+    Puesto que $A_i \cap E \subset E,$, entonces $m(A_i \cap E) \leq m(E) = 0$, por lo que la primera sumatoria es cero. Por otro lado, puesto que $A_i \cap E^c \subset E^c$ y $\varphi \leq f$, entonces $a_i = 0$, por lo que la segunda sumatoria es cero. Así pues, $\int \varphi d \mu = 0$. Como $\varphi$ fue arbitraria, se tiene que $\int f d\mu = 0.$
+\end{proof}
+
+%---------------------------------------
+\begin{problem}{16} Sea $(X, S, \mu)$ un espacio de medida y $\{f_n\}$ una sucesión de funciones no negativas S-medibles en $X$. Defina la función $f: X \rightarrow [0, \infty]$ como $f(x) = \liminf_{k\to \infty} f_k(x)$.
+\begin{itemize}
+    \item[(a)] Demuester que $f$ es una función $S-$medible.
+    \item[(b)] Demuestre que $$\int f d\mu \leq \liminf_{k \to \infty} \int f_k d\mu.$$
+    \item[(c)] De un ejemplo que demuestre que la desigualdad en (b) puede ser estricta, aún cuando $\mu(X) < \infty$ y que la familia de funciones $\{f_n\}$ está uniformemente acotada.
+\end{itemize}
+\end{problem}
+\begin{proof}
+    \begin{itemize}
+        \item[(a)] Defina para toda $k\in \N$, la función $g_k: X \rightarrow [0, \infty]$ como $ g_k(x)= \inf \{f_n(x): n \geq k\}.$ Como el ínfimo de toda sucesión de funciones $S-$medibles es medible, cada $g_k$ es $S-$medible. Además, como el límite de una sucesión de funciones $S$-medibles es medible, se concluye que $f$ es $S-$medible.
+        
+        
+        \item[(b)] Note que la sucesión $\{g_k\}$ es monótona creciente. Por el Teorema de Convergencia Monótona se tiene que 
+        $$\int f d \mu = \lim_{k \to \infty} \int g_k d \mu.$$
+        Por otro lado, por definición se satisface la desigualdad
+        $$g_k(x) \leq f_n(x),$$
+        para toda $n \geq k$, lo que implica que
+        $$\int g_k d \mu \leq \int f_n d\mu.$$
+        Tomando el ínfimo del lado derecho de la desigualdad, se obtiene que
+        $$\int g_k d \mu \leq \inf_{n \geq k} \int f_n d\mu.$$
+        Luego, haciendo $k \to \infty$, de la primera y última desigualdad se obtiene
+        $$\int f d \mu \leq \liminf_{k \to \infty} \int f_k d \mu$$
+
+        \item[(c)] FALTA
+    \end{itemize}
+\end{proof}
+
+%--------------------------------
+\begin{problem}{17}
+    Sea $\{a_n\}$ una sucesión de reales positivos en $l^p$, $1 \leq p < \infty$ y $f \in L^p(\mu)$. Demuestre que 
+$$\sum_{n=1}^\infty \mu \left( \{x \in X: \lvert f(x) \rvert \geq 1 / a_n \} \right) < \infty.$$
+\end{problem}
+\begin{proof}
+    Sea $\{A_n\}$ la sucesión definida como $A_n = \{ x\in X: \lvert a_n f(x) \rvert^p \geq 1\}.$ Note que $A_n = \{x \in X: \lvert f(x) \rvert \geq 1 / a_n \}$ para toda $n$. Defina la sucesión $\{g_n\}$ de funciones medibles como
+    $$g_n =\sum_{i=1}^n \mathbb{1}_{A_i}.$$
+    En primer lugar, observe que $g_n \leq \lvert f \rvert^p \sum_{i=1}^n \lvert a_i \rvert^p$ para toda $n$. En segundo lugar, esta es una sucesión creciente de funciones medibles. Entonces,
+$$\sum_{n=1}^\infty \mu(A_n) = \lim_{n\to \infty} \int g_n d \mu = \int \lim_{n\to \infty} g_k d \mu \leq \int \lim_{n \to \infty} \lvert f \rvert^p \sum_{i=1}^n \lvert a_i \rvert^p d\mu < \infty,$$
+donde la primera desigualdad se debe al Teorema de Convergencia Monótona; la segunda se debe a la monotonicidad de la integral de Lebesgue; y la última desigualdad se debe a que $f\in L^p(\mu)$ y $\{a_n\}$ es una sucesión en $l^p$.
 \end{proof}
 
 
 
+%-----------------------
+\begin{problem}{18}
+    Sea $(X, S, \mu)$ un espacio de medida y $f$ en $L_1(\mu)$ una función medible no negativa. Defina la función $\nu: S \rightarrow [0, \infty]$ como
+    $$\nu(E) = \int_E f d\mu.$$
+    Demuestre que $\nu$ es una medida en $S$; que $\nu(E) = 0$ si $\mu(E) = 0$; y si $g \in L_1(\mu)$ no negativa, entonces
+    $$\int g d \nu = \int fg d \mu.$$
+\end{problem}
+ \begin{proof}
+     Sea $E \in S$ tal que $\mu(E) = 0.$ Entonces
+     $$\nu(E) = \int_E f d \mu \leq \mu(E) \cdot \sup_E f = 0.$$
+     En particular, $\nu(\emptyset) = 0.$ Sea ahora $\{E_n\}$ una sucesión disjunta de conjuntos en $S$. Defina la sucesión $\{g_n\}$ de funciones medibles como 
+     $$g_n = f \cdot \sum_{i=1}^n \mathbb{1}_{E_i}.$$ 
+     Puesto que $f$ es no negativa, la sucesión $\{g_n\}$ es no negativa y creciente. Si $E = \bigcup_{n=1}^\infty E_n$, entonces 
+ $$\sum_{n=1}^\infty \nu(E_n) = \lim_{k \to \infty} \int g_k d\mu = \int \lim_{k\to \infty} g_k d \mu = \int f \cdot \mathbb{1}_E d \mu = \int_E f d \mu = \nu(E),$$
+donde la segunda igualdad se debe al el Teorema de Convergencia Monótona y la tercera se debe a que la sucesión $\{E_n\}$ es disjunta. Por tanto $\nu$ es una medida en $S.$
 
+Ahora bien, sea $g \in L_1(\mu)$ una función medible no negativa. FALTA
+ \end{proof}
+
+
+% -------------------------------
+\begin{problem}{19} Sea $(X, S, \mu)$ un espacio de medida y $f \in L_1(\mu)$. Sea $\{b_n\}$ una sucesión de reales positivos, creciente y tal que $\lim_{k\to \infty} b_n = \infty.$ Si definimos $E_n  = \{x \in X: \lvert f(x) \rvert \geq b_n \}$, prueba que $\lim_{n\to \infty} b_n \mu(E_n) = 0.$
+\end{problem}
+\begin{proof} En primer lugar, observe que 
+$$ E = \bigcap_{n=1}^\infty E_n = \{x \in X: \lvert f(x) \rvert = \infty \},$$
+puesto que la sucesión $\{b_n\}$ es creciente y $\lim_{n\to \infty} b_n = \infty.$ El hecho de que $f \in L_1(\mu)$, implica que
+$$\mu(E) \cdot \infty = \mu(E) \cdot \inf_E \lvert f \rvert \leq \int_E \lvert f \rvert d \mu  \leq \parallel f \parallel_1 < \infty$$
+y esto se satisface si y solo si $\mu(E) = 0.$
+%% En segundo lugar, la sucesión $\{E_n\}$ es decreciente; más aún, %%$\mu(E_1) < \infty$, ya que
+%%$$\mu(E_1) \cdot \inf_{E_1} \lvert f \rvert \leq \int_{E_1} \lvert f %%\rvert d \mu \leq \int \lvert f \rvert d \mu = \parallel f \parallel_1 %%< \infty$$
+%%y $0 < b_1 \leq  \inf_{E_1} \lvert f \rvert.$  Por tanto,
+%%$$\mu(E) = \lim_{n \to \infty} \mu(E_n). $$
+%
+
+Por otro lado, sea $\{g_n\}$ la sucesión de funciones medibles definida como $g_n = b_n\cdot \mathbb{1}_{E_n}$. Note que $\{g_n\}$ converge a la función medible
+$$
+g(x) = \begin{cases}
+    \infty & \text{ si } x \in E\\
+    0 & \text{ de otro modo.}
+\end{cases}
+$$
+Además, $\lvert g_n \rvert  \leq  \lvert f \rvert$ para toda $n\in \N$. Dado que $f \in L_1(\mu)$, por el Teorema de Convergencia Dominada, se obtiene que 
+$$ \lim_{n \to \infty} b_n \mu(E_n) = \lim_{n\to \infty} \int g_n d \mu = \int g d\mu = 0.$$
+\end{proof}
+
+\begin{problem}{20} Demuestre que $(L_\infty([0,1], \lambda), \parallel \cdot \parallel_\infty)$ es completo.
+    
+\end{problem}
 \end{document}

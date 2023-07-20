@@ -1,0 +1,249 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{amsfonts}
+\usepackage[margin=0.94in]{geometry}
+\usepackage{tikz}
+
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+
+\addbibresource{blb.bib}
+
+\pagestyle{fancy}
+
+\lhead{Tarea 6}
+\chead{Luis González Rivas}
+\rhead{12 de mayo de 2022}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+\newtheorem{teo}{Teorema}
+\newtheorem{prop}{Proposición}
+
+\newenvironment{problem}[2][Problema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+\section*{Teoría de Gráficas}
+
+
+%----------------------------------------------
+\begin{problem}{10.3.1}
+Demuestre que el número de cruce satisface la desigualdad $cr(G) \geq m - 3n + 6,$ si $n \geq 3.$
+\end{problem}
+\begin{proof}
+Sea $\Tilde{G}$ un encaje de G en el plano de tal manera que el número de cruce sea mínimo. Si $cr(G)  = 0$, $G$ es planar y por el \textbf{Corolario 10.21} de \cite{10.5555/1481153}, se tiene que
+$$cr(G) = 0 \geq e(G) - 3v(G) + 6.$$
+Suponga pues que $cr(G) > 0.$ Defina la gráfica $H$ a partir del encaje $\Tilde{G}$ como sigue: por cada cruce en $\Tilde{G}$ agregue un vértice $v$ y divida la arista $e = xy$ de cruce en dos aristas de la forma $xv$ y $vy.$ De esta manera se obtiene una gráfica planar $H$. Observe que si $e_c(G)$ representa el número de aristas que se cruzan en el encaje $\Tilde{G}$, entonces se tiene que $2 cr(G) \leq e_c(G).$ Por otro lado, observe que $v(H) = v(G) + cr(G)$ y $e(H) = e(G) + e_c(G).$ Luego,
+\begin{eqnarray*}
+e(H) &\leq& 3 v(H) - 6 \ \iff \\
+e(G) + e_c(G) &\leq& 3(v(G) + cr(G)) -6 \ \iff \\
+e(G) - 3v(G) + 6 + e_c(G) &\leq& 3cr(G) \ \iff \\
+e(G) - 3v(G) + 6 &\leq& cr(G).
+\end{eqnarray*}
+
+\end{proof}
+%----------------------------------------------
+
+
+
+%----------------------------------------------
+\begin{problem}{10.3.2}
+\text{ }
+\begin{itemize}
+    \item[a)] Sea $G$ una gráfica conexa y planar con \textit{cintura} $k,$ donde $k \geq 3.$ Demuestre que $m \leq k(n-2) / (k-2).$ 
+    \item[b)] Deduzca que la gráfica de Petersen es no planar.
+\end{itemize}
+\end{problem}
+\begin{proof} \textbf{}
+\begin{itemize}
+    \item[a)] Sea $\Tilde{G}$ un encaje plano de $G$. De manera similar a la demostración del \textbf{Corolario 10.12} de \cite{10.5555/1481153}, se tiene que $d(f) \geq k$, para toda cara $f$ de $G.$  Luego,
+    $$2m = \sum_{f \in \Tilde{G}} d(f) \geq k \cdot f(\Tilde{G}) = k (m - n + 2).$$ 
+    Esto es equivalente a la desigualdad
+    $$m \leq k(n-2) / (k-2).$$
+    \item[b)] La gráfica de Petersen $P$ tiene cintura igual a cinco, $v(P) = 10$ y $e(P) = 15.$ Con estos valores, se obtiene que 
+    $$k(n-2) / (k-2) = 40/3 < 15, $$
+    por lo que la desigualdad que aparece en a) no se satisface. Por tanto $P$ no es planar.
+\end{itemize}
+\end{proof} 
+%----------------------------------------------
+
+
+
+
+%----------------------------------------------
+\begin{problem}{10.3.4}
+\text{ }
+\begin{itemize}
+    \item[a)] Demuestre que el complemento de una gráfica planar simple con al menos once vértices es no planar.
+    \item[b)] Encuentre una gráfica planar simple en ocho vértices cuyo complemento es planar.
+\end{itemize}
+\end{problem}
+\begin{proof}
+\textbf{}
+\begin{itemize}
+        \item[a)] Sea $G$ una gráfica planar simple con al menos once vértices y sea $\overline{G}$ su complemento. Observe que el número de vértices de $\overline{G}$ es el mismo que el de $G.$ Además, se tiene que $$e(\overline{G}) = {v(G) \choose 2} - v(G) =  \frac{v(G)(v(G) - 3)}{2}.$$
+        Si $\overline{G}$ es planar, entonces
+        $$e(\overline{G}) =  \frac{v(G)(v(G) - 3)}{2} \leq 3 v(\overline{G}) - 6 = 3 v(G) - 6 .$$
+        Pero esto es equivalente a 
+        $$ v(G)^2 - 9 v(G) + 12 \leq 0,$$
+        la cual no se satisface para $v(G) \geq 11.$ Por tanto $\overline{G}$ no es planar.
+\end{itemize}
+\end{proof}
+%----------------------------------------------
+
+%----------------------------------------------
+\begin{problem}{10.5.1}
+Demuestre que una gráfica simple tiene un $K_3$-menor si y solo si contiene un ciclo. 
+\end{problem}
+\begin{proof}
+Sea $G$ una gráfica simple. Suponga que $C$ es un ciclo en $G.$ Es claro que $C$ es un menor de $G$, pues se puede obtener borrando todos los vértices de $G$ que no están en $C.$ Si $C$ es un ciclo de longitud tres, entonces es isomorfo a $K_3.$ Si $C$ es un ciclo de longitud mayor a tres, podemos contraer $v(C) - 3$ aristas hasta obtener un ciclo isomorfo a $K_3.$ Por tanto $G$ tiene un $K_3$-menor.\\
+Para la otra implicación, suponga que $G$ tiene un $K_3$-menor $K.$ Entonces podemos partir al conjunto $V(G)$ en tres subconjuntos disjuntos $V_1, V_2$ y $V_3$ de tal manera que $G[V_i]$ es conexa para $i=1,2,3$. Más aún, para cada pareja $(G[V_i], G[V_j])$ existe una arista $e_{ij}$ con un extremo en $G[V_i]$ y otro en $G[V_j]$. Denotemos por $v^i_j$, al vértice de $V_i$ que es extremo de la arista $e_{ij}$. Como cada $G[V_i]$ es conexa, existe una $v^i_r v^i_s$-trayectoria $W_{rs}$ en $G[V_i].$ Luego, la trayectoria $e_{12} W_{13} e_{23} W_{12} e_{13} W_{23}$ es un ciclo en $G.$
+\end{proof}
+%----------------------------------------------
+
+
+\begin{figure}
+    \centering
+    
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,467); %set diagram left start at 0, and has height of 467
+
+%Shape: Square [id:dp3851399052131298] 
+\draw   (42.6,60) -- (192.2,60) -- (192.2,209.6) -- (42.6,209.6) -- cycle ;
+%Straight Lines [id:da3743453378658438] 
+\draw    (117.3,209) -- (117.5,60.6) ;
+%Straight Lines [id:da6984946108360254] 
+\draw    (42.2,135.6) -- (192.3,135.4) ;
+%Shape: Circle [id:dp8276183446725813] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (188,209.6) .. controls (188,207.28) and (189.88,205.4) .. (192.2,205.4) .. controls (194.52,205.4) and (196.4,207.28) .. (196.4,209.6) .. controls (196.4,211.92) and (194.52,213.8) .. (192.2,213.8) .. controls (189.88,213.8) and (188,211.92) .. (188,209.6) -- cycle ;
+%Shape: Circle [id:dp38263517086370724] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (113.1,209) .. controls (113.1,206.68) and (114.98,204.8) .. (117.3,204.8) .. controls (119.62,204.8) and (121.5,206.68) .. (121.5,209) .. controls (121.5,211.32) and (119.62,213.2) .. (117.3,213.2) .. controls (114.98,213.2) and (113.1,211.32) .. (113.1,209) -- cycle ;
+%Shape: Circle [id:dp34298081834898386] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (38.4,209.6) .. controls (38.4,207.28) and (40.28,205.4) .. (42.6,205.4) .. controls (44.92,205.4) and (46.8,207.28) .. (46.8,209.6) .. controls (46.8,211.92) and (44.92,213.8) .. (42.6,213.8) .. controls (40.28,213.8) and (38.4,211.92) .. (38.4,209.6) -- cycle ;
+%Shape: Circle [id:dp638748565982225] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (113.05,135.5) .. controls (113.05,133.18) and (114.93,131.3) .. (117.25,131.3) .. controls (119.57,131.3) and (121.45,133.18) .. (121.45,135.5) .. controls (121.45,137.82) and (119.57,139.7) .. (117.25,139.7) .. controls (114.93,139.7) and (113.05,137.82) .. (113.05,135.5) -- cycle ;
+%Shape: Circle [id:dp25789327421568164] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (188.1,135.4) .. controls (188.1,133.08) and (189.98,131.2) .. (192.3,131.2) .. controls (194.62,131.2) and (196.5,133.08) .. (196.5,135.4) .. controls (196.5,137.72) and (194.62,139.6) .. (192.3,139.6) .. controls (189.98,139.6) and (188.1,137.72) .. (188.1,135.4) -- cycle ;
+%Shape: Circle [id:dp14580767575330655] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (38,135.6) .. controls (38,133.28) and (39.88,131.4) .. (42.2,131.4) .. controls (44.52,131.4) and (46.4,133.28) .. (46.4,135.6) .. controls (46.4,137.92) and (44.52,139.8) .. (42.2,139.8) .. controls (39.88,139.8) and (38,137.92) .. (38,135.6) -- cycle ;
+%Shape: Circle [id:dp5305243014271888] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (38.4,60) .. controls (38.4,57.68) and (40.28,55.8) .. (42.6,55.8) .. controls (44.92,55.8) and (46.8,57.68) .. (46.8,60) .. controls (46.8,62.32) and (44.92,64.2) .. (42.6,64.2) .. controls (40.28,64.2) and (38.4,62.32) .. (38.4,60) -- cycle ;
+%Shape: Circle [id:dp13202179755081822] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (113.3,60.6) .. controls (113.3,58.28) and (115.18,56.4) .. (117.5,56.4) .. controls (119.82,56.4) and (121.7,58.28) .. (121.7,60.6) .. controls (121.7,62.92) and (119.82,64.8) .. (117.5,64.8) .. controls (115.18,64.8) and (113.3,62.92) .. (113.3,60.6) -- cycle ;
+%Shape: Circle [id:dp06716916386264926] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (188,60) .. controls (188,57.68) and (189.88,55.8) .. (192.2,55.8) .. controls (194.52,55.8) and (196.4,57.68) .. (196.4,60) .. controls (196.4,62.32) and (194.52,64.2) .. (192.2,64.2) .. controls (189.88,64.2) and (188,62.32) .. (188,60) -- cycle ;
+%Straight Lines [id:da8172046205608231] 
+\draw    (258.6,209.6) -- (408.2,209.6) ;
+%Straight Lines [id:da6359065524165339] 
+\draw    (333.4,209.6) -- (333.25,135.5) ;
+%Straight Lines [id:da6382224807608218] 
+\draw    (258.6,209.6) -- (333.25,135.5) ;
+%Straight Lines [id:da7268780329238305] 
+\draw    (333.25,135.5) -- (408.2,209.6) ;
+%Curve Lines [id:da8892184659708968] 
+\draw    (333.25,135.5) .. controls (373.25,105.5) and (433.2,167.6) .. (408.2,209.6) ;
+%Curve Lines [id:da26679670706718406] 
+\draw    (258.6,209.6) .. controls (272.2,143.6) and (343.87,5.8) .. (408.2,209.6) ;
+%Shape: Circle [id:dp8675223969697962] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (254.4,209.6) .. controls (254.4,207.28) and (256.28,205.4) .. (258.6,205.4) .. controls (260.92,205.4) and (262.8,207.28) .. (262.8,209.6) .. controls (262.8,211.92) and (260.92,213.8) .. (258.6,213.8) .. controls (256.28,213.8) and (254.4,211.92) .. (254.4,209.6) -- cycle ;
+%Shape: Circle [id:dp557090714517327] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (329.05,135.5) .. controls (329.05,133.18) and (330.93,131.3) .. (333.25,131.3) .. controls (335.57,131.3) and (337.45,133.18) .. (337.45,135.5) .. controls (337.45,137.82) and (335.57,139.7) .. (333.25,139.7) .. controls (330.93,139.7) and (329.05,137.82) .. (329.05,135.5) -- cycle ;
+%Shape: Circle [id:dp27167629420376416] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (329.2,209.6) .. controls (329.2,207.28) and (331.08,205.4) .. (333.4,205.4) .. controls (335.72,205.4) and (337.6,207.28) .. (337.6,209.6) .. controls (337.6,211.92) and (335.72,213.8) .. (333.4,213.8) .. controls (331.08,213.8) and (329.2,211.92) .. (329.2,209.6) -- cycle ;
+%Shape: Circle [id:dp16607963424112082] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (404,209.6) .. controls (404,207.28) and (405.88,205.4) .. (408.2,205.4) .. controls (410.52,205.4) and (412.4,207.28) .. (412.4,209.6) .. controls (412.4,211.92) and (410.52,213.8) .. (408.2,213.8) .. controls (405.88,213.8) and (404,211.92) .. (404,209.6) -- cycle ;
+%Straight Lines [id:da3599780478212681] 
+\draw    (468.6,208.6) -- (618.2,208.6) ;
+%Straight Lines [id:da7395820577547334] 
+\draw    (543.4,208.6) -- (543.25,134.5) ;
+%Straight Lines [id:da119693113850595] 
+\draw    (468.6,208.6) -- (543.25,134.5) ;
+%Straight Lines [id:da4080351047413926] 
+\draw    (543.25,134.5) -- (618.2,208.6) ;
+%Curve Lines [id:da18136613804399315] 
+\draw    (468.6,208.6) .. controls (482.2,142.6) and (553.87,4.8) .. (618.2,208.6) ;
+%Shape: Circle [id:dp6643051366854889] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (464.4,208.6) .. controls (464.4,206.28) and (466.28,204.4) .. (468.6,204.4) .. controls (470.92,204.4) and (472.8,206.28) .. (472.8,208.6) .. controls (472.8,210.92) and (470.92,212.8) .. (468.6,212.8) .. controls (466.28,212.8) and (464.4,210.92) .. (464.4,208.6) -- cycle ;
+%Shape: Circle [id:dp05345352752483745] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (539.05,134.5) .. controls (539.05,132.18) and (540.93,130.3) .. (543.25,130.3) .. controls (545.57,130.3) and (547.45,132.18) .. (547.45,134.5) .. controls (547.45,136.82) and (545.57,138.7) .. (543.25,138.7) .. controls (540.93,138.7) and (539.05,136.82) .. (539.05,134.5) -- cycle ;
+%Shape: Circle [id:dp03122092680618027] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (539.2,208.6) .. controls (539.2,206.28) and (541.08,204.4) .. (543.4,204.4) .. controls (545.72,204.4) and (547.6,206.28) .. (547.6,208.6) .. controls (547.6,210.92) and (545.72,212.8) .. (543.4,212.8) .. controls (541.08,212.8) and (539.2,210.92) .. (539.2,208.6) -- cycle ;
+%Shape: Circle [id:dp28628904891077467] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (614,208.6) .. controls (614,206.28) and (615.88,204.4) .. (618.2,204.4) .. controls (620.52,204.4) and (622.4,206.28) .. (622.4,208.6) .. controls (622.4,210.92) and (620.52,212.8) .. (618.2,212.8) .. controls (615.88,212.8) and (614,210.92) .. (614,208.6) -- cycle ;
+
+% Text Node
+\draw (44.6,213) node [anchor=north west][inner sep=0.75pt]    {$1$};
+% Text Node
+\draw (119.3,212.4) node [anchor=north west][inner sep=0.75pt]    {$2$};
+% Text Node
+\draw (194.2,213) node [anchor=north west][inner sep=0.75pt]    {$3$};
+% Text Node
+\draw (25.6,121) node [anchor=north west][inner sep=0.75pt]    {$2$};
+% Text Node
+\draw (25.6,49) node [anchor=north west][inner sep=0.75pt]    {$3$};
+% Text Node
+\draw (25.6,192) node [anchor=north west][inner sep=0.75pt]    {$1$};
+% Text Node
+\draw (110,230) node [anchor=north west][inner sep=0.75pt]   [align=left] {a)};
+% Text Node
+\draw (326,232) node [anchor=north west][inner sep=0.75pt]   [align=left] {b)};
+% Text Node
+\draw (540,222) node [anchor=north west][inner sep=0.75pt]   [align=left] {c)};
+
+\end{tikzpicture}
+    \caption{Gráficas del \textbf{Problema 10.5.2}}
+    \label{fig:f1}
+\end{figure}
+
+%----------------------------------------------
+\begin{problem}{10.5.2}
+Demuestre que la $(3 \times 3)$-cuadrícula tiene un $K_4$-menor.
+\end{problem}
+\begin{proof}
+Sea $G$ la $(3 \times 3)$-caudrícula representada en la Figura \ref{fig:f1} a). De esta manera, se denota por $v_{(i,j)}$ al vértice en la coordenada $(i,j)$. Considere la partición de $V(G)$ definida como $V_1 = \{v_{(1,1)}, v_{(1,2)}, v_{(1,3)}\},$ $V_2 = \{v_{(3,1)}, v_{(3,2)}, v_{(3,3)}, v_{(2,3)}\}$, $V_3 = \{v_{(1,2)}\}$ y $V_4 = \{v_{(2,2)}\}.$ Sea $H$ la gráfica obtenida al momento de identificar las subgráficas $G[V_i].$ La gráfica obtenida se observa en la Figura \ref{fig:f1} b). Note que la subgráfica generadora de $H$ que aparece en la Figura \ref{fig:f1} c) es isomorfa a $K_4.$ Por tanto $G$ tiene un $K_4$-menor.
+\end{proof}
+%----------------------------------------------
+
+
+%----------------------------------------------
+\begin{problem}{10.5.3}
+\text{}
+\begin{itemize}
+    \item[a)] Sea $F$ una gráfica con grado máximo a lo más tres. Demuestre que la gráfica tiene un $F$-menor si y solo si contiene una $F$-subdivisión.
+    \item[b)] Demuestre que cualquier gráfica que tiene un $K_5$-menor contiene una subdivisión de Kuratowski.
+\end{itemize}
+\end{problem}
+\begin{proof}
+\textbf{}
+\begin{itemize}
+    \item[a)] Es claro que si $G$ tiene un $F$-subdivisión entonces tiene un $F$-menor. Así pues, suponga que $G$ tiene un $F$-menor $H$. Es decir, $H$ es isomorfa a $F$ y $H$ se puede obtener a partir de $G$ mediante borrado de aristas y vértices y contracción de aristas. Observe que podemos obtener a $H$ primero realizando las operaciones de borrado y después las operaciones de contracción \footnote{Una contracción de una arista con algún vértice extremo de grado uno es equivalente al borrado de ese vértice. Así pues, solo consideraremos contracciones de aristas cuyos vértices extremos tienen grado mayor o igual a dos.}. Así pues, sea $H^\prime$ la gráfica obtendida de $G$ mediante las operaciones de borrado para obtener $H.$ Si $H = H^\prime$, entonces $H$ es una subgráfica de $G$ que es una $F$-subdivisión (trivial). Suponga pues que $H \neq H^\prime$ y sea $e = uv$ en $E(H^\prime)$ una arista de contracción. Si $d(u), d(v) \geq 3,$ entonces el vértice obtenido al contraer la arista $e$ tiene grado mayor o igual a cuatro. Más aún, dado que todas las aristas que se contraen en esta sucesión de operaciones involucran vértices de grado al menos dos, este vértice al final de la sucesión de operaciones tiene grado mayor a cuatro. Esto contradice el hecho de que el grado máximo de $H$ es tres. Por tanto se tiene que $d(u) = 2$ o $d(v) = 2.$ Esto muestra que $H^\prime$ se obtiene mediante subdivisiones de aristas de $H$. Se concluye que $H^\prime$ es una subgráfica de $G$ que es una $F$-subdivisión.
+    
+    \item[b)] \textit{Sin solución.}
+
+    \end{itemize}
+\end{proof}
+%----------------------------------------------
+
+
+
+\printbibliography
+
+
+\end{document}

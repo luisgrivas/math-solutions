@@ -1,0 +1,151 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{amsfonts}
+\usepackage[margin=0.94in]{geometry}
+\usepackage{tikz}
+
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+
+\addbibresource{blb.bib}
+
+\pagestyle{fancy}
+
+\lhead{Tarea 3}
+\chead{Luis González Rivas}
+\rhead{18 de marzo de 2022}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+\newtheorem{teo}{Teorema}
+\newtheorem{prop}{Proposición}
+
+\newenvironment{problem}[2][Problema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+\section*{Teoría de Gráficas}
+
+
+%---------HECHO-------------------------------
+\begin{problem}{2.5.5} Demuestre que una gráfica $G$ es impar si y solo si $\lvert \partial(X) \rvert \equiv \lvert X \rvert \mod 2$ para todo subconjunto $X$ de $V.$
+\end{problem}
+\begin{proof}
+Suponga que $G$ es impar. Si $X \subset V(G)$, por el Teorema 2.9 de \cite{10.5555/1481153}, se tiene que
+$$\lvert \partial(X) \rvert = \sum_{v \in X} d(v) - 2 e(X).$$
+Luego, 
+$$ \lvert \partial(X) \rvert - \lvert X \rvert = \sum_{v \in X} d(v) - 2 e(X) - \lvert X \lvert = \sum_{v \in X} (d(v) - 1) - 2 e(X).$$
+Como $d(v)$ es impar para todo $v \in V(G)$, el término $\sum_{v \in X} (d(v) - 1)$ es par. Por tanto $\lvert \partial (X) \rvert - \lvert X \rvert $ es par y la conclusión se sigue directamente.
+
+Por otro lado, suponga que $\lvert \partial (X) \rvert \equiv \lvert X \rvert \mod 2$ para cualquier subconjunto $X$ de $V(G)$ distinto del vacío. Si $v \in V(G)$, entonces 
+$$ d(v) \equiv \lvert \partial (v) \rvert \equiv 1 \mod 2.$$
+Por tanto $d(v)$ es impar. Como la elección de $v$ fue arbitraria, la gráfica $G$ es impar. 
+\end{proof}
+%----------------------------------------
+
+%--------HECHO--------------------------------
+\begin{problem}{2.5.6} Demuestre que todo arco de una digráfica fuerte está contenida en un ciclo dirigido.
+\end{problem}
+\begin{proof} Sea $xy \in A(D)$ un arco de una digráfica $D$ fuerte. Sea $X$ el conjunto de vértices que alcanzan a $x$. Suponga que $X$ es subconjunto propio de $V(G).$ Como $D$ es fuerte, existen vértices $u\in V(G)\setminus X$ y $v\in X$ tales que $uv$ es un arco. Por definición de $X$, existe una $vx$-trayectoria dirigida $W$ en $D$. Luego, la trayectoria formada por $W$ y el arco $uv$ implica que $u\in X$, lo cual es una contradicción. Por tanto, $X = V(G)$, lo que implica que $y$ alcanza a $x.$ De aquí la conclusión se sigue inmediatamente.
+
+
+\end{proof}
+%------------------------------------------
+
+%----------------HECHO?--------------------
+\begin{problem}{3.1.1} Si existe un $xy-$camino en una gráfica $G$, demuestre que existe una \\ $xy-$trayectoria en $G.$
+\end{problem}
+\begin{proof} \footnote{En lo siguiente, denotaremos por $[k]$ al conjunto de enteros $\{0, 1, \ldots, k\}$.}
+Sea $W = v_0 \ldots v_k$ un $xy$-camino; es decir, $v_0 = x$ y $v_k =y.$ Considere el conjunto $I = \{(i, j) \in [k]^2: j \text{ es el entero mínimo tal que } v_i = v_j \text{ y } j > i \}.$ Si $I$ es vacío, entonces $W$ es una $xy$-trayectoria y acabamos. De lo contrario, remueva de $W$ los subcaminos $v_{i}W v_{j-1}$ para todo $(i,j) \in I.$ El resultado de este procedimiento es una $xy$-trayectoria.
+\end{proof}
+%----------------------------------------
+
+%---------HECHO-------------------------------
+\begin{problem}{3.1.3} Demuestre que las clases de equivalencia determinadas por la relación de conexidad entre vértices son precisamente los conjuntos de vértices de las componentes de una gráfica. 
+\end{problem}
+\begin{proof}
+Es suficiente demostrar que una gráfica $G$ es conexa si y sólo si existe una $xy-$trayectoria para todo par de vértices en $G.$ 
+
+Suponga que $G$ es conexa. Sean $x,y \in V(G)$ y sea $X = \{v \in V(G): \text{ existe una } xv\text{-trayectoria} \}$. Suponga que $X$ es un subconjunto propio de $V(G).$ Si $uv$ es una arista con $u\in V(G)\setminus X$ y $v \in X$, entonces existe una $ux$-trayectoria formada por una $vx$-trayectoria y la arista $uv.$ Esto contradice la elección de $u$. Por tanto, no existen aristas en $G$ con un extremo en $X$ y otro en $V(G)\setminus X$. Pero esto contradice la conexidad de $G$. Luego, $X = V(G)$ y en particular existe una $xy$-trayectoria en $G.$
+
+Para demostrar la condición suficiente, sean $X$ y $Y$ una partición de $V(G).$ Si $x \in X$ y $y\in Y$, entonces existe una $xy$-trayectoria $W$ en $G$. Si $W = v_0 v_1 \ldots v_k$, con $v_0 = x$ y $v_k = y$, se puede seleccionar $r = \max\{i \in [k-1]: v_i \in X\}$. La arista $v_r v_{r+1}$ satisface que $v_r \in X$ y $v_{r+1} \in Y.$ Como la partición $X,Y$ de $G$ fue arbitraria, $G$ es conexa. 
+\end{proof}
+%---------------------------------------------
+
+%---------------HECHO-------------------------
+\begin{problem}{3.1.4} Demuestre que una gráfica $G$ es conexa si y solo si existe una \\$(X, Y)-$trayectoria en $G$ para cualesquiera $X$ y $Y$ subconjuntos de $V$ no vacíos.
+\end{problem}
+\begin{proof}
+Suponga que $G$ es conexa. Sean $X$ y $Y$ subconjuntos de $V(G)$ no vacíos. Si $x \in X$ y $y \in Y$, entonces existe una $xy-$trayectoria, digamos $W = v_0 v_1 \ldots v_k$ con $v_0 = x$ y $v_k = y$. Sea $r = \max \{i \in [k]: v_i \in X \}$ y sea $s = \min \{i \in [k]: v_i \in Y \text{ e } i > r\}$. Entonces podemos definir una $(X, Y)-$trayectoria como $v_r W v_s.$
+
+Por otro lado, suponga que para cualesquiera $X$ y  $Y$ subconjuntos de $V(G)$, existe una $(X,Y)$-trayectoria. En particular, para cualesquiera $x, y \in V(G),$  existe una $xy-$trayectoria. Por el \textbf{Problema 3.1.3}, $G$ es conexa.  
+\end{proof}
+%----------------------------------------
+
+%----------------------------------------
+\begin{problem}{3.2.1} Demuestre que si $e$ es una arista, entonces $c(G\setminus e) = c(G)$ o $C(G\setminus e) = c(G) + 1$.
+\end{problem}
+\begin{proof}
+
+Sea $G$ una gráfica y sea $e = xy$ una arista de $G$. Considere la gráfica $H = G \setminus e$. 
+Observe que los vértices $x,y$ pertenecen a la misma componente conexa en $G$. Más aún, toda componente conexa de $G$ que no contiene a $x$ ni a $y$, es una componente conexa de $H.$ Por tanto, podemos asumir sin pérdida de generalidad que $G$ es conexa. 
+
+Sean pues $[x]$ y $[y]$ las componentes conexas de $x$ y $y$ respectivamente, en $H.$ Sea $u$ un vértice de $H$ distinto de $x$ y $y$. Como $G$ es conexa, existe una $xu$-trayectoria $W$ en $G.$ Si $e$ es una arista en $W$, podemos eliminar esta arista para obtener una $yu$-trayectoria. Luego $u \in [y]$. Si $e$ no es arista de $W$, entonces $u$ pertenece a $[x].$ 
+
+Hemos demostrado que todo vértice $u$ de $H$ está en $[x]$ o está en $[y]$. Si $[x] = [y]$, entonces $c(G) = c(H) =1$. De otro modo, si $[x] \neq [y]$, como estas son las únicas dos componentes conexas de $H$, tenemos que $c(H) = 2 = c(G) + 1.$
+
+\end{proof}
+%----------------------------------------
+
+%----------------------------------------
+\begin{problem}{3.4.5}
+Demuestre que todo torneo es fuerte o puede ser transformado en un torneo fuerte si reorientamos exactamente un arco.
+\end{problem}
+\begin{proof}
+Sea $D$ un torneo. Primero se demostrará que si $X_1, X_2$ son dos subconjuntos propios de $V(D)$ distintos del vacío tales que $\partial^+(X_1) = \partial^+(X_2) = \varnothing$, entonces $X_1 \subset X_2$ o $X_2 \subset X_1$.
+
+Suponga que $X_1, X_2$ cumplen lo anterior. Sean $x_1 \in X_1$ y $x_2 \in X_2$. Como $D$ es un torneo, existe un arco que tiene a $x_1$ y a $x_2$ como extremos. Si $x_1 x_2 \in A(D),$ como $\partial^+(X_1) = \varnothing$, implica que $x_2 \in X_1$. Por tanto $X_2 \subset X_1.$ De otro modo, si $x_2 x_1 \in A(D)$, como $\partial^+(X_2) = \varnothing$, entonces $x_1 \in X_2$. Esto implica que $X_1 \subset X_2.$
+
+Ahora se demostrará lo descrito en el problema. Por el párrafo anterior y dado que $D$ es finita, existen $X_{\text{mín}}$ y $X_{\text{máx}}$ subconjuntos de $V(D)$ distintos del vacío tales que 
+$$X_{\text{mín}} \subset X \subset X_{\text{máx}},$$
+para todo $X \subset V(D)$ con $\partial^+(X) = \varnothing.$ Sea $v \in V(D) \setminus X_{\text{máx}}$. Como $D$ es un torneo y $\partial^+(X_{\text{mín}}) = \varnothing$, entonces existe un arco $v x \in A(D)$ con $x \in X_{\text{ mín}}$. Sea $T$ el torneo inducido por $D$ cambiando únicamente el arco $vx$ por el arco $xv$. El torneo $T$ es fuerte. Para esto, sea $Y$ un subconjunto propio de $V(T)$ y  suponga que $\partial^+(Y) = \varnothing$ en $T.$ 
+
+Si $\partial^+(Y) = \varnothing $ en $D$, entonces $X_{\text{mín}} \subset Y \subset X_{\text{máx}}$, lo que implica que $x \in Y$ y $v \notin Y$. Pero $xv$ es un arco en $T$, lo cual contradice que $\partial^+(Y) = \varnothing$ en $T.$ 
+
+Si $\partial^+(Y) \neq \varnothing$ en $D$, como $T$ y $D$ solo difieren en un arco, la única posibilidad es que $\partial^+(Y) = \{vx\}$. Esto implica que $v \in Y$ y $x \notin Y.$ Observe que el conjunto $Y \cup X_{\text{mín}}$ satisface que $\partial^+(Y \cup X_{\text{mín}}) = \varnothing$ en $D$. De manera que $X_{\text{mín}} \subset Y \cup X_{\text{mín}} \subset X_{\text{máx}}$. Pero esto contradice la elección de $v.$
+
+Por lo anterior, el supuesto de que $\partial^+(Y) = \varnothing$ en $T$ debe ser falso. Como la elección de $Y$ fue arbitraria, se concluye que $T$ es fuerte.
+
+\end{proof}
+%----------------------------------------
+
+%----------------------------------------
+\begin{problem}{3.4.8} Demuestre que una digráfica conexa es euleriana si y solo si es par.
+\end{problem}
+\begin{proof}
+Sea $D$ una digráfica conexa. Suponga que $D$ es euleriana y sea $W = v_0 v_1 \ldots v_k$ un tour euleriano de $D.$ Observe que a medida que recorremos $W$, todo vértice interno de $W$ es visitado un número par de veces, pues debemos entrar y salir de el. Por otro lado, como $v_0 = v_k$, estos vértices son visitados un número par de veces. Por tanto, $D$ es par.
+
+Ahora suponga que $D$ es par. Primero se mostrará que existe un tour en $D$ con vértice inicial arbitrario. Sea $v_0 \in D$. Puesto que $D$ es par, existe un arco $e_1 = v_0 v_1$ en $D$. Si $ v_0 = v_1$, entonces $W = v_0v_1$ es un tour y acabamos. Si no, dado que $D$ es par, existe un arco $v_1 v_2$ en $D$. Si $v_2$ es igual a $v_0$, entonces $W = v_0 v_1 v_2$ es un tour y acabamos. Podemos continuar con este proceso sobre los vértices de $D$. Dado que $D$ es finita, este proceso termina, obteniendo un tour $W.$
+
+Por lo anterior, existe un tour $W$ de máxima longitud en $D.$ Se mostrará que $W$ tiene el mismo número de arcos que $D$. Contrariamente, suponga que $W$ tiene menos arcos que $D$. Remueva de $D$ todos los arcos de $W$. Llamemos a esta nueva digráfica $T$. Dado que todo vértice en $W$ se visita un número par de veces, $T$ es una digráfica par. Puesto que $D$ es conexa, existe una componente conexa $C$ de $T$ con un vértice en común con $W.$ Sea $v$ este vértice en común y sea $W^\prime$ un tour en $C$ con vértice inicial $v.$ Luego, podemos crear un tour $W^{\prime \prime}$ en $D$ mediante la \textit{unión} \footnote{Recorriendo adecuadamente este nuevo tour.} de $W$ y $W^\prime$. Este tour tiene una longitud más grande que $W$, lo cual contradice la elección de $W.$ Por tanto el supuesto de que $W$ tiene menos arcos que $D$ debe ser falsa. Concluimos que $D$ es euleriana.
+\end{proof}
+
+%----------------------------------------
+
+
+\printbibliography
+
+
+\end{document}

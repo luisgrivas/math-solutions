@@ -1,0 +1,181 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{amsfonts}
+\usepackage[margin=0.94in]{geometry}
+\usepackage{tikz}
+
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+
+\addbibresource{blb.bib}
+
+\pagestyle{fancy}
+
+\lhead{Tarea 4}
+\chead{Luis González Rivas}
+\rhead{3 de abril de 2022}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+\newtheorem{teo}{Teorema}
+\newtheorem{prop}{Proposición}
+
+\newenvironment{problem}[2][Problema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+\section*{Teoría de Gráficas}
+
+
+%--------DONE--------------------------------------
+\begin{problem}{4.1.2}
+Demuestre que las siguientes proposiciones son equivalentes. 
+\begin{itemize}
+    \item[a)] $G$ es conexa y tiene $n-1$ aristas.
+    \item[b)] $G$ es un bosque y tiene $n-1$ aristas.
+    \item[c)] $G$ es un árbol.
+\end{itemize}
+\end{problem}
+
+\begin{proof} \textbf{}\\
+c) $\implies$ a). Como $G$ es un árbol, por definición, es conexa y por el  \textbf{Teorema 4.3} de \cite{10.5555/1481153} se sigue que tiene $n-1$ aristas. \\
+c) $\implies$ b). Si $G$ es un árbol, en particular es un bosque y por el \textbf{Teorema 4.3} de \cite{10.5555/1481153} se sigue que tiene $n-1$ aristas.\\
+b) $\implies$ c). Sean $T_i$ las $k$ componentes conexas de $G$. Como cada $T_i$ es un árbol, se tiene que
+$$2 e(G) = 2 \sum_{i=1}^k e(T_i) = 2 \sum_{i=1}^k (v(T_i) - 1) = 2(v(G)-k).$$
+Equivalentemente, $e(G) = v(G) - k.$ Por otro lado, $e(G) = v(G) - 1$, lo que implica que $k=1$. Luego, $G$ es conexa y  por tanto, $G$ es un árbol.\\
+a) $\implies$ c). Sea $G$ una gráfica conexa con $n-1$ aristas. Suponga que $G$ no es un árbol. Entonces $G$ contiene al menos un ciclo. Sean $C_1, \ldots, C_k$ todos los distintos ciclos de $G.$ De cada $C_i$, remueva una arista $e_i,$ de tal manera que $e_i \neq e_j$ para $i \neq j.$ Entonces $G^\prime = G \setminus \{e_1, \ldots, e_k\}$ es una gráfica acíclica y conexa y por tanto es un árbol. Sin embargo, $G^\prime$ tiene $n-1-k$ aristas, lo cual contradice el \textbf{Teorema 4.3} de \cite{10.5555/1481153}. Por tanto, $G$ no tiene ciclos y por tanto $G$ es un árbol.
+\end{proof}
+%----------------------------------------------
+
+%---------DONE-------------------------------------
+\begin{problem}{4.1.7}
+Demuestre que la sucesión $(d_1, d_2, \ldots, d_n)$ de enteros positivos es una sucesión de grado de un árbol si y sólo si $\sum_{i=1}^n d_i = 2(n-1).$
+\end{problem}
+\begin{proof}
+Si $G$ es un árbol, entonces $m = n-1$, por lo que 
+$$2m = 2(n-1) = \sum_{i=1} d_i.$$
+Por otro lado, suponga que $G$ con $\sum_{i=1} d_i = 2(n-1).$ Si $n=2$, entonces $d_1 + d_2 = 2$. Como $d_1, d_2 > 0$, se tiene que $d_1 = d_2 = 1.$ Luego, $G$ consta únicamente de dos vértices que son vecinos, por lo que $G$ es un árbol.
+Suponga que la proposición es cierta para toda gráfica con menos vértices que $n\geq 2.$ Sea $G$ una gráfica con $n$ vértices. Observe que $d_1 = 1$, pues si no, se tiene que 
+$$2(n-1) = \sum_{i=1}^n d_i \geq 2n > 2(n-1),$$
+lo cual es una contradicción. Sea $v \in G$ tal que $d(v) = 1.$ Si $H = G \setminus v$,  entonces $H$ tiene $n-1$ vértices y 
+$$\sum_{v \in V(H)} d(v) = 2(n-1) - 2 = 2(n-2).$$
+Por lo que, por la hipótesis de inducción, $H$ es un árbol. Luego, como $v$ es de grado uno, $G = H \cup v$ es un árbol.
+\end{proof}
+%----------------------------------------------
+
+%----------------------------------------------
+\begin{problem}{4.1.9} \text{}
+\begin{itemize}
+    \item[a)] Demuestre que toda gráfica simple con grado mínimo $k$ contiene una copia de todo árbol enraizado con $k+1$ vértices, con la raíz en cualquier vértice de la gráfica.
+    \item[b)] Deduzca que toda gráfica simple con grado promedio al menos $2(k-1)$, donde $k-1$ es un entero positivo, contiene una copia de cada árbol en $k+1$ vértices.
+\end{itemize}
+\end{problem}
+\begin{proof}
+\textbf{}
+\begin{itemize}
+    \item[a)] Se procederá mediante inducción en el grado mínimo de $G$. Sea $G$ una gráfica simple con grado mínimo $k=1$ y sea $u$ un vértice en $G.$ Entonces existe una arista $e$ en $G$ con $e = uv$ y $u \neq v$, ya que $G$ es simple. La subgráfica $H$ de $G$ definida por los vértices $u,v$ y la arista $e$ es isomorfa al único árbol con $2$ vértices, por lo que la proposición es cierta para este caso.
+    
+    Suponga que la proposición es cierta para toda gráfica simple con grado mínimo menor que $k \geq 1.$  Sea $G$ una gráfica simple con grado mínimo igual a $k$. Si $x$ es un vértice de $G$ de grado mínimo y $e$ es una arista incidente a $x$, entonces la subgráfica $H = G\setminus e$ de $G$ es una gráfica simple de grado mínimo igual a $k-1$. Por la hipótesis de inducción, $H$ contiene una copia de todo árbol en $k$ vértices enraizado en cualquiera de sus vértices. Como $H$ y $G$ tienen los mismos vértices, $G$ tiene una copia de todo árbol en $k$ vértices enraizado en cualquiera de sus vértices.
+    
+    Sea $u$ un vértice de $G$ y sea $T$ un árbol arbitrario en $k+1$ vértices. Como $T$ tiene un vértice $y$ de grado uno, entonces la subgráfica $T^\prime = T\setminus y$  de $T$ es un árbol en $k$ vértices. Luego, existe una copia $H$ de $T^\prime $ en $G$ enraizada en $u.$ Sea $x$ el vértice de $T^\prime$ que es vecino de $y$ en $T$, y sea $v$ el vértice en $H$ correspondiente a $x$ (mediante el isomorfismo de $H$ sobre $T^\prime).$ Como $H$ tiene $k-1$ vértices distintos y el grado de $v$ en $G$ es al menos $k$, existe un vértice $w$ vecino de $v$ en $G$ distinto de todo vértice de $H.$ Si $e = vw$ es la arista en $G$ con extremos $v$ y $w$,  la subgráfica $H \cup \{e\}$ es una copia de $T$ y está enraizada en $u$. 
+    \item[b)] Por el \textbf{Teorema 2.5} de \cite{10.5555/1481153}, $G$ tiene una subgráfica $H$ con grado mínimo igual a $k.$ Luego, por el inciso a), $H$ tiene una copia de todo árbol en $k+1$ vértices. Pero como $H$ es subgráfica de $G$, $G$ tiene una copia de todo árbol en $k+1$ vértices.
+ \end{itemize}
+\end{proof}
+%----------------------------------------------
+
+%----------------------------------------------
+\begin{problem}{4.2.1} Sea $G$ una gráfica conexa y $e$ un \textit{link} de $G$.
+\begin{itemize}
+    \item[a)] Describa una correspondencia uno a uno entre el conjunto de árboles generadores de $G$ que contienen a $e$ y el conjunto de árboles generadores de $G\setminus e$. 
+    \item[b)] Deduzca la Proposición 4.9 de \cite{10.5555/1481153}.
+\end{itemize}
+\end{problem}
+\begin{proof} \textbf{}
+\begin{itemize} 
+    \item[a)] Sea $e=xy$ un \textit{link} de $G.$ Primero demostraremos que si $T$ es un árbol generador de $G$ que contiene a $e$, entonces $T/e$ es un árbol generador de $G/e.$ En primer lugar, $V(T/e) = V(G/e)$, pues al contraer $e$ solo se identifican los vértices $x$ y $y$ y el resto no se afectan mediante esta operación. Por tanto $T/e$ es una subgráfica generadora. Para ver que $T/e$ es un árbol, note que $T/e$ es conexa, pues $T$ es conexa; además, $T/e$ no tiene ciclos, pues $x$ y $y$ son diferentes y $T$ no tiene ciclos. Así pues, $T \mapsto T/e$ mapea árboles generadores de $G$ que contienen a $e$ en árboles generadores de $G/e.$ 
+    
+    Para ver que el anterior mapeo es inyectivo, sean $T_1$ y $T_2$ árboles generadores de $G$ que contienen a $e$ \textbf{diferentes.} Entonces existe una arista $e^\prime$ en $T_1$ que no está en $T_2$, pues $V(T_1) = V(T_2).$ Note que esta arista $e^\prime$ es diferente de $e$. Luego, $T_1/e$ tiene a la arista $e^\prime$ y está no es arista de $T_2/e$. Por tanto $T_1/e$ es diferente de $T_2/e$. En conlusión, el mapeo $T \mapsto T/e$ es inyectivo.
+    
+    \item[b)] Note que el conjunto de árboles generadores de $G$ pueden separarse en dos subconjuntos: $X$, el conjunto de árboles generadores de $G$ que no contienen a $e$; y $Y$, el conjunto de árboles generadores de $G$ que contienen a $e$. Note que todo elemento de $X$ es un árbol generador de $G\setminus e$, por lo que $\vert X \rvert = t(G\setminus e).$ Por otro lado, note que el inciso a) establece que $\lvert Y \rvert  = t(G/e).$ Concluimos que 
+    $$ t(G) = t(G\setminus e) + t(G/e).$$
+    
+\end{itemize}
+
+\end{proof}
+
+%----------------------------------------------
+
+
+%----------------------------------------------
+\begin{problem}{5.1.2} Sea $G$ una gráfica conexa con al menos tres vértices. Sea $e = uv$ una arista de corte. Demuestre que $u$ o $v$ es un vértices de corte.
+\end{problem}
+\begin{proof}
+Sea $e=uv$ una arista de corte de $G.$ Entonces $G\setminus e$ tiene dos componentes conexas $G_1$ y $G_2$. Los vértices $u$ y $v$ pertenecen a componentes distintas; de lo contrario, si $u,v$ pertenecen a $G_i$, existe una $uv$-trayectoria $W$ en $G_i$, que, junto la arista $e$ formaría un ciclo en $G$, contradiciendo el hecho de que $e$ es arista de corte. Por tanto, sin pérdida de generalidad asuma que $u\in G_1$ y $v\in G_2.$\\
+
+Sea $w$ un vértice en $G$ distinto tanto de $u$ como de $v$. Observe que, si $W_1$ es cualquier $uw$-trayectoria en $G$ y $W_2$ es cualquier $vw$-trayectoria en $G$, entonces $e$ es una arista de $W_1$ o de $W_2$. De lo contrario, la unión de $W_1$, $W_2$ y $e$ formarían un ciclo en $G$, contradiciendo el hecho de que $e$ es arista de corte. Por tanto, sin pérdida de generalidad asuma que toda $uw$-trayectoria en $G$ tiene a $e$ como arista. Esto implica que $w$ no es un vértice de $G_1$, por lo que es un vértice de $G_2.$\\
+
+Finalmente, note que $G \setminus v$ es una subgráfica de $G\setminus e$. Más aún, los vértices $u$ y $w$ en $G \setminus v$ pertenecen a las componentes $G_1 \cap G\setminus v$ y $G_2 \cap G \setminus v$ respsectivamente. Por tanto, $c(G \setminus v) > c(G)$ y $v$ es un vértice de corte.  
+\end{proof}
+%----------------------------------------------
+
+%----------------------------------------------
+\begin{problem}{5.1.4} Sea $G$ una gráfica conexa no trivial sin vértices de corte. Sean $X$ y $Y$ subconjuntos de vértices de $G$, cada uno con al menos dos elementos. Demuestre que existen dos $(X,Y)$-caminos disjuntos en $G.$ 
+\end{problem}
+\begin{proof}
+Suponga que $v(G) \geq 3$. Como $\lvert X \rvert, \lvert Y \rvert \geq 2$, existen vértices $x\in X$ y $y \in Y$ distintos. Como $G$ no tiene vértices de corte, entonces existen dos $xy-$trayectorias internamente disjuntas $W_1 = v_1\ldots v_k$ y $W_2 = u_1 \ldots u_l.$ Como $W_1$ es finita, entonces existe un entero $i$ tal que $1 \leq i < k$, $v_i \in X$ y $v_{r} \notin X$ para $i < r < k.$ . De nuevo, como $W_1$ es finita, existe un entero $j$ tal que $i < j \leq k$, $v_j \in X$ y $v_r \notin Y$ para $i < r < j.$ Luego, con lo anterior,  $u_i W_1 u_j$ es un $(X, Y)$-camino. Bajo un argumento similar, podemos encontrar vértices $u_r, u_s \in V(W_2)$ tal que $u_r W_2 u_s$ es un $(X, Y)$-camino. Ahora bien, por hipótesis, $W_1$ y $W_2$ son internamente disjuntos. Esto implica que los $(X,Y)$-caminos $v_i W_1 v_j$ y $u_r W_2 u_s$ son internamente disjuntos, como se quería demostrar.
+\end{proof}
+
+
+%------------DONE----------------------------------
+\begin{problem}{5.2.1} Sea $G$ una gráfica no separable y sea $e$ una arista de $G$. Demuestre que la gráfica obtenida de $G$ mediante una subdivisión de $e$ es no separable 
+\end{problem}
+\begin{proof}
+Sea $e=xy$ una arista de $G$. 
+Subdivida la arista $e$ mediante un vértice $u$ y denote por $G^\prime$ la gráfica resultante. Suponga que $G^\prime$ es separable. Entonces existe una separación $G_1$, $G_2$ de $G^\prime$. Note que $V(G_1) \cap V(G_2) = \{u\}$, pues de lo contario, $G$ sería separable. Por otro lado, observe que $x,y$ pertenecen a componentes distintas. Sin pérdida de generalidad asuma que $x \in V(G_1)$ y $y \in V(G_2).$ Luego, $u$ es un vértice de corte. Esto implica que la arista $e$ es de corte en $G.$ Por lo anterior, $G\setminus e$ tiene dos componentes conexas, digamos $H_1, H_2$ con $x \in H_1$ y $y\in H_2.$ Pero entonces, $G$ se puede separar por $x$ como $H_1$ y $H_2 \cup e$, lo cual contradice que $G$ es no separante. Por tanto, el supuesto de que $G^\prime$ es separable debe ser falso.
+\end{proof}
+
+%----------------------------------------------
+
+%----------------DONE------------------------------
+\begin{problem}{5.2.4} Demuestre que una gráfica conexa y separable tiene al menos dos bloques.
+\end{problem}
+\begin{proof}
+Sea $G$ una gráfica conexa y separable. Sean $G_1$ y $G_2$ una separación de $G$ con vértice de separación $v.$  Sea $B$ un bloque de $G.$ Note que si $V(B) \cap V(G_i \setminus v)\neq \varnothing$, para todo $i\in\{1,2\}$, entonces $G[V(B) \cap V(G_1)]$ y $G[V(B) \cap V(G_2)]$ es una separación de $B$, lo cual es una contradicción. Por tanto, todo bloque de $B$ de $G$ está contenido en alguna subgráfica $G_i$, para alguna $i\in\{1,2\}.$ 
+Por otro lado, si $G_i$ es no separante, entonces $G_i$ es un bloque para toda $i\in\{1,2\}$. Si $G_i$ no es un bloque, entonces todo bloque de $G_i$ es un bloque de $G.$ Por tanto, al menos $G$ tiene dos bloques: uno contenido en $G_1$ y otro en $G_2.$
+\end{proof}
+%----------------------------------------------
+
+%----------------------------------------------
+\begin{problem}{5.2.7} \text{}
+\begin{itemize}
+    \item[a)] Sea $G(x,y)$ una gráfica no separable. Demuestre que todos los $xy$-caminos en $G$ tienen la misma paridad si y sólo si $G$ es bipartita.
+    \item[b)] Deduzca que cada arista en una gráfica no separable que no es bipartita yace en un ciclo impar. 
+\end{itemize}
+\end{problem}
+\begin{proof}
+\text{}
+\begin{itemize}
+    \item[a)] Sea $G$ una gráfica bipartita y sean $X_1, X_2$ sus partes. Suponga que existen dos $xy$-caminos $W_1, W_2$ con distinta paridad. Note que, si $W_1$ es de longitud par, entonces los vértices $x,y$ pertenecen a la misma parte. Por otro lado, si $W_2$ es de longitud impar, entonces los vértices $x,y$ pertenecen a distintas partes. Pero esto es imposible, pues un vértice en $G$ solo pertenece a una y solo una parte $X_i.$ Por tanto, el supuesto de que $W_1$ y $W_2$ son dos $xy$-caminos con distinta paridad debe ser falso.
+    
+    
+    
+    \item[b)] Sea $G$ no es bipartita y no separable. Sea $e=xy$ una arista de $G.$  Como $e$ es un $xy$-camino impar, el inciso a) asegura que existe un $xy-$camino $W$ de longitud par. Entonces $e$ yace en el ciclo determinado por las aristas $e \cup E(W).$ Note que, como $e$ y $W$ son de distinta paridad, el anterior ciclo es impar.
+\end{itemize}
+\end{proof}
+
+\printbibliography
+
+
+\end{document}

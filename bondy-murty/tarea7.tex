@@ -1,0 +1,123 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{amsfonts}
+\usepackage[margin=0.94in]{geometry}
+\usepackage{tikz}
+
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+
+\addbibresource{blb.bib}
+
+\pagestyle{fancy}
+
+\lhead{Tarea 7}
+\chead{Luis González Rivas}
+\rhead{22 de mayo de 2022}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+\newtheorem{teo}{Teorema}
+\newtheorem{prop}{Proposición}
+
+\newenvironment{problem}[2][Problema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+\section*{Teoría de Gráficas}
+
+
+%----------------------------------------------
+\begin{problem}{11.2.2} Demuestre que toda gráfica plana par es 2-cara-coloreable.
+\end{problem}
+\begin{proof}
+Sea $G$ una gráfica plana par. Sin pérdida de generalidad podemos asumir que $G$ es conexa (ya que podemos colorear componente por componente). Considere el dual $G^\ast$ de $G$. Se demostrará que $G^\ast$ es bipartita, mostrando que $G^\ast$ no contiene ciclos impares. En primer lugar, la \textbf{Proposición 10.9} de \cite{10.5555/1481153} establece que $G^\ast$ es conexa. Si $G^\ast$ no tiene ciclos, entonces $G^\ast$ es un árbol y por tanto $G^\ast$ es bipartita. Sea pues $C^\ast$ un ciclo en $G^\ast$ y asuma que es de longitud impar. Dado que $G$ es conexa, entonces $C^{\ast \ast}$ es un \textit{bond} en $G$ con un número impar de elementos. Pero esto contradice el \textbf{Teorema 2.10} de \cite{10.5555/1481153} \footnote{El teorema establece que $G$ es par si y solo si $\lvert \partial(X) \rvert$ es par para todo subconjunto $X$ de $V(G).$}. Por tanto $G^\ast$ no tiene ciclos impares y por tanto es bipartita.
+
+Finalmente, dado que $G^\ast$ es bipartita, esta es 2-coloreable. Y como a cada vértice de $G^\ast$ le corresponde una cara de $G$ y dos vértices de $G^\ast$ son adyacentes si y solo si las caras correspondientes a estos vértices en $G$ son adyacentes, se sigue que $G$ es 2-cara-coloreable.
+%Así pues, suponga que $G^\ast$ contiene ciclos de longitud impar. Sea $\Tilde{G}$ un encaje de $G$ en el plano y sea $\Tilde{G^\ast}$ un encaje de $G^\ast$ inducido por $\Tilde{G}$. Sea $C$ un ciclo de longitud impar de $\Tilde{G^\ast}$ cuyo número de caras \textit{internas} (en el encaje) sea mínimo. Observe que si $x$ y $y$ son dos vértices distintos en $C$, entonces no existe una $xy-$trayectoria $W$ interna a $C$ y ajena a $E(C)$; de lo contrario, si $W_1$ y $W_2$ son las dos $xy$-trayectorias en $C$, entonces $W \cup W_1$ o $W \cup W_2$ formarían un ciclo impar en $\Tilde{G^\ast}$ con menos caras internas que $C.$ Esto muestra que $e(C) \subset \partial(f)$, donde $f$ es una cara interna de $C$. Más aún, $\partial(f) \setminus e(C)$ es vacío, o es la unión de aristas de corte o de aristas pertenecientes a un ciclo de longitud par. Lo anterior es cierto, pues ningún ciclo interno a $C$ es impar, pues este tendría menos caras internas que $C.$ Por todo lo anterior, se tiene que $\partial(f) $ es un entero impar.
+\end{proof}
+%----------------------------------------------
+
+
+%----------------------------------------------
+\begin{problem}{11.2.4} Demuestre que una gráfica es \textit{4-vértice-coloreable} si y solo si es la unión dos gráficas bipartitas.
+\end{problem}
+\begin{proof}
+Suponga que $G$ es la unión de dos gráficas bipartitas $G_1$ y $G_2.$ Sean $b_1, b_2$ los colores de una coloración propia de $G_1$ y sean $c_1, c_2$ los colores de una coloración propia de $G_2.$  Si $v$ tiene color $b_i$ o $c_j$ en $G_1$ y $G_2$ respectivamente, entonces denotaremos por $b_i c_j$ el color de $v$ en $G.$. Luego, por construcción, los colores $b_1 c_1$, $b_1 c_2$, $b_2 c_1$ y $b_2 c_2$ forman una coloración propia de $G_1 \cup G_2 = G.$
+
+\textit{Incompleta.}
+\end{proof}
+
+%----------------------------------------------
+
+
+
+%----------------------------------------------
+\begin{problem}{12.1.2} Demuestre que un conjunto $S$ un conjunto estable de una gráfica $G$ si y solo si $V \setminus S$ es una cubierta de $G.$
+\end{problem}
+\begin{proof}
+Sea $S$ un conjunto independiente. Si $e$ es una arista de $G$, entonces $e$ no tiene como extremo a ningún vértice de $S$. Luego, los extremos de $e$ pertenecen a $V \setminus S$. Por tanto $V\setminus S$ es una cubierta de $G.$
+
+Sea $S$ una cubierta de $G$. Si $u, v$ son dos vértices en $V \setminus S$, entonces no son adyacentes, pues de lo contrario, si $e = uv$ es una arista, entonces  $u$ o $v$ pertenecen a $S$, lo cual es una contradicción. Por tanto $V \setminus S$ es un conjunto independiente.
+\end{proof}
+%----------------------------------------------
+
+
+%----------------------------------------------
+\begin{problem}{12.1.3} Demuestre que la gráfica $G$ es bipartita si y solo si $\alpha(H) \geq \frac{1}{2} v(H)$ para toda subgráfica inducida $H$ de $G.$
+\end{problem}
+\begin{proof}
+Suponga que $G$ es bipartita y sean $X$ y $Y$ sus partes. Sea $H$ una subgráfica de $G$. Entonces $V(H) \cap X $, $V(H) \cap Y$ es una bipartición de $H$. Suponga que $\lvert V(H) \cap X \rvert \leq \lvert V(H) \cap Y \rvert$. Luego, $S = V(H) \cap Y$ es un conjunto independiente de $H$ y $\lvert S \rvert \geq v(H)/2$. Por tanto, $\alpha(H) \geq v(H)/2.$
+
+Ahora bien, suponga que $G$ no contiene ciclos. Entonces $G$ es un bosque y por tanto es bipartita. Suponga entonces que $G$ contiene un ciclo.  Si $C$ es de longitud impar, se comprueba directamente que $\alpha(C) = (v(C) - 1)/2$. Pero esto contradice el hecho de que $\alpha(H) \geq v(H) / 2$ para toda $H$ en $G.$ Luego, $G$ no tiene ciclos de longitud impar y por tanto $G$ es bipartita.
+\end{proof}
+%----------------------------------------------
+
+
+%----------------------------------------------
+\begin{problem}{12.2.5} \textbf{}
+\begin{itemize}
+    \item[a)] Sea $G$ una gráfica que no contiene ninguna copia de $K_k$. Demuestre que $G$ es \textit{degree-majorized} por una gráfica completa $(k-1)$-partita. 
+    \item[b)] Deduzca el Teorema de Turan.
+\end{itemize}
+\end{problem}
+\begin{proof}
+\textbf{}
+\begin{itemize}
+    \item[a)] Demotraremos la proposición por inducción sobre $k.$ Si $k=2,$ y $G$ no contiene ninguna copia de $K_2$, entonces $G$ solo tiene vértices aislados (es decir, ningún vértice es vecino de otro). Por tanto $G$ es \textit{degree-majorized} por $K_{v(G)}$ y esta es 1-partita y completa. 
+    
+    \textit{Incompleta.}
+    
+    \item[b)] Si $G$ es \textit{degree-majorized} por una gráfica completa $(k-1)$-partita $T$, entonces 
+    
+    $$ 2 e(G) = \sum_{v \in V(G)} d(v) \leq \sum_{v \in V(T)} d(v) = 2 e(T)  \leq \sum_{v \in V(T_{k-1, n})} d(v) = 2 e(T_{k-1, n}). $$
+    
+    Por tanto, $e(G) \leq e(T_{k-1, n}).$
+\end{itemize}
+\end{proof}
+%----------------------------------------------
+
+
+%----------------------------------------------
+\begin{problem}{12.3.3} Demuestre el \textbf{Teorema 12.9} y el \textbf{Corolario 12.10.}
+\end{problem}
+\textit{Sin solución.}
+
+%----------------------------------------------
+
+\printbibliography
+
+
+\end{document}

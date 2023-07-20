@@ -1,0 +1,457 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{amsfonts}
+\usepackage[margin=0.94in]{geometry}
+\usepackage{tikz}
+
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+
+\addbibresource{blb.bib}
+
+\pagestyle{fancy}
+
+\lhead{Tarea 5}
+\chead{Luis González Rivas}
+\rhead{3 de abril de 2022}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+\newtheorem{teo}{Teorema}
+\newtheorem{prop}{Proposición}
+
+\newenvironment{problem}[2][Problema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+\section*{Teoría de Gráficas}
+
+% Una arista $e$ de una gráfica $G$ no separable es \textit{borrable} si $G \backslash e$ es no separable, y $e$ es contraíble si $G/e$ es no separable.
+%--------------------------------
+\begin{problem}{5.3.2}  Demuestre que toda arista de una gráfica no separable es borrable o contraíble. 
+\end{problem}
+\begin{proof}
+Sea $G$ una gráfica no separable. Si $G$ tiene un solo vértice (y $E(G) \neq \varnothing$), entonces $G$ tiene un lazo y este es borrable. Si $G = K_2$, entonces su única arista es contraíble. Por tanto asuma que $G$ es distinto a $K_1$ y $K_2.$ Sea $(G_0, G_1, \ldots, G_k)$ una descomposición de $G$ en orejas. Sea $e$ una arista en alguna oreja $P_j$ de longitud mayor que uno. Note que  $P_j / e$ es una oreja de $G_j$. Más aún, las gráficas $G_i^\ast$ definidas como $G_i^\ast = G_i / e$ para $i > j$, determinan una descomposición en orejas $\{G_0, \ldots, G_j, G_{j+1}^\ast, \ldots, G_k^\ast \}$ de $G / e$. Por tanto $G/e$ es no separable y por tanto $e$ es contraíble. Si alguna oreja $P_j$ es una arista, entonces $P_j$ es borrable. Para esto, vea que la familia $\{G_0, \ldots, G_j, G_{j+2}, \ldots, G_k \}$ forma una descomposición en orejas de $G \setminus P_j.$ Por tanto $G\setminus P_j$ es no separable, por lo que $P_j$ es borrable. Finalmente, sea $e$ una arista en $G_0$. Entonces $G_i^\ast = G_i / e$ determina una descomposición en orejas $\{G_0^\ast, \ldots, G_k^\ast \}$ de $G / e.$ Por tanto $G / e$ no separable y $e$ es contraíble.
+\end{proof}
+%--------------------------------
+
+
+%--------------------------------
+\begin{problem}{9.1.5} Demuestre que toda gráfica 2-conexa de tres o más vértices tiene una arista contraíble.  
+\end{problem}
+\begin{proof}
+Sea $G$ una gráfica 2-conexa con $v(G) \geq 3.$ Es claro que los lazos son contraíbles. Asi pues, podemos asumir que $G$ no tiene lazos. Como $G$ es 2-conexa, esta es no separable. Puesto que $v(G) \geq 3$, $G$ es diferente de $K_1$ y $K_2$. Luego, $G$ tiene una descomposición en orejas $(G_0, G_1, \ldots, G_k)$. Si $G_0 = G$, es decir, $G$ es un ciclo, es claro que cualquier arista de $G$ es contraíble. Así pues podemos suponer que $k > 0.$ 
+Por otro lado, si $G_0$ es una subgráfica generadora de $G$, entonces cualquier arista en $G_0$ es contraíble en $G.$ Asuma entonces que $G_0$ no es subgráfica generadora de $G$. Sea $P_j$ la última oreja en la descomposición cuya longitud es mayor que uno. Es claro que, si $e$ es una arista de $P_j,$ entonces $G_j/e$ es 2-conexa. Más aún, la gráfica $G/e$ es  2-conexa, puesto que $G_j/e$ es una subgráfica generadora de $G/e$. Por tanto, $e$ es una arista contraíble de $G.$
+\end{proof}
+%--------------------------------
+
+
+%--------------------------------
+\begin{problem}{9.1.7} \text{} \begin{itemize}
+    \item[a)] Sea $G$ una gráfica mínimamente 2-conexa. Demuestre que \begin{itemize}
+        \item[i)] $\delta = 2$.
+        \item[ii)] si $n \geq 4,$ entonces $m \leq 2n-4$.
+    \end{itemize}
+    \item[b)] Para toda $n \geq 4$, encuentre una gráfica mínimamente 2-conexa con $n$ vértices y $2n-4$ aristas.
+\end{itemize}
+\end{problem}
+\begin{proof}\textbf{}
+\begin{itemize}
+    \item[a), i)] Sea $(G_0, G_1, \ldots, G_k)$ una descomposición en orejas de $G.$ Es claro que si $G$ es un ciclo, esto es, $G_0 = G$, entonces, $\delta = 2$. Así pues, suponga que $k > 0.$ Sea $P_k$ la última oreja en la descomposición. Si $P_k$ es una arista, entonces $P_k$ es borrable, puesto que $G_{k-1} = G \backslash P_k$ es 2-conexa, lo cual contradice que $G$ es mínimamente 2-conexa. Por tanto $P_k$ tiene longitud mayor o igual a dos. Luego, cualquier vértice interno de $P_k$ tiene grado dos en $P_k$. Y dado que $G = G_k \cup P_k$, lo anterior muestra que $\delta = 2.$
+    
+    \item[a), ii)]
+    Observe que el ciclo $C_4$ en cuatro vértices es mínimamente 2-conexa. Más aún, toda gráfica 2-conexa en cuatro vértices tiene a $C_4$ como gráfica generadora. Así pues, $C_4$ es la única gráfica en cuatro vértices mínimamente 2-conexa. En esta caso concreto, la desigualdad se satisface.  
+    
+    Sea $G$ una gráfica mínimamente 2-conexa con $n > 4$ vértices. Sea $(G_0, G_1, \ldots, G_k)$ una descompocición de $G$ en orejas. Es claro que la desigualdad se satisface si $k=0$, es decir, $G$ es un ciclo. Así pues, suponga que $k > 0$. Por el caso i), la última oreja tiene $r \geq 1$ vértices internos. Como la gráfica $G_k$ es 2-conexa y es una subgráfica de $G$ con $v(G_k) < v(G)$, se tiene que $G$ es mínimamente 2-conexa. Luego, por inducción,  se deduce que $e(G_k) = e(G) - (r + 1) \leq 2(v(G) - r) - 4.$ Esto equivale a
+    $$e(G) \leq 2v(G) - r - 3 \leq 2v(G) - 4,$$
+    que es lo que se quería demostrar.
+    
+    \item[b)] Si $n=4$, entonces el ciclo $C_4$ en cuatro vértices es mínimamente 2-conexa. Para el caso $n > 4$, sean $x_1$ y $x_2$ vértices en $C_4$ no adyacentes. Sean $P_i = x_1 y_i x_2$ orejas de $C_4$ para $i = 1, 2, \ldots, n-4.$ Entonces 
+    $$G_n = C_4 \cup \left(\bigcup_{i=1}^{n-4} P_i \right),$$
+    es una gráfica con $n$ vértices y con $m = 2n-4$ aristas. Más aún, $G_n$ es mínimamente 2-conexa. En la Figura \ref{fig:f3} se muestran las gráficas construidas mediante este procedimiento para $n=4,5$ y $6.$
+    
+    \end{itemize}
+\end{proof}
+
+\begin{figure}
+    \centering
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,429); %set diagram left start at 0, and has height of 429
+
+%Shape: Square [id:dp38702715853154623] 
+\draw   (95.45,156) -- (181,156) -- (181,241.55) -- (95.45,241.55) -- cycle ;
+%Shape: Circle [id:dp2811191987436191] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (90.55,156) .. controls (90.55,153.29) and (92.75,151.09) .. (95.45,151.09) .. controls (98.16,151.09) and (100.36,153.29) .. (100.36,156) .. controls (100.36,158.71) and (98.16,160.91) .. (95.45,160.91) .. controls (92.75,160.91) and (90.55,158.71) .. (90.55,156) -- cycle ;
+%Shape: Circle [id:dp1310008445036681] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (176.09,156) .. controls (176.09,153.29) and (178.29,151.09) .. (181,151.09) .. controls (183.71,151.09) and (185.91,153.29) .. (185.91,156) .. controls (185.91,158.71) and (183.71,160.91) .. (181,160.91) .. controls (178.29,160.91) and (176.09,158.71) .. (176.09,156) -- cycle ;
+%Shape: Circle [id:dp8631744193576597] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (90.55,241.55) .. controls (90.55,238.84) and (92.75,236.64) .. (95.45,236.64) .. controls (98.16,236.64) and (100.36,238.84) .. (100.36,241.55) .. controls (100.36,244.25) and (98.16,246.45) .. (95.45,246.45) .. controls (92.75,246.45) and (90.55,244.25) .. (90.55,241.55) -- cycle ;
+%Shape: Circle [id:dp7099321410544782] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (176.09,241.55) .. controls (176.09,238.84) and (178.29,236.64) .. (181,236.64) .. controls (183.71,236.64) and (185.91,238.84) .. (185.91,241.55) .. controls (185.91,244.25) and (183.71,246.45) .. (181,246.45) .. controls (178.29,246.45) and (176.09,244.25) .. (176.09,241.55) -- cycle ;
+%Shape: Square [id:dp05490347284263364] 
+\draw   (257.45,156) -- (343,156) -- (343,241.55) -- (257.45,241.55) -- cycle ;
+%Shape: Circle [id:dp21353787144294112] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (338.09,156) .. controls (338.09,153.29) and (340.29,151.09) .. (343,151.09) .. controls (345.71,151.09) and (347.91,153.29) .. (347.91,156) .. controls (347.91,158.71) and (345.71,160.91) .. (343,160.91) .. controls (340.29,160.91) and (338.09,158.71) .. (338.09,156) -- cycle ;
+%Shape: Circle [id:dp45112672816000254] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (252.55,241.55) .. controls (252.55,238.84) and (254.75,236.64) .. (257.45,236.64) .. controls (260.16,236.64) and (262.36,238.84) .. (262.36,241.55) .. controls (262.36,244.25) and (260.16,246.45) .. (257.45,246.45) .. controls (254.75,246.45) and (252.55,244.25) .. (252.55,241.55) -- cycle ;
+%Curve Lines [id:da5477161372722301] 
+\draw    (257.45,156) .. controls (327.5,72) and (449.5,129) .. (343,241.55) ;
+%Shape: Circle [id:dp8057046789035617] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (365.09,128) .. controls (365.09,125.29) and (367.29,123.09) .. (370,123.09) .. controls (372.71,123.09) and (374.91,125.29) .. (374.91,128) .. controls (374.91,130.71) and (372.71,132.91) .. (370,132.91) .. controls (367.29,132.91) and (365.09,130.71) .. (365.09,128) -- cycle ;
+%Shape: Circle [id:dp6813797468366923] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (338.09,241.55) .. controls (338.09,238.84) and (340.29,236.64) .. (343,236.64) .. controls (345.71,236.64) and (347.91,238.84) .. (347.91,241.55) .. controls (347.91,244.25) and (345.71,246.45) .. (343,246.45) .. controls (340.29,246.45) and (338.09,244.25) .. (338.09,241.55) -- cycle ;
+%Shape: Circle [id:dp9007963892439023] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (252.55,156) .. controls (252.55,153.29) and (254.75,151.09) .. (257.45,151.09) .. controls (260.16,151.09) and (262.36,153.29) .. (262.36,156) .. controls (262.36,158.71) and (260.16,160.91) .. (257.45,160.91) .. controls (254.75,160.91) and (252.55,158.71) .. (252.55,156) -- cycle ;
+%Shape: Square [id:dp8858704725829979] 
+\draw   (449.45,156) -- (535,156) -- (535,241.55) -- (449.45,241.55) -- cycle ;
+%Shape: Circle [id:dp5204106089107221] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (530.09,156) .. controls (530.09,153.29) and (532.29,151.09) .. (535,151.09) .. controls (537.71,151.09) and (539.91,153.29) .. (539.91,156) .. controls (539.91,158.71) and (537.71,160.91) .. (535,160.91) .. controls (532.29,160.91) and (530.09,158.71) .. (530.09,156) -- cycle ;
+%Shape: Circle [id:dp7542647191259411] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (444.55,241.55) .. controls (444.55,238.84) and (446.75,236.64) .. (449.45,236.64) .. controls (452.16,236.64) and (454.36,238.84) .. (454.36,241.55) .. controls (454.36,244.25) and (452.16,246.45) .. (449.45,246.45) .. controls (446.75,246.45) and (444.55,244.25) .. (444.55,241.55) -- cycle ;
+%Curve Lines [id:da33102760118701546] 
+\draw    (449.45,156) .. controls (519.5,72) and (641.5,129) .. (535,241.55) ;
+%Shape: Circle [id:dp5132703990322742] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (557.09,128) .. controls (557.09,125.29) and (559.29,123.09) .. (562,123.09) .. controls (564.71,123.09) and (566.91,125.29) .. (566.91,128) .. controls (566.91,130.71) and (564.71,132.91) .. (562,132.91) .. controls (559.29,132.91) and (557.09,130.71) .. (557.09,128) -- cycle ;
+%Curve Lines [id:da4025409515962357] 
+\draw    (449.45,156) .. controls (550.5,12) and (669.5,145) .. (535,241.55) ;
+%Shape: Circle [id:dp44556833355841907] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (576.09,109) .. controls (576.09,106.29) and (578.29,104.09) .. (581,104.09) .. controls (583.71,104.09) and (585.91,106.29) .. (585.91,109) .. controls (585.91,111.71) and (583.71,113.91) .. (581,113.91) .. controls (578.29,113.91) and (576.09,111.71) .. (576.09,109) -- cycle ;
+%Shape: Circle [id:dp6607323045730559] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (444.55,156) .. controls (444.55,153.29) and (446.75,151.09) .. (449.45,151.09) .. controls (452.16,151.09) and (454.36,153.29) .. (454.36,156) .. controls (454.36,158.71) and (452.16,160.91) .. (449.45,160.91) .. controls (446.75,160.91) and (444.55,158.71) .. (444.55,156) -- cycle ;
+%Shape: Circle [id:dp45999773379926057] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (530.09,241.55) .. controls (530.09,238.84) and (532.29,236.64) .. (535,236.64) .. controls (537.71,236.64) and (539.91,238.84) .. (539.91,241.55) .. controls (539.91,244.25) and (537.71,246.45) .. (535,246.45) .. controls (532.29,246.45) and (530.09,244.25) .. (530.09,241.55) -- cycle ;
+
+\end{tikzpicture}
+    \caption{Gráficas mínimamente 2-conexas que satisfacen la ecuación $m = 2n -4.$}
+    \label{fig:f3}
+\end{figure}
+%--------------------------------
+\newpage
+%--------------------------------
+\begin{problem}{9.2.1} De una demostración del Lema del Abánico: Sea $G$ una gráfica k-conexa, sea $x$ un vértice de $G$ y sea $Y \subset V \setminus \{x\}$ un conjunto con al menos $k$ vértices de $G$. Entonces existe un k-abanico en $G$ de $x$ a $Y$.
+\end{problem}
+\begin{proof}
+Sea $Y$ como en la descripción del problema. Definamos una nueva gráfica $H$, a partir de $G$, agregando un vértice $y$ a $G$ y uniéndolo con todo vértice en $Y$. Por el \textbf{Lema 9.3} de \cite{10.5555/1481153}, la gráfica $H$ es k-conexa. El Teorema de Menger establece que existen $k$ $xy$-trayectorias internamente disjuntas en $H$. Si borramos el vértice $y$ de estas trayectorias, obtenemos $k$ trayectorias $P_1,\ldots, P_k$ en $G$ internamente disjuntas con un extremo en $x.$ Más aún, el otro extremo se encuentra en $Y$. Así pues, existe una última arista en cada $P_i$ cuyo extremo yace en $Y$, digamos $e_i$. Si borramos las aristas posteriores a $e_i$ en $P_i$ obtenemos $k$ $(x, Y)$-trayectorias internamente disjuntas. Esta familia es un $k$-abanico.
+\end{proof}
+%--------------------------------
+
+
+
+%--------------------------------
+\begin{problem}{9.2.2} Demuestre que una gráfica 3-conexa no bipartita contiene al menos cuatro ciclos impares.
+\end{problem}
+\begin{proof}
+Sea $G$ no bipartita y 3-conexa. Entonces $G$ tiene un ciclo impar, digamos $C$. Como $C$ no es 3-conexa, existe un vértice $v \in G$ que no pertenece a $C.$ Más aún, dado que $v(C) \geq 3,$ por el Lema del Abanico, existe un $3$-abanico $\{P_1, P_2, P_3\}$ de $v$ a $C.$ Sean $x_i$ los puntos terminales de $P_i$ ($i = 1,2,3$) que yacen en $C.$ Estos vértices generan tres trayectorias en $C$ definidas como $Q_1 = x_1Wx_2$, $Q_2 = x_2 W x_3$ y $Q_3 = x_3 W x_1.$ Por paridad, tenemos los siguientes casos:
+
+\begin{itemize}
+    \item Todos los $Q_i$ tienen longitud impar. Si todos los $P_i$ son pares, entonces tenemos los siguientes tres ciclos impares: $P_1 \cup P_2 \cup Q_1$, $P_2 \cup P_3 \cup Q_2$ y $P_1 \cup P_3 \cup Q_3.$ 
+    Si solo dos de los $P_i$ son de longitud par, digamos $P_1$ y $P_2$ y $P_3$ es de longitud impar, entonces tenemos los siguientes tres ciclos impares: $P_1 \cup P_2 \cup Q_1$, $P_1 \cup P_3 \cup Q_2 \cup Q_1$ y $P_2 \cup P_3 \cup Q_3 \cup Q_2.$ Si solo dos de los $P_i$ son de longitud impar, digamos $P_1$ y $P_2$ y $P_3$ es par, entonces tenemos los siguientes ciclos impares: $P_1 \cup P_2 \cup Q_1$, $P_1 \cup P_3 \cup Q_2 \cup Q_1$ y $P_2 \cup P_3 \cup Q_3 \cup Q_1$. Finalmente, si todos los $P_i$ son de longitud impar, entonces tenemos los siguientes ciclos impares: $P_1 \cup P_2 \cup Q_1$, $P_2 \cup P_3 \cup Q_2$ y $P_3 \cup Q_3 \cup P_1.$
+    
+    \item El otro caso es que dos de los $Q_i$ son de longitud impar y uno es par. Este se resuelve de manera similar al anterior, considerando todos las posibilidades.
+\end{itemize}
+
+Por tanto, los ciclos encontrados en la discusión anterior y el ciclo $C$ son cuatro ciclos impares en $G.$
+\end{proof}
+%--------------------------------
+
+\newpage
+%-----------------------------------
+\begin{problem}{9.3.3} Sea $G$ una gráfica simple de diámetro dos. Demuestre que $\kappa^\prime = \delta.$
+\end{problem}
+\begin{proof}
+Se procederá demostrando que $\kappa^\prime \leq \delta$ y $\delta \leq \kappa^\prime$. La primera desigualdad es trivial, pues si $x$ es un vértice en $G$ con grado mínimo $\delta,$ entonces $\partial(x)$ es un corte de aristas y $\lvert \partial(x) \rvert = d(x) = \delta$, pues $G$ es simple. Por tanto, $\kappa^\prime \leq \delta.$ \footnote{Observe que solo utilizamos el hecho de que $G$ es simple.}
+
+Para la otra desigualdad, sea $X \subset V$ tal que $\lvert \partial(X) \rvert = \kappa^\prime$. Observe que todo vértice de $X$ es adyacente a $\partial(X)$ o todo vértice de $Y$ es adyacente a $\partial(X)$; de lo contrario, existirían vértices $x \in X$ y $y \in Y$ con distancia entre ellos mayor a dos. Asuma, sin pérdida de generalidad, que todo vértice de $X$ es adyacente a $\partial(X).$ Esto implica que $\lvert X \rvert \leq \lvert \partial(X) \rvert = \kappa^\prime$. Como $G$ es simple, se tiene que $e(X) \leq \frac{\vert X \rvert (\lvert X \rvert -1)}{2}$. Entonces,
+\begin{eqnarray*}
+\kappa^\prime &=& \sum_{v \in X} d(v) - 2 e(X) \\
+&\geq& \lvert X \rvert \cdot \delta - \lvert X \rvert \cdot (\lvert X \rvert -1 ) \\
+&\geq& \lvert X \rvert \cdot \delta -  \kappa^\prime \cdot (\lvert X \rvert -1 )\\
+&\geq& \lvert X \rvert \cdot \delta - \delta \cdot (\lvert X \rvert - 1) \\
+&=& \delta,
+\end{eqnarray*}
+obteniendo la desigualdad restante.
+\end{proof}
+%-----------------------------------
+
+
+%-----------------------------------
+\begin{problem}{9.3.5} Demuestre que si $G$ es cúbica, entonces $\kappa = \kappa^\prime.$
+\end{problem}
+\begin{proof}
+ Si $x,y \in V(G)$, entonces que toda familia  de $xy$-trayectorias internamente disjuntas por vértices es una familia de $xy$-trayectorias internamente disjuntas por aristas. De manera que $p(x,y) \leq p^\prime(x,y).$ De lo anterior y del \textbf{Problema 9.3.3} tenemos las siguientes desigualdades
+$$\kappa \leq \kappa^\prime \leq 3.$$
+Procediendo por contradicción, suponga que $1 \leq \kappa < \kappa^\prime$ (el caso $0 = \kappa < \kappa^\prime$ es trivial). Sean $x,y$ vértices de $G$ tales que $p^\prime(x,y) = \kappa^\prime.$ Sea $\mathcal{P}$ una familia con $\kappa^\prime$ $xy$-trayectorias internamente disjuntas por aristas. Como $\kappa < \kappa^\prime$, entonces existen $P_1, P_2 \in \mathcal{P}$ con un vértice en común, digamos $v.$ Puesto que $P_1$ y $P_2$ son disjuntas por aristas, entonces $d(v) \geq 4$, lo cual es una contradicción, pues $G$ es cúbica. Por tanto, $\kappa = \kappa^\prime.$
+\end{proof}
+%-----------------------------------
+
+\begin{figure}
+    \centering
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,429); %set diagram left start at 0, and has height of 429
+
+%Shape: Square [id:dp31934897109409077] 
+\draw   (318.5,134.67) -- (391.33,207.5) -- (318.5,280.33) -- (245.67,207.5) -- cycle ;
+%Straight Lines [id:da727915129452561] 
+\draw    (318.25,139.33) -- (318.5,275.33) ;
+%Shape: Circle [id:dp2277513590465342] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (313.5,275.33) .. controls (313.5,272.57) and (315.74,270.33) .. (318.5,270.33) .. controls (321.26,270.33) and (323.5,272.57) .. (323.5,275.33) .. controls (323.5,278.09) and (321.26,280.33) .. (318.5,280.33) .. controls (315.74,280.33) and (313.5,278.09) .. (313.5,275.33) -- cycle ;
+%Shape: Circle [id:dp6360421765542337] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (313.33,139.83) .. controls (313.33,136.98) and (315.65,134.67) .. (318.5,134.67) .. controls (321.35,134.67) and (323.67,136.98) .. (323.67,139.83) .. controls (323.67,142.69) and (321.35,145) .. (318.5,145) .. controls (315.65,145) and (313.33,142.69) .. (313.33,139.83) -- cycle ;
+%Shape: Circle [id:dp9627995864190855] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (313.5,207.5) .. controls (313.5,204.74) and (315.74,202.5) .. (318.5,202.5) .. controls (321.26,202.5) and (323.5,204.74) .. (323.5,207.5) .. controls (323.5,210.26) and (321.26,212.5) .. (318.5,212.5) .. controls (315.74,212.5) and (313.5,210.26) .. (313.5,207.5) -- cycle ;
+%Curve Lines [id:da4712661402615943] 
+\draw    (245.67,207.5) .. controls (221,128) and (281,95) .. (319,95) ;
+%Curve Lines [id:da9589211532378161] 
+\draw    (391.33,207.5) .. controls (428,124) and (334,90) .. (319,95) ;
+%Shape: Circle [id:dp29856442246549386] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (386.33,207.5) .. controls (386.33,204.74) and (388.57,202.5) .. (391.33,202.5) .. controls (394.09,202.5) and (396.33,204.74) .. (396.33,207.5) .. controls (396.33,210.26) and (394.09,212.5) .. (391.33,212.5) .. controls (388.57,212.5) and (386.33,210.26) .. (386.33,207.5) -- cycle ;
+%Shape: Circle [id:dp8221812249673531] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (240.67,207.5) .. controls (240.67,204.74) and (242.91,202.5) .. (245.67,202.5) .. controls (248.43,202.5) and (250.67,204.74) .. (250.67,207.5) .. controls (250.67,210.26) and (248.43,212.5) .. (245.67,212.5) .. controls (242.91,212.5) and (240.67,210.26) .. (240.67,207.5) -- cycle ;
+%Shape: Circle [id:dp44954741482160154] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (314,95) .. controls (314,92.24) and (316.24,90) .. (319,90) .. controls (321.76,90) and (324,92.24) .. (324,95) .. controls (324,97.76) and (321.76,100) .. (319,100) .. controls (316.24,100) and (314,97.76) .. (314,95) -- cycle ;
+
+\end{tikzpicture}
+    \caption{Encaje en el plano de $G$.}
+    \label{fig:f1}
+\end{figure}
+%-----------------------------------
+\newpage
+
+%-----------------------------------
+\begin{problem}{10.1.1} Demuestre que:
+\begin{itemize}
+    \item[a)] Toda subgráfica propia $K_{3,3}$ es planar,
+    \item[b)] $K_{3,3}$ es no planar. 
+\end{itemize}
+\end{problem}
+\begin{proof} \text{ }
+\begin{itemize}
+    \item[a)] Sea $e \in K_{3,3}$ y sea $G = K_{3,3} \setminus e$. Es suficiente demostrar que $G$ es planar. La Figura \ref{fig:f1} muestra un encaje de $G$ en el plano. Por tanto, toda subgráfica propia de $K_{3,3}$ es planar.
+    
+    \item[b)] Se procederá por contradicción. Suponga que existe un encaje $G$ de $K_{3,3}$ en el plano. Sean $X = \{x_1, x_2, x_3\}$ y $Y =\{y_1, y_2, y_3 \}$ las \textit{partes} de $G$. Note que $G$ tiene un ciclo $C$ de longitud cuatro de la forma $x_1 y_1 x_2 y_2x_1.$ Este ciclo forma una curva cerrada y simple en el plano. Por el teorema de Jordan, $C$ separa al plano en dos regiones conexas y disjuntas $int(C)$ y $ext(C).$ Como $x_3$ y $y_3$ son adyacentes, estos pertenecen a la misma región $int(C)$ o $ext(C).$ Sin pérdida de generalidad asuma que $x_3, y_3 \in int(C).$ Como $x_3$ es adyacente a $y_1$ y a $y_2$, el segmento $y_1 x_3 y_2$ forma dos ciclos $C_1 = x_1 y_1 x_3 y_2 x_1$ y $C_2 = y_1 x_2 y_2 x_3 y_1$. Estos ciclos, como curvas cerradas y simples dividen al plano en dos regiones conexas y disjuntas $int(C_i)$ y $ext(C_i)$ para $i=1,2.$ Dado que $G$ es un encaje de $K_{3,3}$ en el plano y $int(C_i) \subset int(C)$, el vértice $y_3$ pertenece a $ int(C_1) \cup int(C_2).$ Sin pérdida de generalidad asuma que $y_3 \in int(C_1).$ Observe que el vértice $x_2$ pertenece a $ext(C_1).$ No obstante, es adyacente a $y_3$, lo cual es imposible, pues no hay segmento que conecte $int(C_1)$ con $ext(C_1).$ Por tanto el supuesto de que $G$ existe debe ser falso. Se concluye que $K_{3,3}$ no es planar.
+\end{itemize}
+\end{proof}
+
+%-----------------------------------
+\newpage
+%-----------------------------------
+\begin{problem}{10.1.3}\text{}
+\begin{itemize}
+    \item[a)] Demuestre que la gráfica de Petersen contiene una subdivisión de $K_{3,3}.$
+    \item[b)] Deduzca que la gráfica de Petersen es no planar. 
+\end{itemize}
+\end{problem}
+\begin{proof} \text{}
+\begin{itemize}
+    \item[a)] Considere las gráficas $G_1, G_2$ y $G_3$ de la Figura \ref{fig:f2}. La gráfica $G_1$ es una subdivisión de $K_{3,3}$. A su vez, vea que la gráfica $G_3$ es una subgráfica de $G_2$ (la gráfica de Petersen) isomorfa a $G_1.$ 
+    \item[b)]  En el \textbf{Problema 10.1.1} se estableció que $K_{3,3}$ no es planar. La \textbf{Proposición 10.3} de \cite{10.5555/1481153} establece que una gráfica $G$ es planar si y solo si toda subdivisión de $G$ es planar. Por tanto, la gráfica de Petersen no es planar.
+\end{itemize}
+\end{proof}
+
+\begin{figure}
+    \centering
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,429); %set diagram left start at 0, and has height of 429
+
+%Shape: Polygon [id:dp07112959459082457] 
+\draw   (381.95,266.31) -- (289.64,266.53) -- (260.88,182.53) -- (335.41,130.4) -- (410.24,182.18) -- cycle ;
+%Straight Lines [id:da1314557917779018] 
+\draw    (335.51,165) -- (360.62,238.36) ;
+%Straight Lines [id:da0010174712266485253] 
+\draw    (310.81,238.49) -- (335.51,165) ;
+%Straight Lines [id:da49798465146099624] 
+\draw    (375.89,192.94) -- (310.81,238.49) ;
+%Straight Lines [id:da46175382203401205] 
+\draw    (360.62,238.36) -- (295.29,193.15) ;
+%Straight Lines [id:da9038303540595097] 
+\draw    (375.89,192.94) -- (295.29,193.15) ;
+%Straight Lines [id:da2689176236036932] 
+\draw    (360.62,238.36) -- (381.93,266.3) ;
+%Straight Lines [id:da31386691715703907] 
+\draw    (375.89,192.94) -- (410.21,182.17) ;
+%Straight Lines [id:da8788915693954527] 
+\draw    (310.81,238.49) -- (289.65,266.53) ;
+%Straight Lines [id:da1403789487227548] 
+\draw    (260.91,182.54) -- (295.29,193.15) ;
+%Straight Lines [id:da03147430989308142] 
+\draw    (335.42,130.4) -- (335.51,165) ;
+%Shape: Ellipse [id:dp23759790715075124] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (256.88,182.61) .. controls (256.84,180.48) and (258.61,178.72) .. (260.84,178.68) .. controls (263.06,178.64) and (264.9,180.34) .. (264.94,182.47) .. controls (264.98,184.61) and (263.2,186.37) .. (260.98,186.4) .. controls (258.75,186.44) and (256.91,184.74) .. (256.88,182.61) -- cycle ;
+%Shape: Ellipse [id:dp35512803136968807] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (285.62,266.6) .. controls (285.58,264.47) and (287.36,262.71) .. (289.58,262.67) .. controls (291.81,262.63) and (293.65,264.33) .. (293.68,266.46) .. controls (293.72,268.6) and (291.95,270.36) .. (289.72,270.39) .. controls (287.49,270.43) and (285.66,268.73) .. (285.62,266.6) -- cycle ;
+%Shape: Ellipse [id:dp6859085180308288] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (331.48,165.07) .. controls (331.44,162.93) and (333.22,161.17) .. (335.44,161.14) .. controls (337.67,161.1) and (339.51,162.8) .. (339.55,164.93) .. controls (339.58,167.06) and (337.81,168.82) .. (335.58,168.86) .. controls (333.36,168.9) and (331.52,167.2) .. (331.48,165.07) -- cycle ;
+%Shape: Ellipse [id:dp6572216493461129] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (291.26,193.21) .. controls (291.22,191.08) and (292.99,189.32) .. (295.22,189.28) .. controls (297.45,189.25) and (299.28,190.94) .. (299.32,193.08) .. controls (299.36,195.21) and (297.58,196.97) .. (295.36,197.01) .. controls (293.13,197.05) and (291.29,195.35) .. (291.26,193.21) -- cycle ;
+%Shape: Ellipse [id:dp30586702453963877] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (371.86,193.01) .. controls (371.82,190.88) and (373.59,189.12) .. (375.82,189.08) .. controls (378.05,189.04) and (379.88,190.74) .. (379.92,192.88) .. controls (379.96,195.01) and (378.19,196.77) .. (375.96,196.81) .. controls (373.73,196.84) and (371.9,195.15) .. (371.86,193.01) -- cycle ;
+%Shape: Ellipse [id:dp863107229864662] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (377.9,266.37) .. controls (377.86,264.24) and (379.63,262.48) .. (381.86,262.44) .. controls (384.09,262.4) and (385.92,264.1) .. (385.96,266.23) .. controls (386,268.36) and (384.22,270.12) .. (382,270.16) .. controls (379.77,270.2) and (377.93,268.5) .. (377.9,266.37) -- cycle ;
+%Shape: Ellipse [id:dp47466799297185525] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (306.77,238.56) .. controls (306.74,236.42) and (308.51,234.66) .. (310.74,234.63) .. controls (312.96,234.59) and (314.8,236.29) .. (314.84,238.42) .. controls (314.88,240.55) and (313.1,242.31) .. (310.88,242.35) .. controls (308.65,242.39) and (306.81,240.69) .. (306.77,238.56) -- cycle ;
+%Shape: Ellipse [id:dp6655174250128438] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (331.39,130.47) .. controls (331.35,128.34) and (333.12,126.58) .. (335.35,126.54) .. controls (337.58,126.5) and (339.41,128.2) .. (339.45,130.33) .. controls (339.49,132.47) and (337.71,134.22) .. (335.49,134.26) .. controls (333.26,134.3) and (331.42,132.6) .. (331.39,130.47) -- cycle ;
+%Shape: Ellipse [id:dp6296845616376475] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (406.18,182.23) .. controls (406.14,180.1) and (407.92,178.34) .. (410.14,178.3) .. controls (412.37,178.27) and (414.21,179.97) .. (414.25,182.1) .. controls (414.28,184.23) and (412.51,185.99) .. (410.28,186.03) .. controls (408.06,186.07) and (406.22,184.37) .. (406.18,182.23) -- cycle ;
+%Shape: Ellipse [id:dp4849867666340629] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (356.59,238.43) .. controls (356.55,236.3) and (358.33,234.54) .. (360.55,234.5) .. controls (362.78,234.46) and (364.61,236.16) .. (364.65,238.29) .. controls (364.69,240.43) and (362.92,242.19) .. (360.69,242.23) .. controls (358.46,242.26) and (356.63,240.56) .. (356.59,238.43) -- cycle ;
+%Straight Lines [id:da38998468359538496] 
+\draw    (17.46,143.9) -- (18.43,265.55) ;
+%Straight Lines [id:da617185582114622] 
+\draw    (191.45,144.85) -- (192.42,266.5) ;
+%Straight Lines [id:da06747222666905217] 
+\draw    (104.46,144.37) -- (105.42,266.03) ;
+%Straight Lines [id:da3066164613326128] 
+\draw    (104.46,144.37) -- (192.42,266.5) ;
+%Straight Lines [id:da6185744831800739] 
+\draw    (18.43,265.55) -- (104.46,144.37) ;
+%Straight Lines [id:da41574306793111393] 
+\draw    (105.42,266.03) -- (191.45,144.85) ;
+%Straight Lines [id:da36276293347574484] 
+\draw    (105.42,266.03) -- (17.46,143.9) ;
+%Straight Lines [id:da7794353742571679] 
+\draw    (191.45,144.85) -- (18.43,265.55) ;
+%Straight Lines [id:da33466829013754174] 
+\draw    (192.42,266.5) -- (17.46,143.9) ;
+%Shape: Ellipse [id:dp33594435902249165] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (14.08,265.55) .. controls (14.08,263.19) and (16.03,261.27) .. (18.43,261.27) .. controls (20.83,261.27) and (22.78,263.19) .. (22.78,265.55) .. controls (22.78,267.91) and (20.83,269.83) .. (18.43,269.83) .. controls (16.03,269.83) and (14.08,267.91) .. (14.08,265.55) -- cycle ;
+%Shape: Ellipse [id:dp5312648815282794] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (101.07,266.03) .. controls (101.07,263.66) and (103.02,261.75) .. (105.42,261.75) .. controls (107.83,261.75) and (109.77,263.66) .. (109.77,266.03) .. controls (109.77,268.39) and (107.83,270.3) .. (105.42,270.3) .. controls (103.02,270.3) and (101.07,268.39) .. (101.07,266.03) -- cycle ;
+%Shape: Ellipse [id:dp9692516475256094] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (188.07,266.5) .. controls (188.07,264.14) and (190.02,262.23) .. (192.42,262.23) .. controls (194.82,262.23) and (196.77,264.14) .. (196.77,266.5) .. controls (196.77,268.86) and (194.82,270.78) .. (192.42,270.78) .. controls (190.02,270.78) and (188.07,268.86) .. (188.07,266.5) -- cycle ;
+%Shape: Ellipse [id:dp24201885624083164] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (100.11,144.37) .. controls (100.11,142.01) and (102.06,140.1) .. (104.46,140.1) .. controls (106.86,140.1) and (108.81,142.01) .. (108.81,144.37) .. controls (108.81,146.73) and (106.86,148.65) .. (104.46,148.65) .. controls (102.06,148.65) and (100.11,146.73) .. (100.11,144.37) -- cycle ;
+%Shape: Ellipse [id:dp22838706566970568] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (187.1,144.85) .. controls (187.1,142.49) and (189.05,140.57) .. (191.45,140.57) .. controls (193.85,140.57) and (195.8,142.49) .. (195.8,144.85) .. controls (195.8,147.21) and (193.85,149.12) .. (191.45,149.12) .. controls (189.05,149.12) and (187.1,147.21) .. (187.1,144.85) -- cycle ;
+%Shape: Ellipse [id:dp8756413199102612] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (13.11,143.9) .. controls (13.11,141.54) and (15.06,139.62) .. (17.46,139.62) .. controls (19.87,139.62) and (21.81,141.54) .. (21.81,143.9) .. controls (21.81,146.26) and (19.87,148.17) .. (17.46,148.17) .. controls (15.06,148.17) and (13.11,146.26) .. (13.11,143.9) -- cycle ;
+%Shape: Ellipse [id:dp07494158599485956] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (41.15,246.54) .. controls (41.15,244.18) and (43.09,242.27) .. (45.5,242.27) .. controls (47.9,242.27) and (49.84,244.18) .. (49.84,246.54) .. controls (49.84,248.91) and (47.9,250.82) .. (45.5,250.82) .. controls (43.09,250.82) and (41.15,248.91) .. (41.15,246.54) -- cycle ;
+%Shape: Ellipse [id:dp324372845758898] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (40.18,183.82) .. controls (40.18,181.45) and (42.13,179.54) .. (44.53,179.54) .. controls (46.93,179.54) and (48.88,181.45) .. (48.88,183.82) .. controls (48.88,186.18) and (46.93,188.09) .. (44.53,188.09) .. controls (42.13,188.09) and (40.18,186.18) .. (40.18,183.82) -- cycle ;
+%Shape: Ellipse [id:dp7263131584265465] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (118.47,169.56) .. controls (118.47,167.2) and (120.42,165.28) .. (122.82,165.28) .. controls (125.22,165.28) and (127.17,167.2) .. (127.17,169.56) .. controls (127.17,171.92) and (125.22,173.84) .. (122.82,173.84) .. controls (120.42,173.84) and (118.47,171.92) .. (118.47,169.56) -- cycle ;
+%Shape: Polygon [id:dp6543319313913494] 
+\draw   (599.71,268.03) -- (507.4,268.25) -- (478.64,184.25) -- (553.18,132.12) -- (628,183.9) -- cycle ;
+%Straight Lines [id:da4432360952324338] 
+\draw    (593.65,194.67) -- (528.57,240.21) ;
+%Straight Lines [id:da4330867976335988] 
+\draw    (578.38,240.09) -- (513.05,194.87) ;
+%Straight Lines [id:da1254091210435302] 
+\draw    (593.65,194.67) -- (513.05,194.87) ;
+%Straight Lines [id:da493821660782346] 
+\draw    (578.38,240.09) -- (599.69,268.02) ;
+%Straight Lines [id:da7564550650797487] 
+\draw    (593.65,194.67) -- (627.97,183.89) ;
+%Straight Lines [id:da2569082716428147] 
+\draw    (528.57,240.21) -- (507.41,268.25) ;
+%Straight Lines [id:da5048650777981818] 
+\draw    (478.67,184.26) -- (513.05,194.87) ;
+%Shape: Ellipse [id:dp6258070953209124] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (474.64,184.33) .. controls (474.6,182.2) and (476.37,180.44) .. (478.6,180.4) .. controls (480.83,180.36) and (482.66,182.06) .. (482.7,184.2) .. controls (482.74,186.33) and (480.96,188.09) .. (478.74,188.13) .. controls (476.51,188.16) and (474.68,186.47) .. (474.64,184.33) -- cycle ;
+%Shape: Ellipse [id:dp18814667731022194] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (503.38,268.32) .. controls (503.34,266.19) and (505.12,264.43) .. (507.34,264.39) .. controls (509.57,264.35) and (511.41,266.05) .. (511.45,268.19) .. controls (511.48,270.32) and (509.71,272.08) .. (507.48,272.12) .. controls (505.26,272.15) and (503.42,270.46) .. (503.38,268.32) -- cycle ;
+%Shape: Ellipse [id:dp687613161909405] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (509.02,194.94) .. controls (508.98,192.8) and (510.75,191.04) .. (512.98,191.01) .. controls (515.21,190.97) and (517.04,192.67) .. (517.08,194.8) .. controls (517.12,196.93) and (515.35,198.69) .. (513.12,198.73) .. controls (510.89,198.77) and (509.06,197.07) .. (509.02,194.94) -- cycle ;
+%Shape: Ellipse [id:dp787687159464153] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (589.62,194.74) .. controls (589.58,192.6) and (591.36,190.84) .. (593.58,190.8) .. controls (595.81,190.77) and (597.65,192.47) .. (597.68,194.6) .. controls (597.72,196.73) and (595.95,198.49) .. (593.72,198.53) .. controls (591.49,198.57) and (589.66,196.87) .. (589.62,194.74) -- cycle ;
+%Shape: Ellipse [id:dp8052229881650041] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (595.66,268.09) .. controls (595.62,265.96) and (597.39,264.2) .. (599.62,264.16) .. controls (601.85,264.12) and (603.68,265.82) .. (603.72,267.95) .. controls (603.76,270.09) and (601.99,271.85) .. (599.76,271.89) .. controls (597.53,271.92) and (595.7,270.22) .. (595.66,268.09) -- cycle ;
+%Shape: Ellipse [id:dp9126864292362558] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (524.54,240.28) .. controls (524.5,238.15) and (526.27,236.39) .. (528.5,236.35) .. controls (530.72,236.31) and (532.56,238.01) .. (532.6,240.14) .. controls (532.64,242.28) and (530.86,244.04) .. (528.64,244.07) .. controls (526.41,244.11) and (524.57,242.41) .. (524.54,240.28) -- cycle ;
+%Shape: Ellipse [id:dp583317672618997] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (549.15,132.19) .. controls (549.11,130.06) and (550.88,128.3) .. (553.11,128.26) .. controls (555.34,128.22) and (557.17,129.92) .. (557.21,132.06) .. controls (557.25,134.19) and (555.48,135.95) .. (553.25,135.99) .. controls (551.02,136.02) and (549.19,134.32) .. (549.15,132.19) -- cycle ;
+%Shape: Ellipse [id:dp48248585440457736] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (623.94,183.96) .. controls (623.9,181.82) and (625.68,180.07) .. (627.91,180.03) .. controls (630.13,179.99) and (631.97,181.69) .. (632.01,183.82) .. controls (632.04,185.95) and (630.27,187.71) .. (628.04,187.75) .. controls (625.82,187.79) and (623.98,186.09) .. (623.94,183.96) -- cycle ;
+%Shape: Ellipse [id:dp599919189376082] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (574.35,240.15) .. controls (574.31,238.02) and (576.09,236.26) .. (578.31,236.22) .. controls (580.54,236.19) and (582.38,237.89) .. (582.41,240.02) .. controls (582.45,242.15) and (580.68,243.91) .. (578.45,243.95) .. controls (576.23,243.99) and (574.39,242.29) .. (574.35,240.15) -- cycle ;
+
+% Text Node
+\draw (7.91,125.69) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x_{1}$};
+% Text Node
+\draw (95.94,125.69) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x_{2}$};
+% Text Node
+\draw (182.87,126.69) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x_{3}$};
+% Text Node
+\draw (7.91,271.86) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle y_{1}$};
+% Text Node
+\draw (97.87,271.86) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle y_{2}$};
+% Text Node
+\draw (190.07,271.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle y_{3}$};
+% Text Node
+\draw (241.39,164.51) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x_{1}$};
+% Text Node
+\draw (268.44,261.34) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle y_{1}$};
+% Text Node
+\draw (387.86,264.44) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x_{2}$};
+% Text Node
+\draw (411.96,163.42) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle y_{2}$};
+% Text Node
+\draw (366,172.84) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x_{3}$};
+% Text Node
+\draw (285.37,172.98) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle y_{3}$};
+% Text Node
+\draw (326.58,111.77) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle v_{1}$};
+% Text Node
+\draw (21.23,170.76) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle v_{1}$};
+% Text Node
+\draw (125.62,154.85) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle v_{2}$};
+% Text Node
+\draw (360.42,220.19) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle v_{2}$};
+% Text Node
+\draw (50.5,243.27) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle v_{3}$};
+% Text Node
+\draw (290.81,220.72) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle v_{3}$};
+% Text Node
+\draw (465.16,165.24) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x_{1}$};
+% Text Node
+\draw (486.2,263.06) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle y_{1}$};
+% Text Node
+\draw (606.47,264.96) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x_{2}$};
+% Text Node
+\draw (626.72,164.14) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle y_{2}$};
+% Text Node
+\draw (581.76,174.56) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x_{3}$};
+% Text Node
+\draw (505.13,174.71) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle y_{3}$};
+% Text Node
+\draw (544.34,113.49) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle v_{1}$};
+% Text Node
+\draw (580.18,223.91) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle v_{2}$};
+% Text Node
+\draw (507.57,223.44) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle v_{3}$};
+% Text Node
+\draw (94,295) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle G_{1}$};
+% Text Node
+\draw (325,290) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle G_{2}$};
+% Text Node
+\draw (543,290) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle G_{3}$};
+
+
+\end{tikzpicture}
+    \caption{La gráfica $G_1$ representa una subdivisión de $K_{3,3}$. La gráfica $G_2$ es la gráfica de Petersen. La gráfica $G_3$ es una subgráfica de $G_2$ isomorfa a $G_1.$}
+    \label{fig:f2}
+\end{figure}
+%-----------------------------------
+
+\printbibliography
+
+
+\end{document}
