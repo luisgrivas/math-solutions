@@ -1,0 +1,132 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{mathpazo,amsfonts}
+\usepackage[margin=0.95in]{geometry}
+
+\pagestyle{fancy}
+
+\lhead{Tarea 5}
+\chead{Luis González Rivas}
+\rhead{28 de septiembre de 2021}
+
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+
+\addbibresource{blb.bib}
+
+\newtheorem{teo}{Teorema}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newtheorem*{prop}{Proposición}
+
+\newenvironment{problem}[2][Problema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+\section*{Análisis Complejo}
+
+
+
+%----------------------------
+\begin{problem}{3 pp. 87}
+Sea $B_{\pm} = B(\pm 1; 1/2)$, $G=B(0,3)-(B_+ \cup B_{-})$. Sean $\gamma_1, \gamma_2, \gamma_3$ curvas cuyas trazas son $\lvert z-1\rvert = 1$, $\lvert z+1 \rvert = 1$ y $\lvert z \rvert = 2$ respectivamente. Dotar a $\gamma_1, \gamma_2, $ y a $\gamma_3$ de orientaciones tales que $n(\gamma_1; w) + n(\gamma_2; w) + n(\gamma_3; w) = 0$ para todo $w \in \C - G.$
+\end{problem}
+\textit{Solución.} Es claro que si $\gamma_1 $ y $ \gamma_2$ están orientadas en sentido en contra de las manecillas del reloj y $\gamma_3$ en sentido opuesto, la ecuación requerida se cumple. Tenemos tres casos:
+Caso 1: $w$ es punto interior de $B(-1, 1/2).$ Entonces $n(\gamma_1, w) = 0$ y $n(\gamma_2, w) + n(\gamma_3, w) =0$.
+
+Caso 2: $w$ punto interior de $B(1, 1/2).$ Entonces $n(\gamma_2, w) = 0$ y $n(\gamma_1, w) + n(\gamma_3, w) = 0$.
+
+Caso 3: $w \in C - B(0, 3).$. Entonces $n(\gamma_1, w) = n(\gamma_2, 2) = n(\gamma_3, w) = 0.$
+%----------------------------
+
+
+%----------------------------
+\begin{problem}{4 pp. 95}
+Sea $G = \C - \{0\}$ y demuestre que toda curva cerrada en $G$ es homotópica a una curva cerrada cuya traza está contenida en $\{z: \lvert z \rvert = 1\}$.
+\end{problem}
+\textit{Solución.} Sea $\gamma$ una curva cerrada en $G.$ Si $\gamma$ encierra al punto $0$, entonces $H: I \times I \rightarrow \C $ definida como 
+
+$$ H(s, t) = \gamma(s) t + (1-t) \frac{\gamma(s)}{\lvert \gamma(s) \rvert}, $$
+establece una homotopía entre $\gamma$ y una curva en $S^1.$
+
+Por otro lado, si $\gamma$ no encierra a $0$, entonces $\gamma $ es contraible a un punto en $G$. Después, se puede establecer otra homotopía entre este punto y un punto en $S^1.$
+%----------------------------
+
+
+
+%----------------------------
+\begin{problem}{8 pp. 95}
+Sea $G = \C - \{a, b\}$, $a \neq b$, y sea $\gamma$ la curva como en la siguiente figura. 
+
+(a) Demuestre que $n(\gamma; a) = n(\gamma; b) = 0$.
+
+(b) Demuestre que $\gamma$ no es homotópica a cero.
+
+\end{problem}
+\textit{Solución.} (a) Del dibujo, podemos descomponer a $\gamma$ en dos curvas cerradas y simples que no encierran ni a $a$ ni a $b$, por lo que $n(\gamma; a) = n(\gamma; b) = 0$.
+
+(b) $\gamma$ no es homotópica a cero, ya que encierra a los puntos $a, b$.
+%----------------------------
+
+
+
+%----------------------------
+\begin{problem}{10 pp. 95}
+Calcule todos los valores posiles de $\int_\gamma \frac{dz}{1+z^2}$ donde $\gamma$ es una curva cerrada rectificable en $\C$ que no pasa por $\pm i.$
+\end{problem}
+\textit{Solución.} Observe que 
+$$ \frac{1}{1+z^2} = \frac{1}{2i} \left( \frac{1}{z-i} - \frac{1}{z+i} \right). $$
+Entonces, si $\gamma$ es una curva cerrada rectificable en $\C$, tenemos
+
+$$ \int_\gamma \frac{dz}{1+z^2} = \frac{1}{2i}\left( \int_\gamma \frac{dz}{z-i} - \int_\gamma \frac{dz}{z+i} \right) = \pi ( n(\gamma; i) - n(\gamma; -i) ). $$
+%----------------------------
+
+
+%----------------------------
+\begin{problem}{2 pp. 99}
+Sea $G$ abierto y suponga que $\gamma$ es una curva cerrada rectificable en $G$ tal que $\gamma \approx 0$. Sea $r = d({\gamma}, \partial G$ y $H = \{z\in \C: n(\gamma; z) =0\}$. (a) Demuestre que $\{z: d(z, \partial G) < r/2\} \subset H$. (b) Utilice (a) para demostrar que si $f: G \rightarrow \C$ es analítica entonces $f(z) =\alpha$ tiene un número finito de soluciones tales que $n(\gamma; z) \neq 0.$
+\end{problem}
+%----------------------------
+
+
+%----------------------------
+\begin{problem}{3 pp. 99}
+Sea $f$ analítica en $B(a; R)$ y suponga que $f(a) = 0$. Demuestre que $a$ es un cero de multiplicidad $m$ si y solo si $f^{m-1}(a) = \ldots = f(a) = 0$ y $f^{m}(a) \neq 0.$
+\end{problem}
+\begin{proof}
+Si $a$ es un cero de multiplicidad $m$, entonces existe $g: B(a; R) \rightarrow \C$ analítica tal que $f(z) = (z-a)^m g(z)$ y $g(a) \neq 0.$ De aquí, se comprueba que $f^{k}(a) = 0$, para $0 \leq k \leq m-1$ y $f^{m}(a) \neq 0.$
+
+Conversamente, suponga que $f^{m-1}(a) = \ldots = f(a) = 0$ y $f^{m}(a) \neq 0.$ Escribamos,
+$$ f(z) = \sum_{k=0}^\infty a_k(z-a)^k. $$
+Se cumple que $a_0 = \ldots a_{m-1} = 0,$ por lo que 
+$$ f(z) = \sum_{k=m}^\infty a_k(z-a)^k = (z-a)^m \sum_{k=0}^\infty a_{k+m}(z-a)^k = (z-a)^m g(z),$$
+con $g(z) = \sum_{k=0}^\infty a_{k+m}(z-a)^k$ analítica en $B(a,R)$ y $g(a) \neq 0.$ Por tanto $a$ es un cero de $f$ de multiplicidad $m.$
+\end{proof}
+%----------------------------
+
+
+\begin{problem}{4 pp. 99}
+Suponga que $f: G \rightarrow \C$ es analítica y 1-1; demuestre que $f^\prime(z) \neq 0$ para toda $z \in G.$
+\end{problem}
+\begin{proof} Sea $\Omega = f(G).$ Por el corolario 7.6, $f^{-1}: \Omega \rightarrow \C$ es analítica y $(f^{-1})^\prime(\omega) = (f^\prime(z))^{-1}$, con $\omega = f(z)$, $z\in G.$ Por tanto $f^\prime(z) \neq 0$ para todo $z \in G.$
+\end{proof}
+%----------------------------
+
+\printbibliography
+
+
+\end{document}

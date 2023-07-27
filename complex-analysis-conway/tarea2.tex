@@ -1,0 +1,188 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{mathpazo,amsfonts}
+\usepackage[margin=0.95in]{geometry}
+
+\pagestyle{fancy}
+
+\lhead{Tarea 2}
+\chead{Luis González Rivas}
+\rhead{31 de agosto de 2021}
+
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+
+\addbibresource{blb.bib}
+
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newtheorem*{prop}{Proposición}
+
+\newenvironment{problem}[2][Problema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+\section*{Análisis Complejo}
+\text{ }
+
+%---------------------------------
+\begin{problem}{6 pp. 33} Encuentre el radio de convergencia de cada una de las siguientes series de potencias:
+\begin{itemize}
+    \item[a)] $\sum_{n=0}^\infty a^n z^n, a \in \C$;
+    \item[b)] $\sum_{n=0}^\infty a^{n^2} z^n$, $a \in \C$;
+    \item[c)] $\sum_{n=0}^\infty k^{n} z^n$, $k \in \Z - \{0\}$;
+    \item[d)] $\sum_{n=0}^\infty  z^{n!}$.
+\end{itemize}
+\end{problem}
+\begin{proof} \text{ }
+\begin{itemize}
+    \item[a)] Observe que $\limsup \lvert a^n \rvert^{1/n} = \lvert a \rvert.$ Entonces el radio de convergencia es $R = \frac{1}{\lvert a \rvert}.$
+    \item[b)] Observe que $\limsup \lvert a^{n^2} \rvert^{1/n} = \limsup \lvert a \lvert^n$. Si $\lvert a \rvert < 1$, $R = \infty$; si $\lvert a \rvert  = 1$, $R = 1$; y si $\lvert a \lvert > 1$, $R = 0.$
+    \item[c)] Tenemos $\limsup \lvert k^n \rvert^{1/n} = \lvert k \lvert.$ Entonces el radio de convergencia es $R = \frac{1}{\lvert k \rvert}.$
+    \item[d)] Consideremos la sucesión $\langle a_n \rangle$ definida como $a_n = 1$, si $n = k!$ para algún $k \in \N \cup \{0\}$; $a_n = 0$ de otro modo. Observe que $\limsup \lvert a_n \rvert^{1/n} = 1$. Entonces la sucesión $\sum a_n z^n = \sum z^{n!}$ tiene radio de convergencia $1$. 
+\end{itemize}
+\end{proof}
+%---------------------------------
+
+%---------------------------------
+\begin{problem}{7 pp. 33}
+Demuestre que el radio de convergencia de la serie de potencia
+$$
+\sum_{n=1}^\infty \frac{(-1)^n}{n} z^{n(n+1)}
+$$
+es $1$, y discuta la convergencia para $z =1, -1$ e $i.$
+\end{problem}
+\begin{proof}
+Consideremos la sucesión $\langle a_n \rangle$ definida como $a_n = \frac{(-1)^k}{k}$, si $n = k(k+1);$ $a_n = 0$ de otro modo. Entonces 
+$$
+\limsup \lvert a_n \lvert^{1/n} = \limsup \left\lvert \frac{(-1)^k}{k} \right \rvert^{1 / k(k+1)} = 1.
+$$
+Por tanto, el radio de convergencia de la serie de potencias es $R = 1.$
+
+Si $z = \pm 1$, la serie se reduce a la forma
+$$
+\sum_{n=1}^\infty \frac{(-1)^n}{n},
+$$
+
+que converge, según \cite[Teorema 3.46]{MR0055409}.
+
+Si $z = i$, consideremos la sucesión $\langle a_n \rangle$ definida como $a_n = (-1)^n i^{n (n+1)}$ para toda $n \in \N.$ Vea que $n(n+1) = 2(1 + \cdots + n)$, por lo que $i^{n(n+1)} = (-1)^{1 + \cdots + n}.$ Entonces, $a_n = (-1)^{n} (-1)^{1 + \cdots + n} = (-1)^{\frac{n(n-1)}{2}}.$ Con esto, observamos que
+$$
+\left \lvert \sum_{n=1}^{k}a_n \right\rvert < 2,
+$$
+para toda $k \in \N.$ Entonces, según  \cite[Teorema 3.42]{MR0055409}, la serie $\sum \frac{(-1)^n}{n} i^{n(n+1)}$ converge.
+\end{proof}
+%---------------------------------
+
+%---------------------------------
+\begin{problem}{6 pp. 44}
+Describa los siguientes conjuntos: $\{z: e^z = i\}$, $\{z: e^z = -1\}$, $\{z: e^z = -i\}$, $\{z: \cos z = 0\}$, $\{z: \sin z = 0\}.$
+\end{problem}
+\begin{proof} \text{ }
+\begin{itemize}
+    \item  $\{z: e^z = i\} = \{z: Re(z) = 0, Im(z) = \frac{\pi}{2} + 2\pi k, k \in \Z \}.$ Estas son rectas horizontales que pasan por los puntos $i(\frac{\pi}{2} + 2\pi k)$, $k \in \Z$.
+    
+    \item $\{z: e^z = -1\} = \{z: Re(z) = 0, Im(z) = \pi(1 + 2 k), k \in \Z \}.$ Estas son rectas horizontales que pasan por los puntos $i(\pi + 2\pi k)$, $k \in \Z$.
+    
+    \item $\{z: e^z = -i\} = \{z: Re(z) = 0, Im(z) = \frac{3\pi}{2} + 2\pi k, k \in \Z \}$. Estas son rectas horizontales que pasan por los puntos $i(\frac{3\pi}{2}+ 2\pi k)$, $k \in \Z$.
+    
+    \item Primero, vea que $\cos z = \frac{1}{2}(e^{iz} + e^{-iz}).$ Entonces $\cos z = 0$ si y solo si $-e^{iz} = e^{-iz}$. Entonces $\{z: \cos z = 0\} = \{z: Re(z) = \frac{\pi}{2} + k \pi, k \in Z, Im(z) = 0 \}.$
+    
+    \item De manera similar al caso anterior, $\{z: \sin z = 0\} = \{z: Re(z) = \pi k, k \in \Z, Im(z) = 0 \}.$
+\end{itemize}
+\end{proof}
+%---------------------------------
+
+%---------------------------------
+\begin{problem}{11 pp. 44}
+Suponga que $f: G \to \C$ es una rama del logaritmo y que $n$ es un entero. Demuestre que $z^n = \exp(n f(z))$ para toda $z \in G.$
+\end{problem}
+\begin{proof}
+Por hipótesis, $z = \exp(f(z))$ para toda $z \in G.$ Si $n > 0$, entonces $z^n = \exp(n f(z))$ para toda $z \in G.$ Si $n = 0,$ $z^0 = 1 = \exp(0 f(z)).$ Si $n < 0$, entonces, por el caso anterior, $z^n = 1/z^{-n} = 1 / \exp(-n f(z)) = \exp(n f(z))$ para toda $z \in G.$
+\end{proof}
+%---------------------------------
+
+%---------------------------------
+\begin{problem}{14 pp. 44}
+Suponga que $f: G \to \C$ es analítica y $G$ es conexo. Demuestre que si $f(z)$ es real para toda $z \in G$ entonces $f$ es constante. 
+\end{problem}
+\begin{proof}
+Como $f$ es analítica, se satisfacen las ecuaciones de Cauchy-Riemann:
+$$
+\frac{\partial u}{ \partial x} = \frac{\partial v}{\partial y} \ \ \text{y} \ \ \frac{\partial u}{\partial y} =  - \frac{\partial v}{\partial x},
+$$
+donde $f(z) = u(z) + i v(z).$ Por hipótesis, $v(z) = 0$ para toda $z \in G.$ De las ecuaciones de Cauchy Riemann se deduce que $\frac{\partial u}{ \partial x}(z) = 0 = \frac{\partial u}{\partial y}(z)$, por lo que $u(z)$ es constante para toda $z \in G.$
+\end{proof}
+%---------------------------------
+
+%---------------------------------
+\begin{problem}{15 pp. 44}
+Para $r > 0$ sea $A = \{w: w = \exp(1/z) \text{ donde } 0 < \lvert z \rvert < r \};$ determine el conjunto $A$.
+\end{problem}
+\begin{proof}
+Sea $w \in \C \setminus \{0\}$. Entonces, la solución de la ecuación $w = \exp{z}$ esta dada por $z = \log\lvert w \rvert + i(\arg w + 2 \pi k)$ para $k \in \Z.$ Como $\lvert z \lvert =[ (\log \lvert w \lvert )^2 + (\arg w + 2\pi k)^2]^{\frac{1}{2}}$, para $\lvert k \rvert$ suficientemente grande, se tiene que $\frac{1}{r} < \lvert z \rvert$. Entonces $w \in A.$ Como $0 \notin A$, hemos demostrado que $A = \C \setminus \{0\}.$
+ 
+
+\end{proof}
+%---------------------------------
+
+%---------------------------------
+\begin{problem}{19 pp. 44}
+Sea $G$ una región y defina $G^\ast = \{z: \overline z \in G\}$. Si $f: G \to \C$ es analítica, demuestre que $f^\ast: G^\ast \to \C$ definida como $f^\ast(z) = \overline{ f(\overline z)}$ es analítica. 
+\end{problem}
+\begin{proof}
+Como $G$ es una región, $G^\ast$ también es una región. Como $f(z) = u(z) + iv(z)$ es analítica, se satisface 
+
+$$
+\frac{\partial u}{ \partial x} = \frac{\partial v}{\partial y} \ \ \text{y} \ \ \frac{\partial u}{\partial y} =  - \frac{\partial v}{\partial x}.
+$$
+
+Observe que $f^\ast(x, y) = u^\ast(x, y) + i v^\ast(x, y)$, donde $u^\ast(x,y) = u(x, -y)$ y $v^\ast(x, y) = -v(x, -y).$ Entonces 
+$$
+\frac{\partial u^\ast}{\partial x}  = \frac{\partial v^\ast}{\partial y} \ \ \text{ y } \ \ 
+\frac{\partial u^\ast}{\partial y} = - \frac{\partial v^\ast}{\partial x},
+$$
+
+para toda $z \in G^\ast$. Por tanto $f^\ast$ es analítica. 
+
+\end{proof}
+%---------------------------------
+
+%---------------------------------
+\begin{prop}[5.7 pp. 25]
+Sea $A \subset Z;$ entonces: 
+\begin{itemize}
+    \item[a)] $d(x, A) = d(x, A^-);$
+    \item[b)] $d(x, A) = 0$ si y solo si $x \in A^-;$
+    \item[c)] $\lvert d(x, A) - d(y, A) \rvert \leq d(x, y)$ para toda $x, y$ en $X.$
+\end{itemize}
+\end{prop}
+
+\begin{proof} \text{ }
+\begin{itemize}
+    \item[a)] Si $A \subset A^-$, entonces por definición,  $d(x, A^-) \leq d(x, A).$ Por otro lado, si $\epsilon > 0$, existe un punto $y \in A^-$ tal que $d(x, A^-) \geq d(x, y) - \epsilon/2$. Además, existe un punto $a \in A$ con $d(y, a) < \epsilon /2$. Pero $\lvert d(x, y) d(x, a) \rvert \leq d(y, a) < \epsilon.$ En particular, $d(x, y) > d(x, a) - \epsilon/2$. Luego, $d(x, A^-) \geq d(x, a) - \epsilon \geq d(x, A) - \epsilon.$ Como $\epsilon$ fue elegido arbitrariamente, $d(x, A^-) \geq d(x, A).$
+    
+    \item[b)] Si $x \in A^-$, entonces $0 = d(x, A^-) = d(x, A).$ Ahora, para toda $x \in X$, existe una sucesión $\langle a_n \rangle$ en $A$ tal que $d(x, A) = \lim d(x, a_n).$ Entonces, si $d(x, A) = 0$, $\lim d(x, a_n) = 0;$ esto es, $x = \lim a_n$, por lo que $x \in A^-.$
+    
+    \item[c)] Para $a \in A$, se tiene que $d(x, a) \leq d(x, y) + d(y, a).$ Luego, $d(x, A) = \inf \{d(x, a): a \in A\} \leq \inf \{d(x, y) + d(y, a): a \in A \} = d(x, y) + d(x, A).$ Esto implica que $d(x, A) - d(y, A) \geq d(x, y).$ Similarmente, $d(y, A) - d(x, A) \leq d(x, y)$, por lo que la desigualdad se deduce. 
+\end{itemize}
+\end{proof}
+%---------------------------------
+
+\printbibliography
+
+\end{document}

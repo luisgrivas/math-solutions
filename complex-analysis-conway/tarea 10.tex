@@ -1,0 +1,89 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{mathpazo,amsfonts}
+\usepackage[margin=0.95in]{geometry}
+
+\pagestyle{fancy}
+
+\lhead{Tarea 10}
+\chead{Luis González Rivas}
+\rhead{22 de noviembre de 2021}
+
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+
+\addbibresource{blb.bib}
+
+\newtheorem{teo}{Teorema}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newtheorem*{prop}{Proposición}
+
+\newenvironment{problem}[2][Problema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+\section*{Análisis Complejo}
+
+%-----------------------------------------
+\begin{problem}{1. pp. 150} Demuestre el lema 1.5. 
+\end{problem}
+\begin{proof}
+Sea $f(t) = \frac{t}{1+t}$ para $t > -1.$ Se comprueba que esta función es estrictamente creciente. Entonces, para $0 \leq t_0 \leq t_1 + t_2$, se tiene que $\frac{t_0}{1+t_0}\leq \frac{t_1}{1+t_1 +t_2} + \frac{t_2}{1+t_1+t_2} \leq  \frac{t_1}{1+t_1} + \frac{t_2}{1+t_2}.$
+
+Si $\mu(s, t) = \frac{d(s,t)}{1+ d(s, t)}$, lo anterior muestra que $\mu$ satisface la desigualdad del triángulo. Además, es evidente que $\mu(s,t) = \mu(t,s)$ y que $\mu(s, t) = 0$ si y solo si $s =t.$ Por tanto $\mu$ es una métrica. 
+\end{proof}
+%-----------------------------------------
+
+%-----------------------------------------
+\begin{problem}{2. pp. 150} Determine los conjuntos $K_n$ obtenido de la proposición 1.2 para cada uno de los siguientes $G$: (a) $G$ es un disco abierto; (b) $G$ es un anillo abierto; (c) $G$ es el plano con $n$ discos cerrados disjuntos dos a dos removidos; (d) $G$ es una banda infinita; (e) $G = \C - \Z.$
+\end{problem}
+%-----------------------------------------
+
+%-----------------------------------------
+\begin{problem}{8. pp. 151} (a) Sea $f$ una función analítica en $B(0; R)$ y sea $f(z) = \sum_{n=0}^{\infty} a_n z^n$ para $\lvert z \rvert < R$. Si $f_n(z) = \sum_{k=0}^n a_k z^k$, demuestre que $f_n \to f$ en $C(G; \C).$
+
+(b) Sea $G = ann(0; 0, R)$ y sea $f$ analítica en $G$ con serie de Laurent $f(z) = \sum_{n=-\infty}^\infty a_n z^n$. Sea $f_n(z) = \sum_{k=-\infty}^n a_k z^k$ y demuestre que $f_n \to f$ en $C(G; \C).$
+
+\end{problem}
+%-----------------------------------------
+
+%-----------------------------------------
+\begin{problem}{10 pp. 154} Sea $\{f_n\} \subset H(G)$ una sucesión de funciones uno a uno que converge a $f$. Demuestre que $f$ es uno a uno o $f$ es constante.
+\end{problem}
+%-----------------------------------------
+
+
+%-----------------------------------------
+\begin{problem}{5. pp. 173} Determine la convergencia del producto infinito $\prod_{n=1}^\infty \frac{1}{n^p}$ para $p > 0.$
+\end{problem}
+%-----------------------------------------
+
+%-----------------------------------------
+\begin{problem}{6. pp. 173} Determine la convergencia de los productos $\prod \left[ 1 + \frac{i}{n}\right]$ y $\prod \left|1 + \frac{i}{n} \right|$.
+\end{problem}
+%-----------------------------------------
+
+%-----------------------------------------
+\begin{problem}{7. pp. 173} Demuestre que $\prod_{n=2}^\infty \left(1-\frac{1}{n^2}\right) = \frac{1}{2}.$
+
+\end{problem}
+%-----------------------------------------
+\printbibliography
+
+
+\end{document}

@@ -1,0 +1,123 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{mathpazo,amsfonts}
+\usepackage[margin=0.95in]{geometry}
+
+\pagestyle{fancy}
+
+\lhead{Tarea 9}
+\chead{Luis González Rivas}
+\rhead{22 de noviembre de 2021}
+
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+
+\addbibresource{blb.bib}
+
+\newtheorem{teo}{Teorema}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newtheorem*{prop}{Proposición}
+
+\newenvironment{problem}[2][Problema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+\section*{Análisis Complejo}
+
+%--------------------
+\begin{problem}{2 pp. 255}
+Si $u$ es armónica, demuestre que $f = u_x - iu_y$ es analítica. 
+\end{problem}
+\begin{proof}
+Dado que $u$ es armónica, tenemos que 
+$$u_{xx} + u_{yy} = 0,$$
+por lo que $u$ es infinitamente diferenciable y  $u_{xy}  = u_{yx}.$ Por otro lado, el Problema 1 establece que tanto $u_x$ como $u_y$ son funciones armónicas. De lo anterior, vemos que 
+
+$$ u_{xx} = - u_{yy} \ \ \ \ u_{x y} = - u_{yx},$$
+es decir, se satisfacen las ecuaciones de Cauchy-Riemann. Por tanto $f$ es analítica.
+\end{proof}
+%--------------------
+
+
+%--------------------
+\begin{problem}{4 pp. 255}
+Demuestre que una función armónica es un mapeo abierto.
+\end{problem}
+\begin{proof}
+Sea $f: G \rightarrow \R$ armónica y sea $V \subset G$ abierto. Como $G$ es conexo, $V$ es conexo y por ser $u$ continua, $u(V)$ es abierto en $\R$. Si $u$ no es constante, entonces $u(V)$ es un intervalo que no tiene máximo ni mínimo. Por tanto, $u(V)$ es un intervalo abierto. 
+\end{proof}
+%--------------------
+
+
+%--------------------
+\begin{problem}{6 pp. 255}
+Sea $u$ armónica en $G$ y suponga que $\overline{B}(a;R) \subset G$. Demuestre que 
+
+$$u(a) = \frac{1}{\pi R^2} \iint_{\overline{B}(a;R)} u(x,y) dx \ dy.$$
+\end{problem}
+\begin{proof}
+Procediendo de manera similar. a la demostración del Teorema 1.4, tenemos que
+
+$$f(a) = \frac{1}{2\pi} \int_0^{2\pi} f(a + re^{i\theta}) d \theta,$$
+con $Re (f) = u.$ Entonces
+
+$$r f(a) = \frac{r}{2\pi} \int_0^{2\pi} f(a + re^{i\theta}) d \theta,
+$$
+si y solo si
+$$ f(a) = \frac{1}{\pi R^2} \int_0^{2\pi} \int_0^R f(a+re^{i \theta })r dr \ d\theta,$$
+si y solo si 
+$$ f(a) = \frac{1}{\pi R^2} \iint_{\overline{B(a; R)}} f(x,y) dx dy, $$
+utilizando coordenadas polares. El resultado deseado se obtiene tomando la parte real de $f$ y aplicando linealidad de la doble integral.
+
+
+\end{proof}
+%--------------------
+
+
+%--------------------
+\begin{problem}{7 pp. 255}
+Para $\lvert z \rvert < 1$, sea 
+
+$$u(z) = Im \left[ \left(  \frac{1+z}{1-z}\right)^2\right].$$
+Demuestre que $u$ es armónica y que $\lim_{r \to 1-} u(re^{i \theta}) = 0 $ para toda $\theta$. ¿Esto contradice al Teorema 1.7?
+\end{problem}
+\begin{proof}
+La función $f(z) = \left( \frac{1+z}{1-z}\right)^2$ es analítica en $B(0, 1).$ Luego, $u$ es armónica.
+
+Por otro lado, si $z = re^{i\theta}$, $0 < r < 1$, entonces
+
+\begin{eqnarray*}
+u(re^{i\theta}) &=& Im \left[ \left( \frac{1+re^{i\theta}}{1-re^{i\theta}}\right)^2\right]\\
+&=& \frac{4r(1-r^2) \sin \theta}{(1-2r \cos \theta + r^2)^2}.
+\end{eqnarray*}
+La anterior expresión tiende a cero, cuando $r \to 1-.$
+\end{proof}
+%--------------------
+
+
+%\begin{problem}{10 pp. 256} Demuestre el Principio de Reflexión de Schwarz para funciones armónicas. 
+%\end{problem}
+
+%\begin{teo}
+%Sea $G$ una región tal que $G = G^\ast$. Si $f: G_+ \cup G_0 \rightarrow \C$ es una función continua y analítica en $G_+$ y si $f(x)$ es real para $x \in G_0$, entonces existe una función analítica $g: G \rightarrow \C$ tal que $g(z) =f(z)$ para $z \in G_+ \cup G_0$. 
+%\end{teo}
+
+\printbibliography
+%--------------------
+
+\end{document}

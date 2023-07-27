@@ -1,0 +1,157 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{mathpazo,amsfonts}
+\usepackage[margin=0.95in]{geometry}
+
+\pagestyle{fancy}
+
+\lhead{Tarea 6}
+\chead{Luis González Rivas}
+\rhead{12 de octubre de 2021}
+
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+
+\addbibresource{blb.bib}
+
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newtheorem*{prop}{Proposición}
+
+\newenvironment{problem}[2][Problema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+\section*{Análisis Complejo}
+\text{ }
+
+%---------------------------------
+\begin{problem}{1 pp. 110}
+Cada una de estas funciones $f$ tiene una singularidad aislada en $z=0$. Determine su \textit{naturaleza}; si es una singularidad removible defina $f(0)$ tal que $f$ es analítica en $z=0$; si es un polo, encuentre la parte singular; si es una singularidad esencial, determine $f(\{z: 0 < \lvert z \rvert < \delta \})$ para valores arbitrariamente pequeños de $\delta.$
+
+\begin{itemize}
+    \item [(a)] $f(z) = \frac{\sin z}{z}$; 
+    \item [(b)] $f(z) = \frac{\cos z}{z}$;
+    \item [(c)] $f(z) = \frac{\cos z - 1}{z}$;
+    \item [(d)] $f(z) = \exp z^{-1}$;
+    \item [(e)] $f(z) = \frac{\log(z+1)}{z^2}$;
+    \item [(f)] $f(z) = \frac{\cos z^{-1}}{z^{-1}}$;
+    \item [(g)] $f(z) = \frac{z^2 +1}{z (z-1)};$
+    \item [(h)] $f(z) = (1 - e^z)^{-1};$
+    \item [(i)] $f(z) = z \sin \frac{1}{z}.$
+\end{itemize}
+\end{problem}
+\textit{Solución:}
+\begin{itemize}
+    \item[(a)] Observe que $\lim_{z \to 0} z \left( \frac{\sin z}{z} \right) = \lim_{z \to 0} \sin z = 0$, por lo que $f$ tiene una singularidad removible. Se comprueba directamente que si definimos $f(0)  = 1$, $f$ es analítica en $z=0$.
+    
+    \item[(b)] Observe que $1 = \cos(0) = \frac{1}{2 \pi i} \int_\gamma \frac{\cos z}{z} dz = a_{-1}.$ Por otro lado, $a_{-n} = \frac{1}{2\pi i} \int_\gamma z^{n - 2} \cos z dz  = 0$, ya que el integrando es analítica para $n > 2$. Por tanto, $f$ tiene un polo en $z=0.$ La parte analítica es de $f$ es $\frac{1}{z}$
+    
+    \item[(c)] Observe que $\lim_{z \to 0} z \left( \frac{\cos z - 1}{z} \right) = 0$, $f$ tiene una discontinuidad removible en $z = 0.$ Se comprueba que si $f(0) = 0$, $f$ es analítica en $z=0$.
+    
+    \item[(d)] Si $z = x + i y,$ entonces $f(z) = e^{\frac{1}{z}} = e^{\frac{x}{x^2 + y^2}} e^{\frac{-iy}{x^2 + y^2}}.$ Luego, $\lim_{z \to 0} \lvert e^{\frac{1}{z}} \rvert = \lim_{x,y \to 0} e^{\frac{x}{x^2 + y^2}}$. Este límite no existe: tómese el límite acercándose a $z=0$ por el  eje real y el límite acercándose a $z=0$ por el eje imaginario; son diferentes. Por tanto, $f$ tiene una singularidad esencial en $z=0.$
+    
+    \item[(e)] Es claro que $f(z)$ tiene un polo de orden $2$, pues $f(z)^{-1}$ tiene un cero de orden $2$. La serie de Taylor en $z=0$ de $\log(z+1)$ es
+    $$
+    \log(z+1) = \sum_{k=1}^\infty \frac{(-1)^{k-1} z^k}{k},
+    $$
+    para $\lvert z \rvert < 1$. Entonces, la parte singular de $f$ es
+    $\frac{1}{z}$.
+    
+    \item[(f)] Esta función tiene una singularidad esencial en $z=0.$
+
+    \item[(g)] Observe que $f(z) = 1 + \frac{z+1}{z(z-1)} = 1-\frac{1}{z}+\frac{2}{z-1}$. Por tanto $f$ tiene polos de orden 1 en $z=0$ y $z=1.$ La parte singular es $-\frac{1}{z}+\frac{2}{z-1}.$
+    
+    \item[(i)] De la ecuación 
+    $$\sin z = \sum_{k=0}^\infty (-1)^k \frac{z^{2k+1}}{(2k+1)!},$$
+    llegamos a que 
+    $$f(z) = z \sin \frac{1}{z} = z \sum_{k=0}^\infty (-1)^k \frac{(1/z)^{2k+1}}{(2k+1)!} = \sum_{k=0}^\infty (-1)^k \frac{(1/z)^{2k}}{(2k+1)!}.$$
+    Por lo que $f$ tiene una singularidad esencial en $z=0.$ Se comprueba que $f(\{z: 0 < \lvert z \rvert < \delta \}) = \C.$
+\end{itemize}
+%---------------------------------
+
+%---------------------------------
+\begin{problem}{2 pp. 110} De una expansión en fracciones parciales de $r(z) = \frac{z^2 + 1}{(z^2 + z + 1)(z-1)^2}.$
+\end{problem}
+\textit{Solución.}
+Podemos expresar a $r$ como 
+$$ 
+r(z) = \frac{\sqrt{3} i }{ 9 (z - \omega_1)} - \frac{\sqrt{3} i}{9(z - \omega_2)} + \frac{2}{3(z-1)^2} 
+$$
+con $\omega_1 = \frac{-1 - \sqrt{3} i}{2}$ y $\omega_2 = \frac{-1 + \sqrt{3}i }{2}.$
+%---------------------------------
+
+%---------------------------------
+\begin{problem}{4 pp. 110}
+Sea $f(z) = \frac{1}{z (z-1)(z-2)}$; de una expanión de Laurent de $f(z)$ en los siguientes anillos: (a) $ann(0; 0, 1)$; (b) $ann(0; 1, 2);$ (c) $ann(0; 2, \infty)$.
+
+\end{problem}
+
+\textit{Solución.} En primer lugar, podemos expresar a $f$ en fracciones parciales como 
+$$
+f(z) = \frac{1}{2} \left( \frac{1}{z} - \frac{2}{z-1} + \frac{1}{z-2} \right).
+$$
+\begin{itemize}
+    \item[(a)] Observe que $\frac{-2}{z-1} = 2 \left( \frac{1}{1-z} \right) = 2 \sum_{k=0}^\infty z^k$ y $\frac{1}{z-2} = \frac{-1}{2} \cdot \frac{1}{1 - \frac{z}{2}} = - \frac{1}{2} \sum_{k=0}^\infty \left( \frac{z}{2} \right)^k$ para $0 < \lvert z \rvert < 1$. Además, estas dos funciones son analíticas en para $\lvert z \rvert < 1$. Entonces, por unicidad de la serie de Laurent, tenemos
+    $$
+    f(z) =  \frac{1}{2} \left( \frac{1}{z} + 2 \sum_{k=0}^\infty z^k
+    - \frac{1}{2} \sum_{k=0}^\infty \left( \frac{z}{2} \right)^k \right)
+    $$
+    en $ann(0; 0, 1).$
+    
+    \item[(b)] De la discusión anterior, solo tenemos que modificar lo siguiente: $\frac{1}{z-1} = \frac{1}{z} \cdot \frac{1}{1- \frac{1}{z}} = \frac{1}{z} \sum_{k=0}^\infty \left(\frac{1}{z}\right)^k= \sum_{k=0}^\infty \left(\frac{1}{z}\right)^{k-1}$ para $1 < \lvert z \rvert < 2$. Por tanto, la serie de Laurent de $f$ es
+    $$
+    f(z) =  \frac{1}{2} \left( \frac{1}{z} - 2 \sum_{k=0}^\infty  \frac{1}{z^{k-1}}  - \frac{1}{2} \sum_{k=0}^\infty \left( \frac{z}{2} \right)^k \right)
+    $$
+    en $ann(0, 1, 2)$.
+    
+    \item[(c)] Análogamente al caso (b), solo modificaremos lo siguiente: $\frac{1}{z-2} = \frac{1}{z} \cdot \left( \frac{1}{1 - \frac{2}{z}} \right) = \frac{1}{z} \sum_{k=0}^\infty \left( \frac{2}{z} \right)^k = \sum_{k=0}^\infty \frac{2^k}{z^{k+1}}$ para $\lvert z \rvert > 2.$ Por tanto, la serie de Laurent de $f$ es
+    $$
+    f(z) = \frac{1}{2} \left( \frac{1}{z} -
+    2 \sum_{k=0}^\infty  \frac{1}{z^{k-1}} + \sum_{k=0}^\infty \frac{2^k}{z^{k+1}}
+    \right)
+    $$
+    en $ann(0, 2, \infty).$
+\end{itemize}
+%---------------------------------
+
+%---------------------------------
+\begin{problem}{6 pp. 110} Si $f: G \rightarrow \C$ es analítica excepto en polos, demuestre que los polos de $f$ no pueden tener un punto límite en $G.$
+\end{problem}
+\begin{proof}
+Sea $p \in G$ un punto límite del conjunto de polos de $f$. Entonces $p$ no es una singularidad aislada de $f$, pues para toda $r > 0$, el conjunto $B(p, r) \cap G$ tiene un polo de $f$.
+Por otro lado, $f$ no es analítica en $p$. Si lo fuera, entonces $\lim_{z \to p} (f(z) - f(p)) / (z-p)$ existe. Pero, puedo seleccionar un polo arbitrariamente cerca de $p$, de tal manera que todo punto en la vecindad de este polo satisface que $\lvert f(z) \rvert > M$ para una $M > 0$ arbitraria. Por tanto, el anterior límite no existe. 
+\end{proof}
+%---------------------------------
+
+%---------------------------------
+\begin{problem}{16 pp. 112} Determine las regiones en las funciones $f(z) = \left( \sin \frac{1}{z} \right)^{-1}$ y $g(z) = \int_0^1 (t - z)^{-1} dt$ son analíticas. ¿Tienen singularidades aisladas?, ¿Tienen singularidades que no son aisladas?
+\end{problem}
+\textit{Solución.} La función $f$ es analítica en $\C - S$, donde $S =\{0\} \cup   \{(k \pi)^{-1}: k = \pm 1, \pm 2, \ldots \}$. El conjunto $S - \{0\}$ es el conjunto de singularidades aisladas. La función tiene una singularidad no aislada en $z=0.$
+
+Por otro lado, la función $g$ es analítica en $\C - [0, 1].$ No tiene singularidades aisladas. Todas son no aisladas en $[0, 1].$
+%---------------------------------
+
+%---------------------------------
+\begin{problem}{17 pp. 112} Sea $f$ analitica en la región $G = ann(a, 0, R).$ Demuestre que si $\int \int_G \lvert f(x + iy) \rvert^2 dx dy < \infty$ entonces $f$ tiene una singularidad removible en $z = a.$ Suponga que $p > 0$ y $\int \int_G \lvert f(x + iy) \rvert^p dx dy < \infty$; que puede decir acerca de la singularidad en $z = a.$
+
+\end{problem}
+%---------------------------------
+
+\printbibliography
+
+\end{document}

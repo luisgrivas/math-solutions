@@ -1,0 +1,137 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{mathpazo,amsfonts}
+\usepackage[margin=0.95in]{geometry}
+
+\pagestyle{fancy}
+
+\lhead{Examen 1}
+\chead{Luis González Rivas}
+\rhead{22 de septiembre de 2021}
+
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+
+\addbibresource{blb.bib}
+
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newtheorem*{prop}{Proposición}
+
+\newenvironment{problem}[2][Problema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+\section*{Análisis Complejo}
+
+\noindent \textit{En este documento se presentan las soluciones de los problemas 1,2,3 y 5. El problema 4 se resolvió parcialmente.}
+
+\text{ }
+%---------------------------------
+\begin{problem}{1}
+Sea $f$ entera ta que $f(z) = f(z+1 +i) = f(z+1)$ para toda $z$. Probar que $f$ es constante. 
+\end{problem}
+
+\begin{proof} 
+ Sea $R = \{ x + i y: 0 \leq x, y \leq 1\}$ y sea $g(z) = f\mid_R$. Observe que $g$ es continua en $R$ ya que $g$ es holomorfa en $R$. Como $R$ es compacto, existe $M > 0$ tal que $\lvert g(z) \rvert \leq M$ para toda $z \in R$.
+ 
+ Ahora bien, de la ecuación funcional se obtiene que 
+ $$
+ f(z + ki) = f(z) = f(z + k) 
+ $$
+ para toda $k \in \Z$ y $z \in \C.$ Por otro lado, observe que todo complejo $z$ se puede expresar como $z = (m + ni) + (s + r i)$ con $m, n \in \Z$ y $s, r \in (0, 1).$ Por lo que 
+ $$ f(z) = f( [m + ni] + [s + r i] )  = f(s + ri).$$
+ 
+ Esto muestra que $\lvert f(z) \rvert \leq M$ para toda $z \in \C$. Como $f$ es entera, por el teorema de Liouville $f$ es constante.  
+\end{proof}
+%---------------------------------
+
+%---------------------------------
+\begin{problem}{2}
+Encuentre todas las transformaciones de Möbius que dejan fijo al cero y al uno.
+\end{problem}
+\begin{proof}
+ Sea $s(z) = \frac{az + b}{cz + d}$ una transformación de Möbius. Si $0$ es punto fijo de $s$, entonces 
+ $$s(0) = b/d = 0,$$
+ lo que implica que $b = 0.$
+ Si $1$ es punto fijo de $s$, entonces
+ $$s(1) = \frac{a}{c +d} = 1,$$
+ por lo que $a = c + d.$
+ Por tanto, las tranformaciones de Möbius que dejan fijo al 0 y al 1 son de la forma
+ $$ s(z) = \frac{(c+d)z}{cz + d}$$
+ con $d^2 + cd \neq 0.$
+\end{proof}
+%---------------------------------
+
+%---------------------------------
+\begin{problem}{3}
+Una función entera $g$ cumple que su desarrollo en serie de potencias alrededor de cada $w \in \C$ tiene algún coeficiente igual a cero. Muestre que $g$ es un polinomio.
+\end{problem}
+\begin{proof}
+Consideremos los conjuntos 
+$$ G_k = \{w \in \C: f^{(k)}(w) = 0\},$$
+para $k \in \N \cup \{0\}$. Por hipótesis, la unión de los $G_k$ es igual a $\C$. Como $\C$ es un conjunto no numerable, existe un $k$ tal que $G_k$ es infinito no numerable. Tómese $k_0$ mínimo con esta propiedad.
+Por otro lado, los rectángulos $R_n = \{x + iy: n \leq x,y \leq n+1\}$, $n \in \Z$, forman una partición numerable \footnote{Aunque no disjunta dos a dos} del plano $\C$. Como $G_{k_0}$ es no numerable, existe $n_0 \in \Z$ tal que $G = R_{n_0} \cap G_{k_0}$ es infinito. Como $R_{n_0}$ es compacto en $\C$ y $G \subset R_{n_0}$ es infinito, $G$, y por tanto $G_{k_0}$, tiene un punto límite en $R_{n_0}$. \footnote{Estamos utilizando el hecho de que $\C$ tiene la misma topología que $\R^2$.} 
+
+Ahora bien, $f$ es entera, implica que $f^{(k_0)}$ es entera. Por lo anterior, se deduce que $f^{(k_0)} \equiv 0$ en $\C$. Utilizando el desarrollo en series de potencias de $f$ al rededor de $0$, encontramos que 
+$$ f(z) = \sum_{r=0}^{k_0 - 1} a_r z^r $$
+
+para toda $z \in \C$, es decir, $f$ es un polinomio.
+
+\end{proof}
+%---------------------------------
+
+%---------------------------------
+\begin{problem}{4}
+Sea $G$ una región del plano complejo que contiene al disco cerrado $D(0, R).$ Sean $f$ y $g$ dos funciones holomorfas en $G$ y tales que $\lvert f(z) \rvert = \lvert g(z) \rvert$ para todo $\lvert z \rvert = R$. Demuestre que si ninguna de las dos funciones se anula en ningún punto de $D(0, R)$, entonces existe $\lambda \in \C$, $\lvert \lambda \rvert = 1$ tal que $f = \lambda g$ en $G.$
+\end{problem}
+\begin{proof}
+Como $g(z) \neq 0$ en $D(0, R)$, la función $h(z) = \frac{f(z)}{g(z)}$ es holomorfa en $D(0, R).$ Como $D(0, R)$ es compacto y $h$ es continua, existe $z_0 \in D(0, R)$ tal que $\lvert h(z_0) \rvert \geq \lvert h(z) \rvert $ para toda $z \in D(0, R).$ Consideremos los siguientes casos:
+\begin{itemize}
+    \item \textit{Caso 1:  $z_0 $ es punto interior de $D(0, R)$}. Por el Principio de Máximo Módulo, $h$ es constante en $int D(0, R)$, digamos $h(z) = \lambda$. Luego, por la continuidad de $h$ en $D(0, R)$, se deduce que $f(z) = \lambda g(z)$ para toda $z \in D(0, R).$ Por hipótesis, $\lvert h(z) \rvert = \lvert \lambda \rvert = 1$ para toda $z \in \partial D(0, R)$.
+    
+    \item \textit{Caso 2: $z_0$ es punto frontera de $D(0, R)$}. Entonces $\lvert h(z) \rvert  \leq 1$ para todo $z \in int D(0, R).$ Por hipótesis, en la frontera de $D(0, R)$ se satisface que $\lvert f(z) \rvert = \lvert g(z) \rvert$, por lo que $\lvert f(z) \rvert \leq \lvert g(z) \rvert$ para todo $z \in D(0, R).$
+\end{itemize}
+
+Observe que los argumento anteriores pueden repetirse para la función $h_1 (z) = \frac{g(z)}{f(z)}$. En el primer caso $\frac{1}{\lambda} g(z) = f(z)$ con $\lvert \lambda \rvert = 1$ para toda $z \in D(0, R)$, que es lo que queremos demostrar. En el segundo caso, $\lvert g(z) \rvert \leq \lvert f(z) \rvert$ para toda $z \in D(0, R).$ Luego, por el Caso 2, $\lvert f(z) \lvert  = \lvert g(z) \rvert $ para toda $z \in D(0, R).$ Es decir, $f(z) = \lambda g(z)$ con $\lvert \lambda \rvert = 1$ y $z\in D(0, R)$, que es lo que queremos demostrar. \footnote{Vea que no se demostró que la condición se satisface en todo $G$.}
+
+\end{proof}
+%---------------------------------
+
+\newpage
+%---------------------------------
+\begin{problem}{5} Sea $h$ entera tal que $\lvert h(z) \rvert \leq \lvert p(z) \rvert $ para toda $z$, con $p$ un polinomio. Mostrar que $h$ es también un polinomio. 
+\end{problem}
+\begin{proof}
+Escribamos $p(z) = \sum_{r=0}^n a_r z^r$. Observe que, para $\lvert z \rvert $ suficientemente grande, se cumple 
+$$\left\lvert \sum_{r=0}^{n-1} a_r z^r \right\rvert \ll \lvert a_n z^n \rvert.$$
+Entonces $\lvert h(z) \rvert  \leq M \lvert z \rvert^n$, con $M = 2 \lvert a_n \rvert $, para toda $z \in \C$ con $\lvert z \rvert$ lo suficientemente grande.
+
+Con lo anterior, podemos proceder identicamente a la tarea 4. Sea $\gamma(t) = re^{it}$ con $t \in [0, 2\pi]$. Entonces 
+\begin{eqnarray*}
+\lvert h^{(k)}(0) \rvert &=& \left\lvert \frac{k!}{2\pi i} \right\rvert \left\lvert \int_\gamma{\frac{h(w)}{w^{k+1}} dw}\right\rvert\\
+&\leq & \frac{k!}{2\pi} \int_\gamma \left\lvert \frac{h(w)}{w^{k+1}} \right\rvert \lvert dw \rvert\\
+&\leq& \frac{k!}{2\pi} \cdot \frac{S}{r^{k+1}}\cdot 2\pi r \\
+&=& \frac{k! S}{r^k},
+\end{eqnarray*}
+donde $S = \sup \{ \lvert h(z) \rvert : z \in \gamma([0, 2\pi]) \}$. Luego, si $r$ es lo suficientemente grande y $\lvert z \rvert = r$, tenemos que 
+$$\lvert f^{(k)}(0) \rvert \leq \frac{k!}{r^k} M r^n.$$
+
+De aquí, observamos que si $k > n$ y $r \to \infty$, se obtiene que $h^{(k)}(0) = 0$. Como $h$ es entera, $h(z) = \sum_{r=0}^n b_r z^r$, con $b_r = \frac{f^{(r)}(0)}{r!}$. Por tanto $h$ es un polinomio.
+\end{proof}
+%---------------------------------
+\end{document}

@@ -6,6 +6,7 @@
 \usepackage{fancyhdr}
 \usepackage{mathpazo,amsfonts}
 \usepackage[margin=0.95in]{geometry}
+\usepackage{comment}
 
 \pagestyle{fancy}
 
@@ -72,9 +73,7 @@ $$ \lambda(E \cap J) \geq  \alpha \lambda(J)$$
 
 para todo $J\subset [0, 1]$ subintervalo. Demuestra que $\lambda(E) = 1.$
 \end{problem}
-\begin{proof}
-AVANZADO... FALTA TEMA DE DIFERENCIACION.
-% Initially observe that �� has positive measure. Then use Lebesgue's differentiation theorem to obtain that 1��≥�� pointwise almost everywhere in [0,1]. Now if ��(��)<1 we would have ��([0,1]∖��)>0. But then we could find ��∈[0,1] so that ��∉�� and 1��(��)≥�� which implies that ��≤0 which cannot happen from premise of the problem.
+\begin{proof} Sea $b \in E$ y $J$ un intervalo centrado en $b$ contenido en $[0,1]$
 \end{proof}
 %---------------------------------
 
@@ -292,6 +291,21 @@ $$\lim_{k \to \infty} \int h_k d \mu = \sum_{i=1}^\infty \int f_i = \int f.$$
     $$\int f d \mu > 0 \iff \mu \left( \{ x \in X: f(x) > 0 \} \right) > 0. $$
 \end{problem}
 \begin{proof}
+    Sea $E = \{ x \in X: f(x) > 0 \}$.
+    Si $\int f d \mu > 0$, entonces
+    $$0 < \int f d \mu = \int_E f d \mu + \int_{E^c} f  d\mu = \int_E f d \mu, $$
+    pues $f$ es identicamente cero end $E^c.$ Luego, $\int_E 
+f d\mu > 0$ implica que $\mu(E) > 0.$
+
+Ahora asuma que $\mu(E) > 0.$ Defina la sucesión $\{E_n\}$ como 
+    $$E_n = \{x \in X: f(x) > 1 / n\}.$$
+    Note que $\{E_n\}$ es creciente y $E = \bigcup_{n=1}^\infty E_n$, por lo que 
+    $\mu(E) = \lim_{n \to \infty} \mu(E_n).$ Entonces existe $k \in \N$ tal que $\mu(E_n) > 0$ para $n \geq k$. Luego, 
+$$0 < k \cdot \mu(E_k) \leq \int_{E_k} f d\mu \leq  \int f d\mu. $$
+\end{proof}
+\begin{comment}
+    
+\begin{proof}
     Sea $E = \{ x \in X: f(x) > 0 \}.$ Suponga que $\int f d \mu = 0$. Defina para toda $k \in \N$, la sucesión $E_k = \{ x\in X: f(x) > 1/k\}$. Defina, para toda $k$, la función simple 
     $$\varphi_k = \chi_{E_k} \inf_{E_k} f.$$
     Vea que $\int \varphi = \mu(E_k) \inf_{E_k} f \geq \mu(E_k) / k$ para toda $k\in N.$ Pero dado que $\int f d \mu = 0$ , entonces $ \mu(E_k) / k = 0$, y esto ocurre si y solo si $\mu(E_k) = 0$ para toda $k\in \N.$ Dado que $E = \bigcup_{k=1}^\infty E_k$, se tiene que $\mu(E) \leq \sum_{k=1}^\infty \mu(E_k) = 0.$
@@ -300,6 +314,7 @@ $$\lim_{k \to \infty} \int h_k d \mu = \sum_{i=1}^\infty \int f_i = \int f.$$
     $$\int \varphi d \mu = \int \varphi \chi_E d \mu + \int \varphi \chi_{E^c} = \sum_{i=1}^n a_i \mu (A_i \cap E) + \sum_{i=1}^n a_i \mu(A_i \cap E^c).$$
     Puesto que $A_i \cap E \subset E,$, entonces $m(A_i \cap E) \leq m(E) = 0$, por lo que la primera sumatoria es cero. Por otro lado, puesto que $A_i \cap E^c \subset E^c$ y $\varphi \leq f$, entonces $a_i = 0$, por lo que la segunda sumatoria es cero. Así pues, $\int \varphi d \mu = 0$. Como $\varphi$ fue arbitraria, se tiene que $\int f d\mu = 0.$
 \end{proof}
+\end{comment}
 
 %---------------------------------------
 \begin{problem}{16} Sea $(X, S, \mu)$ un espacio de medida y $\{f_n\}$ una sucesión de funciones no negativas S-medibles en $X$. Defina la función $f: X \rightarrow [0, \infty]$ como $f(x) = \liminf_{k\to \infty} f_k(x)$.
@@ -334,6 +349,8 @@ $$\lim_{k \to \infty} \int h_k d \mu = \sum_{i=1}^\infty \int f_i = \int f.$$
     Sea $\{a_n\}$ una sucesión de reales positivos en $l^p$, $1 \leq p < \infty$ y $f \in L^p(\mu)$. Demuestre que 
 $$\sum_{n=1}^\infty \mu \left( \{x \in X: \lvert f(x) \rvert \geq 1 / a_n \} \right) < \infty.$$
 \end{problem}
+\begin{comment}
+    
 \begin{proof}
     Sea $\{A_n\}$ la sucesión definida como $A_n = \{ x\in X: \lvert a_n f(x) \rvert^p \geq 1\}.$ Note que $A_n = \{x \in X: \lvert f(x) \rvert \geq 1 / a_n \}$ para toda $n$. Defina la sucesión $\{g_n\}$ de funciones medibles como
     $$g_n =\sum_{i=1}^n \mathbb{1}_{A_i}.$$
@@ -341,7 +358,15 @@ $$\sum_{n=1}^\infty \mu \left( \{x \in X: \lvert f(x) \rvert \geq 1 / a_n \} \ri
 $$\sum_{n=1}^\infty \mu(A_n) = \lim_{n\to \infty} \int g_n d \mu = \int \lim_{n\to \infty} g_k d \mu \leq \int \lim_{n \to \infty} \lvert f \rvert^p \sum_{i=1}^n \lvert a_i \rvert^p d\mu < \infty,$$
 donde la primera desigualdad se debe al Teorema de Convergencia Monótona; la segunda se debe a la monotonicidad de la integral de Lebesgue; y la última desigualdad se debe a que $f\in L^p(\mu)$ y $\{a_n\}$ es una sucesión en $l^p$.
 \end{proof}
+\end{comment}
 
+\begin{proof} Sea $\{A_n\}$ la sucesión definida como 
+$$A_n = \{x \in X: \lvert f(x) \rvert^p \geq 1/a_n^p\}.$$
+Observe que 
+$$ \frac{\mu(A_n)}{(a_n)^p} \leq \int_{A_n} \lvert f \rvert^p d\mu \leq \int \lvert f \rvert^p d \mu < \infty$$
+para toda $n.$ Además, dado que  $p\geq 1$ y la sucesión $\{a_n\}$ consta de reales positivos, $\{x\in X: \lvert f(x) \rvert > 1 / a_n\} \subset A_n$ para toda $n.$ Luego,
+$$\sum_{n=1}^\infty \mu \left( \{x \in X: \lvert f(x) \rvert \geq 1 / a_n \} \right) \leq \sum_{n=1}^\infty \mu(A_n) \leq \sum_{n=1}^\infty (a_n)^p \| f \|^p_p < \infty.$$
+\end{proof}
 
 
 %-----------------------
@@ -367,6 +392,7 @@ Ahora bien, sea $g \in L_1(\mu)$ una función medible no negativa. FALTA
 % -------------------------------
 \begin{problem}{19} Sea $(X, S, \mu)$ un espacio de medida y $f \in L_1(\mu)$. Sea $\{b_n\}$ una sucesión de reales positivos, creciente y tal que $\lim_{k\to \infty} b_n = \infty.$ Si definimos $E_n  = \{x \in X: \lvert f(x) \rvert \geq b_n \}$, prueba que $\lim_{n\to \infty} b_n \mu(E_n) = 0.$
 \end{problem}
+\begin{comment}
 \begin{proof} En primer lugar, observe que 
 $$ E = \bigcap_{n=1}^\infty E_n = \{x \in X: \lvert f(x) \rvert = \infty \},$$
 puesto que la sucesión $\{b_n\}$ es creciente y $\lim_{n\to \infty} b_n = \infty.$ El hecho de que $f \in L_1(\mu)$, implica que
@@ -388,8 +414,170 @@ $$
 Además, $\lvert g_n \rvert  \leq  \lvert f \rvert$ para toda $n\in \N$. Dado que $f \in L_1(\mu)$, por el Teorema de Convergencia Dominada, se obtiene que 
 $$ \lim_{n \to \infty} b_n \mu(E_n) = \lim_{n\to \infty} \int g_n d \mu = \int g d\mu = 0.$$
 \end{proof}
+\end{comment}
+\begin{proof}
+Puesto que $\{b_n\}$ es una sucesión creciente de reales positivos y $b_n \to \infty$, el conjunto $E = \bigcap_{n=1}^\infty E_n $ es igual al conjunto $ \{x \in X: \lvert f(x) \rvert = \infty \}.$ Además, dado que $f \in L_1$, el conjunto $E$ tiene medida cero. Ahora bien, sea  $\{h_n\}$ la sucesión de funciones simples definida como 
+$$h_n = b_n \mathbb{1}_{E_n}.$$
+Si $x \notin E$, entonces existe $k \in \N$ tal que $b_n > \lvert f(x) \rvert$ para toda $n \geq k.$ Luego, $h_n(x) = 0$ para $n \geq k.$ Hemos mostrado que $h_n \to 0$, excepto en $E$, cuya medida es cero. Más aún, note que $\lvert h_n \rvert \leq \lvert f \rvert$, excepto en $E$, y dado que $f \in L_1$, el Teorema de Convergencia Dominada implica que 
+$$\lim_{n \to \infty} b_n \mu(E_n) =\lim_{n \to \infty} \int h_n d \mu = \int 0 d \mu = 0.$$
+\end{proof}
 
-\begin{problem}{20} Demuestre que $(L_\infty([0,1], \lambda), \parallel \cdot \parallel_\infty)$ es completo.
-    
+
+%---------------------
+\begin{problem}{20} Demuestre que $(L_\infty([0,1], \lambda), \| \cdot \|_\infty)$ es completo. 
 \end{problem}
+\begin{proof}
+Sea $\{f_n\}$ una sucesión  de funciones en $(L_\infty([0,1], \lambda)$ que satisface la propiedad de Cauchy. Observe que
+$$\lvert f_m(x) - f_n(x) \rvert \leq \| f_m - f_n \|_\infty$$
+para casi toda $x$ y para cualesquiera $m,n \in \N$. Entonces, el hecho de que $\{f_n\}$ sea sucesión de Cauchy en $L_\infty$ implica que la sucesión $\{f_n(x)\}$ es de Cauchy en $\R$ para casi toda $x \in [0, 1]$. Por tanto $\{f_n(x)\}$ converge para casi toda $x \in [0, 1]$. Defina la función medible $f: [0, 1] \rightarrow \R$ tal que $f_n(x) \to f$ para las $x \in [0, 1]$ tales que $f_n(x) \to f(x)$ y $f(x) = 0$ de otro modo.
+
+
+$$\lvert f(x) \rvert \leq \lvert f(x) - f_n(x) \rvert + \lvert f_n(x) \rvert $$ FALTA
+\end{proof}
+
+
+%----------------------------------
+\begin{problem}{21} Sea $f \in L_2([0, \infty), \lambda)$. Prueba que $$\lim_{n \to \infty} \int_n^{n+1} f d\lambda = 0.$$
+\end{problem}
+\begin{proof}
+    Observe que
+    $$\left| \int_{n}^{n+1} f d\lambda \right|  \leq \int_{n}^{n+1} \lvert f \rvert d \lambda \leq  \left (\int_{n}^{n+1} \lvert f \rvert^2 d\lambda \right)^{1/2} $$
+    donde la primera desigualdad se debe a la monotonicidad de la integral de Lebesgue y la segunda se debe a la desigualdad de Hölder. Ahora bien, defina la sucesión de funciones medibles $\{g_n\}$ como 
+    $$g_n = \lvert f \rvert^2 \cdot \mathbb{1}_{[n, n+1]}.$$
+    Esta sucesión converge a la función cero puntualmente y está dominada por la función $\lvert f \rvert^2$. Como $f \in L_2$, el Teorema de Convergencia Dominada implica que
+    $$\lim_{n\to \infty} \int g_n d \lambda = \lim_{n \to \infty}  \int_{n}^{n+1} \lvert f \rvert^2 d\lambda = 0.$$
+    Pero eso implica que
+    
+    $$\lim_{n \to \infty} \int_n^{n+1} f d\lambda =  0.$$
+\end{proof}
+
+
+%--------------------------
+\begin{problem}{22} Sea $X$ un conjunto no numerable y sea $\mathcal{A} = \{\{x\}: x \in X\}$.
+\begin{itemize}
+    \item[a)] Encuentra $\mathcal{F}(\mathcal{A})$, la sigma álgebra más pequeña que contiene a $\mathcal{A}$.
+    \item[b)] Defina $\mu: \mathcal{F}(\mathcal{A}) \rightarrow [0, \infty]$, como 
+    $$\mu(B) = \begin{cases}
+        0 & \text{ si } B \text{ es a lo más numerable;}\\
+        1 &  \text{ si } B^c \text{ es a lo más numerable.}
+    \end{cases}$$
+    Demuestra que $\mu$ es una medida en $\mathcal{F}(\mathcal{A})$.
+\end{itemize}
+\end{problem}
+
+\begin{proof} \text{ }
+    \begin{itemize} 
+        \item[a)] Demostraremos que $\mathcal{F}(\mathcal{A}) = \{B \subset X: B \text{ o } B^c \text{ es a lo más numerable} \} = \mathcal{S}.$ En primer lugar, note que si $\{x\} \in \mathcal{A}$, entonces $\{x\} \in S$, pues $\{x\}$ es finito. Por tanto $\mathcal{S}$ es una sigma álgebra que contiene a $\mathcal{A}$. Sea $\mathcal{T}$ otra sigma álgebra que contiene a $A$. Si $B$ es numerable, entonces 
+        $$ B = \bigcup_{n_1}^\infty x_n $$
+    \end{itemize}
+\end{proof}
+
+
+
+%--------------------------
+
+\begin{problem}{23}
+    Sea $(X, S, \mu)$ un espacio de medida con medida positiva tal que $\mu(X) = 1.$ Sea $f: X \rightarrow \R$ una función S-medible. Define $\varphi: (0, \infty) \rightarrow [0, \infty]$ como
+    $$\varphi(p) = \left( \int_X | f |^p\right)^{1/p}.$$
+    Demuestre que $\varphi$ es no decreciente. 
+\end{problem}
+\begin{proof}
+    Sean $p,q \in (0, \infty)$ tales que $p \leq q.$ Si $r = q / p$, entonces la desigualdad de Hölder establece que 
+    \begin{eqnarray*}
+    \int_X \lvert f \rvert^p d \mu &\leq& \left( \int_X | f |^{pr} d\mu \right)^{1/r} \cdot \left(\int_X 1 d\mu \right)^{(r-1)/r}\\
+    &\leq& \left( \int_X | f |^{pr} d\mu \right)^{1/r} \cdot \mu(X)^{(r-1)/r}\\
+    &=& \left( \int_X | f |^{pr} d\mu \right)^{1/r}\\
+    &=& \left( \int_X | f |^{q} d\mu \right)^{p/q},
+    \end{eqnarray*}
+
+    por lo que 
+    $$\left(\int_X \lvert f \rvert^p d \mu \right)^{1/p} \leq \left( \int_X | f |^{q} d\mu \right)^{1/q},$$
+    es decir, $\varphi(p) \leq \varphi(q).$
+    
+\end{proof}
+
+
+
+%--------------------------------------
+\begin{problem}{24} Sea $(X, S, \mu)$ un espacio de medida.
+\begin{itemize}
+\item[a)] Demuestra que el espacio $L^\infty(\mu)$ está contenido en $L^1(\mu)$ si y solo si $\mu(X) < \infty.$
+\item[b)] Si $\mu(X) = 1$ y $f \in L^\infty(\mu),$ prueba que
+$$\| f \|_\infty = \lim_{p \to \infty} \| f \|_p.$$
+\end{itemize}
+\end{problem}
+\begin{proof} \textbf{ }
+\begin{itemize}
+\item[a.1)] Suponga que $L^\infty(\mu) \subset L^1(\mu)$. Como $f \equiv 1$ es elemento de $L^\infty(\mu)$, entonces
+$$\mu(X) = \int_X f d \mu = \int_X \lvert f \rvert  d \mu < \infty.$$
+
+Suponga que $\mu(X) < \infty.$  Sea $g \in L^\infty(\mu)$. Por la desigualdad de Hölder se tiene que
+$$\|g \|_1 \leq \| f \|_1 \| g \|_\infty = \mu(X) \cdot \| g \|_\infty < \infty,$$
+donde $f \equiv 1.$
+
+\item[a.2)] Suponga que $L^\infty(\mu) \subset L^1(\mu)$. Como $f \equiv 1$ es elemento de $L^\infty(\mu)$, entonces
+$$\mu(X) = \int_X f d \mu = \int_X \lvert f \rvert  d \mu < \infty.$$
+
+
+Suponga que $\mu(X) < \infty.$ Sea $g \in L^\infty(\mu)$ y sea $\alpha = \| g \|_\infty < \infty$. Considere el conjunto $A = \{x \in X: \lvert g(x) \rvert > \alpha\}$. Entonces
+\begin{eqnarray*}
+    \int_X \lvert g \rvert d \mu &=& \int_A \lvert g \rvert d \mu + \int_{X\setminus A} \lvert g \rvert d \mu\\
+    &=& \int_{X\setminus A} \lvert g \rvert d \mu\\
+    &\leq& \mu(X\setminus A) \cdot \sup_{X \setminus A} \lvert g \rvert \\
+    &\leq& \mu(X\setminus A) \cdot \alpha \\
+    & < & \infty.
+\end{eqnarray*}
+Entonces $g$ es elemento de $L^1(\mu).$
+\end{itemize}
+
+\item[b)] Sea $0 < \epsilon < \| f \|_\infty$. ... FALTAN
+    
+\end{proof}
+
+
+%---------------------
+\begin{problem}{25} Sean $(X, S, \mu)$ un espacio de medida, $f\in L^1(\mu)$ y $h \in  L^\infty(\mu)$. Demuestre que 
+$\| fh \|_1 = \| f \|_1 \| h \|_\infty$ si y solo si $| h (x) | = \| h \|_\infty$ para casi toda $x$ tal que $f(x) \neq 0.$
+\end{problem}
+\begin{proof}
+    Sea $A = \{ x \in X: | f(x) | \neq 0 \}$. Si $| h (x) | = \| h \|_\infty$ para casi toda $x\in A$, entonces
+    $$\int_X | f h | d\mu  = \int_A |fh | d\mu + \int_{X\setminus A} | fh | d \mu = \int_A |fh | d\mu  = \int_A | f | d\mu \cdot \| h \|_\infty = \int_X | f | d\mu \cdot \| h \|_\infty.$$
+
+    Ahora suponga que $\| fh \|_1 = \| f \|_1 \| h \|_\infty$. Es decir,
+    $$\int_X | fh | d \mu = \int_X | f | \| h \|_\infty d \mu,$$
+    si y solo si 
+    $$\int_X | f | \cdot (| h | - \| h \|_\infty)  d \mu = 0.$$
+    Esto implica que
+    $$\int_A | f | \cdot (| h | - \| h \|_\infty)  d \mu = 0$$ y esto
+    es cierto si y solo si $\mu(A) = 0$ o $\lvert h \rvert  = \| h \|_\infty$ casi en todo $A$.
+\end{proof}
+
+
+%------------------------------------
+\begin{problem}{26} Suponga que $(X, S, \mu)$ es un espacio de medida y $f,g: X \rightarrow \R$ funciones S-medibles. Demuestre que 
+$$\| f g \|_r \leq \| f \|_p \| g \|_q,$$
+con $1/p + 1/q = 1/r.$
+\end{problem}
+\begin{proof} Reescribiendo la ecuación como 
+$$\frac{1}{\frac{p}{r}} + \frac{1}{\frac{q}{r}} = 1,$$
+notamos que $p / r \geq 1$. Entonces, la desigualdad de Hölder establece que 
+    \begin{eqnarray*}
+        \int | fg |^r d \mu &\leq& \left(\int (| f|^r)^{p/r}  d \mu \right)^{r/p} \cdot \left( \int (| h |^r)^{q/r} d \mu \right)^{r/q}\\
+        &=& \left(\int  | f|^p  d \mu \right)^{r/p} \cdot \left( \int | h |^q d \mu \right)^{r/q},
+    \end{eqnarray*}
+tomando la raíz $r$-ésima en ambos lados de la desigualdad se obtiene el resultado deseado.
+\end{proof}
+
+
+%------------------------------------
+\begin{problem}{27} Sea $(X, S, \mu)$ un espacio de medida y $\{f_n\}$ una sucesión monótona (creciente o decreciente) de funciones $S$-medibles. Defina $f = \lim_{n \to \infty} f_n$. Demuestre que si 
+$f_1 \in L_1(\mu)$, entonces
+$$\lim_{n \to \infty} \int f_n d\mu  = \int f d\mu.$$
+\end{problem}
+\begin{proof}
+Suponga que $\{f_n\}$ es decreciente. Entonces $\lvert f_n \rvert.$
+
+\end{proof}
+
+
 \end{document}

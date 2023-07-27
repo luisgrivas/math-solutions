@@ -1,0 +1,261 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{mathpazo,amsfonts}
+\usepackage[margin=0.95in]{geometry}
+
+\pagestyle{fancy}
+
+\lhead{Examen 2}
+\chead{Luis González Rivas}
+\rhead{2 de diciembre de 2021}
+
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+
+\addbibresource{blb.bib}
+
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newtheorem*{prop}{Proposición}
+
+\newenvironment{problem}[2][Problema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+\section*{Análisis Complejo}
+
+\text{ }
+
+%-----------------------------
+\begin{problem}{2, febrero 2014}
+Sea $f$ una función analítica en $D = \{z \in \C : \lvert z \rvert < 1 \}$, tal que $Re \ f(z) > 0$ para todo $z \in D$. Demuestre que si $f(0) = c > 0$, entonces $\lvert f^\prime(0) \rvert \leq 2c.$
+\end{problem}
+\begin{proof}
+Considere la función 
+
+$$ g(z) = \frac{f(z)-c}{f(z)+c},$$ donde $f(0) = c.$ En primer lugar, $g$ es analítica en $D$, puesto que $Re \ f(z) > 0$ en $z \in D.$ Además, si $z \in D$, tenemos que
+
+\begin{eqnarray*}
+\lvert g(z) \rvert^2 &=& \left| \frac{f(z) - c}{f(z) + c} \right|^2 \\
+&=& \frac{(Re \ f(z)-c)^2 + (Im \ f(z))^2 }{(Re \ f(z) + c)^2 + (Im \ f(z))^2}\\
+&\leq& 1; 
+\end{eqnarray*}
+y $g(0) = 0.$ Por tanto, las hipótesis del Lema de Schwarz aplican para $g$. Luego, si $z \in D$,
+$$\lvert g^\prime(0) \rvert = \left\lvert \frac{2c f^\prime(0)}{(f(0) + c)^2} \right\rvert = \left\lvert \frac{f^\prime(0)}{2c} \right\rvert \leq 1,$$
+si y solo si 
+$$\lvert f^\prime(0) \rvert  \leq 2c.$$
+\end{proof}
+%-----------------------------
+%-----------------------------
+
+
+
+%-----------------------------
+%-----------------------------
+\begin{problem}{3, febrero 2014}
+Evalúe la siguiente integral
+
+$$\int_{\lvert z \rvert = 2} \frac{e^{1/z^2}}{1-z} dz.$$
+\end{problem}
+\textit{Solución.} Para este problema utilizaremos le teorema del residuo. En primer lugar, observe que $f(z) = e^{1/z^2}/(1-z)$ tiene dos singularidades aisladas en $z=0$ y $z=1.$ En el anillo $ann(0; 0; 1)$ la función $f$ es analítica y
+
+$$e^{1/z^2} = 1 + \frac{1}{z^2} + \frac{1}{2! z^4} + \frac{1}{3! z^9} + \cdots,$$
+$$\frac{1}{1-z} = 1 + z + z^2 + z^3 + \cdots. $$
+
+De aquí, vemos que el término con $z^{-1}$ es
+
+$$\frac{1}{z}(1 + \frac{1}{2!} + \frac{1}{3!} + \cdots ) = \frac{e-1}{z} .$$
+Por tanto, $Res(f, 0) = e-1.$ Por otro lado, $f$ tiene un polo simple en $z=1$, por lo que 
+$$Res(f, 1) = (z-1)\frac{e^{1/z^2}}{1-z} \ \biggr\rvert_{z=1} = -e^{1/z^2}\biggr\rvert_{z=1} = -e. $$
+
+Ahora bien, la curva cerrada descrita por $\lvert z \rvert = 2$ tiene a $z=0$ y $z=1$ como puntos interiores. Además, $f$ es analítica en $\lvert z \rvert < 2$, excepto en estos puntos. Por el teorema del residuo
+
+$$\int_{\lvert z \rvert = 2} \frac{e^{1/z^2}}{1-z} dz = 2\pi i (e-1 - e) =-2\pi i.$$
+%-----------------------------
+%-----------------------------
+
+
+
+%-----------------------------
+%-----------------------------
+\begin{problem}{1, agosto 2014}
+Sea $f$ una función analítica sobre una curva cerrada $\gamma$ y en el interior de esta. Supóngase que $f(z)$ es diferente de cero para toda $z$ sobre y en el interior de $\gamma$ salvo en el punto $a$ que está en el interior de $\gamma$ donde la función tiene un cero simple. 
+Demuestre que
+$$a= \frac{f^\prime(a)}{2 \pi i} \int_\gamma \frac{z}{f(z)} dz. $$
+\end{problem}
+\begin{proof}
+Sea $G$ la región interior a $\gamma$. Como $f$ es analítica en $G$ y tiene un cero simple en $z=a\in G$, existe una función analítica $g: G \rightarrow \C$ tal que $f(z) = (z-a)g(z)$ y $g(a) \neq 0.$ Observe además, que como $f(z) \neq 0$ para toda $z \in G$ diferente de $a$, entonces $g(z) \neq 0$ para toda $z\in G.$ De esta manera, tenemos lo siguiente
+
+$$ \int_{\gamma} \frac{z}{f(z)} dz = \int_{\gamma} \frac{z}{(z-a) g(z)} dz = \int_{\gamma} \frac{z/g(z)}{z-a} dz. $$
+
+Observe que la función $h(z) = z / g(z)$ es analítica en $G$, puesto que $g(z) \neq 0$ en $G$. Entonces, 
+
+$$ h(a) = \frac{1}{2\pi i} \int_{\gamma} \frac{h(z)}{z-a} dz, $$
+si y solo si,
+$$ a  = \frac{g(a)}{2 \pi i}\int_\gamma \frac{z}{f(z)} dz. $$
+
+Pero $f^\prime(z) = (z-a)g^\prime(a) + g(z)$, por lo que $g(a) = f^\prime(a).$ Sustituyendo esto último en la ecuación anterior se obtiene el resultado.
+\end{proof}
+%-----------------------------
+%-----------------------------
+
+
+
+%-----------------------------
+\begin{problem}{3, agosto 2014}
+Sea $f$ una función analítica en $\{z\in \C: Re \ z \geq 0 \}$. Supóngase que:
+
+a) existe una constante positiva $M$ tal que, para toda $z$ con $Re \ z = 0,$ se satisface la desigualdad $\lvert f(z) \rvert \leq M;$
+
+b) hay una colección de puntos $z_1, \ldots, z_n$ tal que, para toda $k \in \{1, \ldots, n \}$, $Re \ z_k > 0$ y $f(z_k) = 0.$
+
+Demuestre la desigualdad 
+
+$$\lvert f(z) \rvert \leq M \frac{\prod_{k=1}^n \lvert z - z_k \rvert}{\prod_{k=1}^n \lvert z + \overline{z}_k \rvert}.$$
+\end{problem}
+
+\begin{proof}
+Sean $T_k(z) = \frac{z-z_k}{z + \overline{z}_k}$, para $k=1, \ldots, n.$ Observe que estas funciones mapean al semiplano $H = \{z \in \C: Re \ z > 0 \}$ en el disco unitario $D$. Si $S_k$ es la inversa de $T_k$ para $k\in \{1, \ldots, n\}$, entonces $S_k$ mapea al círculo unitario al semiplano $H$. Además, $S_k$ es analítica en $D$ para toda $k$.  Así pues, la siguiente composición 
+
+$$f \circ S_1: D \rightarrow  \C, $$
+
+está bien definida y es analítica en $D.$ Ahora bien, la función $\lvert f \circ S_1 \rvert: D \rightarrow \R$ es continua, por lo que esta tiene un máximo en $D$; más aún, puesto que esta composición es analítica en el interior de $D$, este máximo se encuentra en $\partial D = S^1.$ Luego, por hipótesis,  
+
+$$\lvert (f \circ S_1)(w) \rvert \leq M.$$
+
+Por otro lado, como $f \circ S_1: 0 \mapsto z_1 \mapsto 0$, se cumplen las condiciones del lema de Schwarz para la función $(f \circ S_1)(w) / M$. Entonces, para toda $w \in D,$
+
+$$\lvert f(S_1(w))  \rvert \leq M \lvert w \rvert.$$
+
+Pero como $S_1$ y $T_1$ son inversas, de lo anterior se deduce que 
+
+$$\lvert f(z) \rvert \leq M \left \lvert \frac{z - z_1}{z + \overline z_1} \right\rvert.$$
+
+Finalmente, consideremos la función $ g: H-\{z_1\} \rightarrow \C $ definida como 
+
+$$g(z) = f(z) \frac{z + \overline z_1}{z - z_1}. $$
+
+Esta función es analítica; no obstante, existe una función $\hat g: H \rightarrow \C$ analítica que extiende a $g$, puesto que 
+
+$$\lim_{z \to z_1} (z -z_1)g(z) = \lim_{z\to z_1} f(z) (z+\overline{z_1}) = 0.$$
+
+Más aún, si $z = ti,$ entonces 
+$$ \lvert \hat g(ti) \rvert  = \left \lvert f(ti) \frac{ti + \overline{z_1}}{ti - z_1} \right \rvert \leq M;$$
+
+y $\hat g(z_k) = 0$ para $k \in \{2, \ldots, n\}$. Tenemos pues, el mismo caso que en la función $f$, obteniendo que, para $z \neq z_1$,
+
+$$\lvert \hat g(z) \rvert = \left\lvert f(z) \frac{z+\overline z_1}{z - z_1} \right\rvert \leq M \left\lvert \frac{z-z_2}{z+\overline z_2} \right\rvert. $$
+
+Luego, para $z \in H$,
+
+$$\lvert f(z) \rvert \leq M \left \lvert \frac{z - z_1}{z + \overline z_1} \right\rvert \left\lvert \frac{z - z_2}{z + \overline{z}_2} \right\rvert.$$
+
+Este argumento se puede seguir para todos los puntos $z_1, \ldots z_n$, obteniendo 
+
+$$\lvert f(z) \rvert \leq M \left \lvert \frac{z - z_1}{z + \overline z_1} \right\rvert \cdots \left\lvert \frac{z - z_n}{z + \overline{z}_n} \right\rvert$$
+para toda $z \in H.$
+\end{proof}
+%-----------------------------
+%-----------------------------
+
+
+%-----------------------------
+%-----------------------------
+\begin{problem}{3, enero 2015}
+Demuestre que:
+
+a) la función
+$$f(z) = \frac{z+1}{z \sin z}$$
+tiene un polo de orden 2 y magnitud 1 en $z=0$.
+
+b) la función
+$$ f(z) = \frac{\sin z}{1+z}$$
+tiene un polo simple en $z=-1$ y una singularidad esencial en $z=\infty.$
+\end{problem}
+
+\textit{Solución.} a) En primer lugar, vea que
+$$f(z) = \frac{z+1}{z \sin z} = \frac{1}{\sin z} + \frac{1}{z \sin z}.$$
+
+Es claro las dos funciones del lado derecho son analíticas en el anillo $ann(0, 0, \pi).$ Partiendo del hecho que
+
+$$ \sin z = z - \frac{z^3}{3!} + \frac{z^5}{5!} + \cdots = \sum_{k=0}^\infty (-1)^{k} \frac{z^{2k+1}}{(2k+1)!},$$
+
+tenemos 
+
+\begin{eqnarray*}
+\frac{1}{\sin z} &=& \frac{z}{z \sin z} \\
+&=& \frac{1}{z} \cdot \left( \frac{\sin z}{z} \right)^{-1}\\
+&=& \frac{1}{z} \left( \sum_{k=0}^\infty (-1)^{k} \frac{z^{2k}}{(2k+1)!}  \right)^{-1}\\
+&=& \frac{1}{z} \left(1 + \frac{z^2}{6} + \frac{7z^4}{360} + \frac{31z^6}{15120} + \cdots \right)\\
+&=& \frac{1}{z} + \frac{z}{6} + \frac{7z^3}{360} + \frac{31z^5}{15120} + \cdots.
+\end{eqnarray*}
+Como consecuencia de lo anterior,
+
+\begin{eqnarray*}
+f(z) &=& \frac{1}{\sin z} + \frac{1}{z \sin z}\\
+&=& \left(\frac{1}{z} + \frac{z}{6} + \frac{7z^3}{360} + \frac{31z^5}{15120} + \cdots \right) + \frac{1}{z} \left( \frac{1}{z} + \frac{z}{6} + \frac{7z^3}{360} + \frac{31z^5}{15120} + \cdots \right)\\
+&=& \left(\frac{1}{z} + \frac{z}{6} + \frac{7z^3}{360} + \frac{31z^5}{15120} + \cdots \right) + \left( \frac{1}{z^2} + \frac{1}{6} + \frac{7z^2}{360} + \frac{31z^4}{15120} + \cdots \right).
+\end{eqnarray*}
+
+Esto muestra que $z=0$ es un polo de orden 2 de magnitud 1.\\
+
+b) En primer lugar, vea que $\sin z$ es analítica en todo $\C$, por lo que los coeficientes de su serie de Laurent en $z=-1$ satisfacen
+
+$$\frac{(\sin(-1))^{n}}{n!} = a_n = \frac{1}{2\pi i} \int_{\vert z+1 \rvert = 1} \frac{\sin z}{(z+1)^{n+1}} dz,$$
+para $n \geq 0$. Mientras que para $n<0$, el integrando es analítica, por lo que $a_n =0$.
+
+Entonces,
+\begin{eqnarray*}
+ \frac{\sin z}{1+z} &=& \frac{1}{1+z} \left(-\sin 1 + \cos 1 (z+1) + \frac{\sin 1 }{2!}(z+1)^2 + \cdots \right) \\
+ &=& -\sin 1 (1+z)^{-1} + \cos 1 + \frac{\sin 1}{2!} (z+1)^2 + \cdots.
+\end{eqnarray*}
+
+Esto muestra que $f$ tiene un polo simple en $z=-1.$
+
+
+Por otro lado, si $g(z) = \frac{\sin(1/z)}{1 + 1/z} = \frac{z \sin(1/z)}{1 + z}$, su serie de Laurent  en $ann(0, 0, 1)$ es
+
+\begin{eqnarray*}
+\frac{z \sin(1/z)}{1 + z} &=& \frac{z}{1+z} \left(\frac{1}{z} - \frac{1}{3!z^3} + \frac{1}{5! z^5} + \cdots \right)\\
+&=& (1 - z + z^2 - z^3 + \cdots) \left(1 - \frac{1}{3! z^2} + \frac{1}{5! z^4} + \cdots  \right).
+\end{eqnarray*}
+
+De aquí, podemos constatar que la parte singular de $g$ en $z=0$ es 
+
+$$\frac{1}{z}\left(\frac{1}{3!} - \frac{1}{5!} + \frac{1}{7!} + \cdots \right) + \frac{1}{z^2} \left(-\frac{1}{3!} + \frac{1}{5!} - \frac{1}{7!} \cdots \right) +\cdots  = \frac{\sin 1}{z}  - \frac{\sin 1}{z^2} + \cdots.$$
+
+De manera que $g$ tiene una singularidad esencial en $z=0$; luego $\frac{\sin z}{1+z}$ tiene una singularidad esencial en $z=\infty.$
+%-----------------------------
+
+
+
+
+%-----------------------------
+%\begin{problem}{5, enero 2015}
+%Suponga que la función $f$ es analítica en el exterior del círculo unitario. Si resulta que existe $r > 1$ y una sucesión $\{c_k\}_{k=1}^\infty$ tales que
+%$$f(z) = - \sum_{k=1}^\infty c_k z^{k-3}$$
+%para todo $z$ tal que $\lvert z \rvert > r$, entonces $f(z) = - \sum_{k=1}^\infty c_k z^{k-3}$ para todo $z$ fuera del círculo unitario.
+
+%\end{problem}
+%\textit{Solución.} Sea $\lvert z_0 \rvert > r$, y $1 <\lvert z_1 \rvert \leq r$, entonces 
+
+
+%$$-\sum_{k=1}^\infty c_k z_0^{k-3},$$
+%converge. 
+%-----------------------------
+
+\end{document}

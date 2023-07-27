@@ -1,0 +1,129 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{mathpazo,amsfonts}
+\usepackage[margin=0.95in]{geometry}
+
+\pagestyle{fancy}
+
+\lhead{Tarea 8}
+\chead{Luis González Rivas}
+\rhead{10 de noviembre de 2021}
+
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+
+\addbibresource{blb.bib}
+
+\newtheorem{teo}{Teorema}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newtheorem*{prop}{Proposición}
+
+\newenvironment{problem}[2][Problema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+\section*{Análisis Complejo}
+
+%---------------------------------
+\begin{teo} Sea $f$ meromorfa en una región $G$ con ceros $z_1, z_2, \ldots, z_n$ y polos $p_1, \ldots, p_m$ contados con multiplicidades. Si $g$ es analítica en $G$ y $\gamma$ es una curva cerrada rectificable en $G$ con $\gamma 0$ que no pasa por ningún $z_i$ o $p_j$, entonces
+
+$$ \frac{1}{2\pi i} \int_\gamma g \frac{f^\prime}{f} = \sum_{i=1}^n g(z_i) n(\gamma; z_i) - \sum_{j=1}^m g(p_j) n(\gamma; p_j).$$
+\end{teo}
+\begin{proof} Observe que 
+$$ \frac{f^\prime(z)}{f(z)} = \sum_{i=1}^n \frac{1}{z-z_i} - \sum_{j=1}^m \frac{1}{z-p_j} + \frac{h^\prime(z)}{h(z)},$$
+con $h$ analítica en $G$ y distinta de cero en $G.$ Si multplicamos la ecuación anterior por $g$ y aplicamos el Teorema de Cauchy obtenemos que 
+
+\begin{eqnarray*}
+\frac{1}{2\pi i} \int_\gamma g(z) \frac{ f^\prime(z)}{f(z)} &=& \frac{1}{2\pi i} \int_\gamma g(z) \sum_{i=1}^n \frac{1}{z-z_i} - \frac{1}{2\pi i} \int_\gamma g(z) \sum_{j=1}^m \frac{1}{z-p_j} + \frac{1}{2\pi i} \int_\gamma g(z)
+\frac{h^\prime(z)}{h(z)}\\
+&=& \sum_{i=1}^n \frac{1}{2 \pi i} \int_\gamma \frac{g(z)}{z-z_i} - \sum_{j=1}^m \frac{1}{2\pi i} \int_\gamma \frac{g(z)}{z-p_j}\\
+&=& \sum_{i=1}^n n(\gamma, z_i)g(z_i) - \sum_{j=1}^m n(\gamma, p_j) g(p_j). 
+\end{eqnarray*}
+\end{proof}
+%---------------------------------
+
+
+%---------------------------------
+\begin{problem}{2. pp. 126 } Suponga que $f$ es analítica en $\overline{B}(0;1)$ y satisface $\lvert f(z) \rvert < 1$ para $\lvert z \rvert = 1.$ Encuentre el número de soluciones (contando multiplicidades) de la ecuación $f(z) = z^n$, donde $n$ es un entero mayor o igual a 1. 
+\end{problem}
+\begin{proof}
+Considere la función $g(z) = f(z) - z^n$ y $h(z) = z^n.$ Entonces, 
+$$ \lvert g(z) + h(z) \rvert = \lvert f(z) \rvert < 1 < \lvert g(z) \rvert + \lvert h(z) \rvert.$$
+
+Las funciones $g$ y $h$ son analíticas, en $B(0, 1)$ y no se anulan en $\lvert z \rvert = 1.$ Además, la función tiene un único cero en $B(0, 1)$, por lo que $g$ tiene un único cero en esta región. Por tanto, la ecuación $f = z^n$ tiene una única solución.
+\end{proof}
+%---------------------------------
+
+%---------------------------------
+\begin{problem}{6. pp. 126} Sea $G$ una región y sea $H(G)$ el conjunto de todas las funciones analíticas en $G$. Demuestre que $H(G)$ es un dominio entero; esto es, $H(G)$ es un anillo conmutativo sin divisores de cero. Demuestre que $M(G)$, el conjunto de funciones meromorfas en $G$, es un campo.
+\end{problem}
+%---------------------------------
+
+%---------------------------------
+\begin{problem}{9. pp. 126} Sea $\lambda > 1$ y demuestre que la ecuación $\lambda - z - e^{-z} = 0$ tiene exactamente una solución en el semiplano $\{z: Re \ z > 0 \}.$ Demuestre que esta solución debe ser real. ¿Qué pasa con la solución cuándo $\lambda \to 1$?
+\end{problem}
+\begin{proof}
+Sea
+\end{proof}
+%---------------------------------
+
+%---------------------------------
+\begin{problem}{1. pp. 129} Demuestre el siguiente principio mínimo. Si $f$ es una función analítica y no constante en un conjunto abierto y acotado $G$ y si es continua en $G^{-}$, entonces o $f$ tiene un cero en $G$ o $\vert f \rvert$ asume su mínimo en $\partial G.$ 
+\end{problem}
+%---------------------------------
+
+%---------------------------------
+\begin{problem}{3. pp. 130} \text{ }
+\begin{itemize}
+    \item[(a)] Sea $f$ una función entera y no constante. Para cualquier real positivo $c$, demuestre que la cerradura de $\{z: \lvert f(z) \rvert < c\}$ es el conjunto $\lvert f(z) \rvert \leq c \}.$
+    \item[(b)] Sea $p$ un polinomio y demuestre que cada componente de $\{z: \lvert p(z) \rvert < c \}$ contiene un cero de $p$. 
+    \item[(c)] Si $p$ es un polinomio y $c > 0$, demuestre que $\{z: \lvert p(z) \rvert = c\}$ es la unión de un número finito de caminos cerrados. Discuta el comportamiento de estos caminos cuando $c \to \infty.$
+\end{itemize}
+
+\end{problem}
+%---------------------------------
+
+%---------------------------------
+\begin{problem}{1. pp. 132} Suponga que $\lvert f(z) \rvert \leq 1$ para $\lvert z \rvert < 1$ y $f$ analítica. Considere la función $g: D \rightarrow D$ definida como 
+$$g(z) = \frac{f(z) - a}{1-\overline{a} f(z)},$$
+con $a = f(0).$ Demuestre que 
+
+$$\frac{\lvert f(0)\rvert - \lvert z\rvert}{1-\lvert f(0) \rvert \lvert z \rvert} \leq \lvert f(z) \rvert \leq \frac{\lvert f(0) \rvert + \lvert z \rvert}{1 + \lvert f(0) \rvert \lvert z \rvert},$$
+
+para $\lvert z \rvert < 1.$
+\end{problem}
+%---------------------------------
+
+%---------------------------------
+\begin{problem}{3. pp. 133} Suponga que $f: D \rightarrow \C$ satisface que $Re f(z) \geq 0$ para toda $z \in D$ y suponga que $f$ es analítica. 
+
+\begin{itemize}
+    \item[(a)] Demuestre que $Re f(z) > 0$ para toda $z \in D$. 
+    \item[(b)] Usando la transformación de Möbius apropiada, aaplique el Lemma de Schwarz para demostrar que si $f(0) = 1 $, entonces 
+    $$\lvert f(z) \rvert \leq \frac{1+\lvert z \rvert}{1 - \lvert z \rvert}, $$
+    para $\lvert z \rvert < 1.$ ¿Qué puede decirse si $f(0) \neq 1?$
+    \item[(c)] Demuestre que $f$ también satisface
+    $$ f(z) \geq \frac{1 - \lvert z \rvert}{1+\lvert z \rvert}. $$
+    
+\end{itemize}
+\end{problem}
+%---------------------------------
+\printbibliography
+
+
+\end{document}
