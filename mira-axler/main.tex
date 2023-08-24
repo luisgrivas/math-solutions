@@ -1,0 +1,142 @@
+\documentclass[14.5pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{amsfonts}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{comment}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\pagestyle{fancy}
+
+\fancyhead[L]{Luis Gonzalez Rivas}
+\fancyhead[R]{Measure, Integration \& Real Analysis}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+\newenvironment{problem}[2][Problem]{\begin{mdframed}[backgroundcolor=gray!10, leftline = false, rightline=false, linewidth=0.25pt]  \begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist} \end{mdframed}  }
+
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+  
+\begin{document}
+
+% SECTION 2A
+% -------------------------------
+\section*{Outer Measure on $\R$} % cambiar indice
+\begin{problem}{2A.3}Prove that if $A$, $B \subset \R$ and $|A| < \infty$, then $|B\setminus A | \geq | B | - |A|$.
+\end{problem}
+\begin{proof}
+    Notice that $B = (B \setminus A) \cup (A \cap B)$ and $(A \cap B) \subset A$, then $|B| \leq | B \setminus A | + |A|.$ Since $|A| < \infty$, we have $| B | - | A | \leq | B \setminus A|.$
+\end{proof}
+
+% -------------------------------
+\begin{problem}{2A.4} Suppose $F$ is a subset of $\R$ with the property that every open cover of $F$ has a finite subcover. Prove that $F$ is closed and bounded.
+\end{problem}
+\begin{proof}
+    Let $q$ be a point not in $F$. For each $p\in F$, define the open interval $I_p = (p - r_p, p + r_p)$, where $r_p = 2^{-1} | p - q |.$ It is clear that the set $\{I_p: p \in F\}$ is an open cover of $F$. Then, there exist ${p_1}, \ldots, {p_k}$ in $F$ such that 
+    $$F \subset \bigcup_{j=1}^k I_{p_j}.$$
+    Now, let $r = \min\{r_{p_1},\ldots, r_{p_k}\}$ and $I = (q - r, q + r)$. If $t \in I$, then
+    $$2 r_{p_j} = |p_j - q | \leq |p_j - t | + | t - q| < |p_j - t | + r \leq |p_j - t | + r_{p_j},$$
+    and this holds if $|p_j - t | > r_{p_j}$.That is, $t \notin I_{p_j}$ for all $j = 1, \ldots, k.$ Hence $I \subset F^c$, which shows that $F^c$ is open.
+    
+    Let $a = \min\{p_1 - r_{p_1}, \ldots, p_k - r_{p_k}\}$ and $b = \max\{p_1 + r_{p_1}, \ldots, p_k + r_{p_k}\}$. Notice that $$F \subset \bigcup_{j=1}^k I_{p_j} \subset (a, b).$$
+    This shows that $F$ is bounded.
+\end{proof}
+
+
+% -------------------------------
+\begin{problem}{2A.5}
+    Suppose $\mathcal A $ is a set of closed subsets of $\R$ such that $\bigcap_{F \in \mathcal A} F = \emptyset$. Prove that if $\mathcal A$ contains at least one bounded set, then there exist $n \in \N$ and $F_1, \ldots, F_n \in \mathcal{A}$ such that $F_1 \cap \ldots \cap F_n = \emptyset.$
+\end{problem}
+\begin{proof}
+    Let $F^\prime \in \mathcal{A}$ be a bounded set. The fact that  $\bigcap_{F \in \mathcal A} F = \emptyset$  implies that the family $\{F^c: F \in \mathcal A, F \neq F^\prime\}$ is an open cover of $F$. By the Heine-Borel Theorem, there exist $F_1, \ldots, F_{n-1}$ in $\mathcal{A}$, with $F_j \neq F^\prime$ for all $j =1, \ldots, n-1$ and
+    $F^\prime \subset F_1^c \cup \cdots \cup F_{n-1}^c.$ Hence 
+    $F^\prime \cap F_1 \cap \cdots \cap F_{n-1} = \emptyset.$
+\end{proof}
+
+% -------------------------------
+\begin{problem}{2A.6} Prove that if $a, b \in \R$ and $a < b$, then
+$$|(a,b)| = |[a,b)| = |(a, b]| = b - a.$$
+\end{problem}
+\begin{proof}
+    Notice that $[a,b] = (a, b) \cup \{a, b\}$. Then, $|[a,b]| \leq |(a,b)| + |\{a,b\}| = |(a,b)|$, since $\{a,b\}$ is countable. Since $(a,b) \subset [a,b]$, then $|(a,b)| \leq |[a,b]|.$ Hence $|(a,b)| = |[a,b]| = b - a.$ The other cases are similar. 
+\end{proof}
+
+% -------------------------------
+\begin{problem}{2A.7} Suppose $a,b,c,d$ are real numbers with $a < b $ and $c < d.$ Prove that
+$$|(a,b) \cup (c, d)| = (b-a) + (d-c) \iff (a, b) \cap (c,d) = \emptyset.$$
+\end{problem}
+\begin{proof}
+    Suppose that $ (a, b) \cap (c,d) \neq \emptyset.$ First, if $(a,b) \subset (c,d)$, then $(a,b) \cup (c,d) = (c,d)$. Hence $|(a,b) \cup (c, d)| = |(c, d)| = d-c \leq (b-a) + (d-c).$ If $(a,b)$ is not contained in $(c,d)$, then we can assume, without lost of generality, that $a < c.$ Then $(a,b) \cup (c, d) = (a,d)$. Hence $|(a,b) \cup (c, d)| = | (a,d) | = d - a \leq (b-a) + (d - c)$.
+    Suppose that $ (a, b) \cap (c,d) = \emptyset.$ Without loss of generality, we can assume that $b < c$. Define 
+    $$(a, d) = (a, b) \cup [b,c] \cup (c, d).$$
+    Hence $(a,b) \cup (c,d) = (a,d) \setminus [b,c]$. Then, by \textbf{Problem 2A.3} and \textbf{Problem 2A.6}
+    $$|(a,b) \cup (c,d) | = |(a,d) \setminus [b,c]| \geq |(a,d) - |[b,c]| = (d-a) - (c-b) = (b-a) + (d-c).$$
+    And by the subadditivity of the outer measure we have $|(a,b) \cup (c,d) |  \leq (b-a) + (d-c)$. Therefore $|(a,b) \cup (c,d) | = (b-a) + (d-c)$.
+    
+\end{proof}
+
+% -------------------------------
+\begin{problem}{2A.10} Prove that $| [0,1] \setminus \Q | = 1.$
+\end{problem}
+\begin{proof}
+    Since $\Q$ is countable, $| \Q | = 0$. By \textbf{Problem 2A.3}, we have $1 \geq [0,1] \setminus \Q \geq |[0,1]| - | \Q | = 1$. Then $|[0,1] \setminus \Q | = 1.$
+\end{proof}
+
+% -------------------------------
+\begin{problem}{2A.11} Prove that if $I_1, I_2, \ldots$ is a disjoint sequence of open intervals, then 
+$$\left\lvert \bigcup_{n=1}^\infty I_n\right\rvert = \sum_{n=1}^\infty l(I_n).$$
+\end{problem}
+
+\begin{proof}
+Let $O = \bigcup_{n=1}^\infty I_n$. By the countable subadditivity of the outer measure, we have that $\left\lvert O \right\rvert \leq \sum_{n=1}^\infty l(I_n).$
+\end{proof}
+
+% -------------------------------
+\begin{problem}{2A.12}
+    Suppose $r_1, r_2, \ldots$ is a sequence that contains every rational number. Let
+$$F = \R \setminus \bigcup_{k=1}^\infty \left(r_k - \frac{1}{2^k}, r_k + \frac{1}{2^k} \right).$$
+\begin{itemize}
+    \item[(a)]Show that $F$ is a closed subset of $\R$
+    \item[(b)]  Prove that if $I$ is an interval contained in $F$, then $I$ contains at most one element.
+    \item[(c)] Prove that $|F| = \infty$.
+\end{itemize}
+\end{problem}
+\begin{proof}
+    \textbf{}
+    \begin{itemize}
+        \item[(a)] Let $O=\bigcup_{k=1}^\infty \left(r_k - \frac{1}{2^k}, r_k + \frac{1}{2^k} \right).$ Since $O$ is the union of open intervals, it is open, which implies that $F = \R \setminus O$ is closed. 
+        \item[(b)] Let $I = (a,b)$ be an open interval contained in $F$, and suppose that $a < b$. Since the rationals are dense in $\R$, there exists $r_k\in \Q$ such that $a < r_q < b.$ But $F$ does not contain any rational, by definition. Hence it must be false that $a < b.$ 
+        \item[(c)] Notice that 
+        $$|O| \leq \sum_{k=1}^\infty \frac{1}{2^{k-1}} = 2.$$
+        Then, by \textbf{Problem 2A.3} we have
+        $$|F| = | \R \setminus O | \geq | \R | - | O | \geq  | \R | - 2 = \infty,$$
+        which implies that $|F| = \infty.$
+    \end{itemize}
+\end{proof}
+
+% -------------------------------
+\begin{problem}{2A.13}
+    Suppose $\epsilon > 0$. Prove that there exists a subset $F$ of $[0, 1]$ such that $F$ is closed, every element of $F$ is an irrational number, and $|F| > 1 - \epsilon$.
+\end{problem}
+\begin{proof}
+    Let $\{r_n\}$ be a sequence that contains every rational number in $[0,1]$ and let $\epsilon > 0$. Since the geometric series
+    $$\sum_{n=0}^{\infty}  2^{-n}$$
+    converges, there exists $k\in \N$ such that
+    $$\sum_{n=k}^{\infty}  2^{-n} < \epsilon.$$
+    Define 
+    $$O = \bigcup_{n=1}^\infty (r_n -  2^{-k-n}, r_n + 2^{-k-n}).$$
+    The set $O$ is open, since it is the union of open intervals, and
+    $$|O| \leq \sum_{n=1}^\infty 2^{-k-n+1}  = \sum_{n=k}^\infty 2^{-n} < \epsilon.$$
+    Let $F = [0, 1] \setminus O$. Notice that $F$ is closed, it consist of only irrational numbers, and by the previous inequality and \textbf{Problem 2A.3} we have 
+    $$|F| = |[0,1 ] \setminus O| \geq 1- |O| > 1 - \epsilon.$$
+\end{proof}
+\end{document}

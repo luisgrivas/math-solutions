@@ -1,28 +1,71 @@
-\documentclass[12pt]{article}
+\documentclass[14.5pt]{article}
 \usepackage[utf8]{inputenc}
-\usepackage[spanish]{babel}
+%\usepackage[spanish]{babel}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{fancyhdr}
-\usepackage{mathpazo,amsfonts}
+\usepackage{amsfonts}
 \usepackage[margin=0.95in]{geometry}
 \usepackage{comment}
-
+\usepackage{xcolor}
+\usepackage{mdframed}
 \pagestyle{fancy}
 
-\lhead{Análisis Complejo y Real}
-\chead{Luis González Rivas}
-\rhead{21 de junio de 2023}
+\fancyhead[L]{Luis Gonzalez Rivas}
+\fancyhead[R]{Real and Complex Analysis}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 
+\newenvironment{pr}[2][Problem]{\begin{mdframed}[backgroundcolor=gray!10, leftline = false, rightline=false, linewidth=0.25pt]  \begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist} \end{mdframed}  }
 
-\newenvironment{problem}[2][Problema]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+  
 \begin{document}
-a
+
+\section{Abstract Integration}
+
+\begin{pr}{1.1} Does there exist an infinite $\sigma$-algebra which has only countably many members?
+\end{pr}
+\begin{solution}
+Let $X$ be any set and $S$ an infinite $\sigma$-algebra of $X$. Suppose that $S$ is countable. Then, we can write $S = \{A_i: i \in \N, A_i \subset X \}$. For each $x$ in $X$ define $B_x = \cap_{x \in A_i} A_i$. Notice that each $B_x$ is an element of $S$, since each one is a countable intersection of members of $S$. Let $x$ and $y$ two distinct elements of $X$, and suppose that $B_x \cap B_y \neq \emptyset.$ 
+\end{solution}
+
+
+%--------------------------------------
+\begin{pr}{1.2} Prove an analogue of Theorem 1.8 for $n$ functions  
+\end{pr}
+\begin{proof}
+Let us prove the statement by induction. Theorem 1.8 states that the case $n = 2$ holds. Let the statement be true all natural numbers less than $n$. Let $f_1, \ldots, f_n$ be measurable functions from $X$ to $\R$ and let $\Phi: \R^n \to Y$ be a continuous function. Notice that 
+$$\Phi(f_1(x), \ldots, f_n(x)) = \Phi(I_{n-1}(f_1(x), \ldots, f_{n-1}(x)), f_n(x)),$$
+where $I_{n-1}:\R^{n-1} \rightarrow \R^{n-1}$ is the identity in $\R^n$. In the standard topology, $I_{n-1}$ is continuous. Then, by induction, $I_{n-1}(f_1(x), \ldots, f_{n-1}(x))$ is a measurable function from $\R^{n-1} \rightarrow \R^{n-1}$. Hence, by induction, $\Phi(f_1(x), \ldots, f_n(x)) = \Phi(I_{n-1}(f_1(x), \ldots, f_{n-1}(x)), f_n(x))$
+    
+\end{proof}
+
+%--------------------------------------
+\begin{pr}{1.3} Prove that if $f$ is a real function on a measurable space $X$ such that $\{x:f(x) \geq r\}$ is measurable for every rational $r$, then $f$ is measurable.
+\end{pr}
+\begin{proof}
+Let $\alpha \in \R$ and let $A = \{r \in \Q: r > \alpha\}.$ Notice that $(\alpha, \infty] = \bigcup_{r \in A} [r, \infty]$. Then, 
+$$f^{-1}((\alpha, \infty]) = f^{-1}\left( \bigcup_{r \in A} [r, \infty] \right) = \bigcup_{r \in A} f^{-1}([r, \infty]).$$
+Since $A$ is countable, the above equations implies that $f^{-1}((\alpha, \infty])$ is measurable. Given that $\alpha$ was chosen arbitrarily, $f$ is measurable.
+\end{proof}
+
+%--------------------------------------
+\begin{pr}{1.4} Let $\{a_n\}$ and $\{b_n\}$ be sequences in $[-\infty, \infty]$, and prove the following assertions:
+\begin{itemize}
+    \item[(a)] $\limsup (-a_n) =  - \liminf a_n$.
+    \item[(b)] $\limsup (a_n + b_n) \leq \limsup a_n  + \limsup b_n$
+    provided that non of the sums is of the form $\infty - \infty$.
+    \item[(c)] If $a_n \leq b_n,$ for all $n$, then
+    $$\liminf a_n \leq \liminf b_n.$$
+    Show by an example that strict inequality can hold in (b).
+\end{itemize}
+\end{pr}
+
 \end{document}
