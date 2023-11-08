@@ -1,0 +1,52 @@
+\documentclass[14.5pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{amsfonts}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{comment}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\pagestyle{fancy}
+
+\title{Measure Theory Problems}
+\author{Luis Gonzalez Rivas}
+\fancyhead[L]{Luis Gonzalez Rivas}
+\fancyhead[R]{Measure, Integration \& Real Analysis}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+\newenvironment{problem}[2][Problem]{\begin{mdframed}[backgroundcolor=gray!10, leftline = false, rightline=false, linewidth=0.25pt]  \begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist} \end{mdframed}  }
+
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+  
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}{1}
+Suppose $\mu(X) = 1, $ and suppose $f$ and $g$ are positive measurable functions on $X$ such that $fg \ge 1$. Prove that
+$$ \int_X f d\mu \cdot \int_X g d\mu \ge 1.$$    
+\end{problem}
+\begin{proof}
+Since $1 \le fg $, then $1 \le \sqrt{fg}$. By the Hölder inequality we have
+$$1 \le \int_X  \sqrt{fg} \ d\mu  = \left(\int_X f\ d\mu\right)^{1/2} \cdot  \left(\int_X g\ d\mu\right)^{1/2}.$$
+If we square both sides of the inequality we get the result.
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

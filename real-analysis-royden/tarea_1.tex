@@ -1,0 +1,43 @@
+\documentclass[14.5pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{amsfonts}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{comment}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\pagestyle{fancy}
+
+\fancyhead[L]{Luis Gonzalez Rivas}
+\fancyhead[R]{Real Analysis}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+\newenvironment{problem}[2][Problem]{\begin{mdframed}[backgroundcolor=gray!10, leftline = false, rightline=false, linewidth=0.25pt]  \begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist} \end{mdframed}  }
+
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+  
+\begin{document}
+\begin{problem}{7, page 222} Prove Proposition 4.
+\end{problem}
+
+\begin{problem}{8, page 222}
+\begin{itemize}
+    \item[a.] Show that each $\sigma$-finite measure is saturated.
+    \item[b.] Show that the collection of locally measurable sets is a $\sigma$-algenra. 
+    \item[c.] Let $(X, \mathcal{B}, \mu)$ be a measure space and $\mathcal{C}$ the $\sigma$-algebra of locally measurable sets. For $E \in \mathcal{C}$, set $\overline{\mu} E  = \mu E$ if $E \in \mathcal{B}$ and $\overline{\mu} E = \infty$ if $E \notin \mathcal{B}$. Show that $(X, \mathcal{C}, \overline{\mu})$ is a saturated measure space.
+    \item[d.] If $\sigma$ is semifinte and $E \in \mathcal{C}$, set $\underline{\mu} E = \sup \{ \sigma B: B \in \mathcal B, B \subset E.\}$ Show that $(X, \mathcal C, \underline{\mu})$ is a saturated measure space and that $\underline{\mu} E$ is an extension of $\mu$.
+    \item[e.] Use Problem 5d to show that, even if $\mu$ is not semifinite, there is a smallest extension $\underline \mu$ of $\mu$ to $\mathcal{C}$, and that $(X, \mathcal{C}, $ 
+\end{itemize}
+    
+\end{problem}
+\end{document}

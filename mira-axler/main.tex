@@ -11,6 +11,8 @@
 \usepackage{mdframed}
 \pagestyle{fancy}
 
+\title{Solutions to Axler's Measure, Integration \& Real Analysis }
+\author{Luis Gonzalez Rivas}
 \fancyhead[L]{Luis Gonzalez Rivas}
 \fancyhead[R]{Measure, Integration \& Real Analysis}
 
@@ -27,7 +29,7 @@
   {\end{proof}}
   
 \begin{document}
-
+\maketitle
 % SECTION 2A
 % -------------------------------
 \section*{Outer Measure on $\R$} % cambiar indice
@@ -67,7 +69,7 @@
 $$|(a,b)| = |[a,b)| = |(a, b]| = b - a.$$
 \end{problem}
 \begin{proof}
-    Notice that $[a,b] = (a, b) \cup \{a, b\}$. Then, $|[a,b]| \leq |(a,b)| + |\{a,b\}| = |(a,b)|$, since $\{a,b\}$ is countable. Since $(a,b) \subset [a,b]$, then $|(a,b)| \leq |[a,b]|.$ Hence $|(a,b)| = |[a,b]| = b - a.$ The other cases are similar. 
+    Notice that $[a,b] = (a, b) \cup \{a, b\}$. Then, $|[a,b]| \leq |(a,b)| + |\{a,b\}| = |(a,b)|$, since $\{a,b\}$ is countable. Since $(a,b) \subset [a,b]$, then $|(a,b)| \leq |[a,b]| = b - a.$ Hence $|(a,b)| = |[a,b]| = b - a.$ The other cases are similar. 
 \end{proof}
 
 % -------------------------------
@@ -75,7 +77,8 @@ $$|(a,b)| = |[a,b)| = |(a, b]| = b - a.$$
 $$|(a,b) \cup (c, d)| = (b-a) + (d-c) \iff (a, b) \cap (c,d) = \emptyset.$$
 \end{problem}
 \begin{proof}
-    Suppose that $ (a, b) \cap (c,d) \neq \emptyset.$ First, if $(a,b) \subset (c,d)$, then $(a,b) \cup (c,d) = (c,d)$. Hence $|(a,b) \cup (c, d)| = |(c, d)| = d-c \leq (b-a) + (d-c).$ If $(a,b)$ is not contained in $(c,d)$, then we can assume, without lost of generality, that $a < c.$ Then $(a,b) \cup (c, d) = (a,d)$. Hence $|(a,b) \cup (c, d)| = | (a,d) | = d - a \leq (b-a) + (d - c)$.
+    Suppose that $ (a, b) \cap (c,d) \neq \emptyset.$ First, if $(a,b) \subset (c,d)$, then $(a,b) \cup (c,d) = (c,d)$. Hence $|(a,b) \cup (c, d)| = |(c, d)| = d-c < (b-a) + (d-c).$ If $(a,b)$ is not contained in $(c,d)$, then we can assume, without lost of generality, that $a < c.$ Then $(a,b) \cup (c, d) = (a,d)$. Hence $|(a,b) \cup (c, d)| = | (a,d) | = d - a < (b-a) + (d - c)$.
+    
     Suppose that $ (a, b) \cap (c,d) = \emptyset.$ Without loss of generality, we can assume that $b < c$. Define 
     $$(a, d) = (a, b) \cup [b,c] \cup (c, d).$$
     Hence $(a,b) \cup (c,d) = (a,d) \setminus [b,c]$. Then, by \textbf{Problem 2A.3} and \textbf{Problem 2A.6}
@@ -83,12 +86,46 @@ $$|(a,b) \cup (c, d)| = (b-a) + (d-c) \iff (a, b) \cap (c,d) = \emptyset.$$
     And by the subadditivity of the outer measure we have $|(a,b) \cup (c,d) |  \leq (b-a) + (d-c)$. Therefore $|(a,b) \cup (c,d) | = (b-a) + (d-c)$.
     
 \end{proof}
+% -------------------------------
+\begin{problem}{2A.8} Prove that if $A \subset \R $ and $t > 0$, then $|A| = |A\cap (-t,t) | + | A \cap (\R \setminus (-t,t))|.$
+\end{problem}
+\begin{proof}
+    Let $t > 0$. We only need to prove that $|A| \geq |A\cap (-t,t) | + | A \cap (\R \setminus (-t,t))|.$ If $|A| = \infty$, clearly the inequality holds. If $|A| < \infty$ and $\epsilon > 0$, then there exists a family $\{I_k\}$ of open intervals that covers $A$ and $\sum l(I_k) \leq |A| + \epsilon.$ Let $I_k^\prime = I_k \cap (-t,t)$ and $I_k^{\prime \prime} =  I_k \cap (\R \setminus(-t,t))$ for all $k$. Each $I_k^\prime$ and $I_k^{\prime \prime}$ are intervals and by \textbf{Problem 2A.6} we have
+    $$l(I_k) = l(I_k^\prime) + l(I_k^{\prime \prime}).$$
+    Notice that $A \cap (-t,t) \subset \bigcup I_k^\prime$ and $A \cap (\R \setminus (-t,t)) \subset \bigcup I_k^{\prime \prime}$. Then
+    \begin{eqnarray*}
+        |A\cap (-t,t) | + | A \cap (\R \setminus (-t,t))| &\leq& \sum_k l(I_k^\prime) + \sum_k l(I_k^{\prime \prime })\\
+        &=& \sum_k l(I_k)\\
+        &\leq& | A | + \epsilon.
+    \end{eqnarray*}
+    Since $\epsilon$ was chosen arbitrarily, we have $|A| \geq |A\cap (-t,t) | + | A \cap (\R \setminus (-t,t))|.$ 
+\end{proof}
+
+% -------------------------------
+\begin{problem}{2A.9}
+Prove that $| A | = \lim_{t \to \infty} | A \cap (-t, t) |$ for all $A \subset \R.$
+\end{problem}
+\begin{proof}
+    Let $A_t = A \cap (-t, t)$ for all $t > 0.$ Since $A_t \subset A$, then $\lim_{t \to \infty} | A_t | \leq | A|.$ We will prove the other inequality. Consider the sequence $\{A_k\}_{k\in \N}$. If $A_0 = \emptyset$, then
+    $$A = \bigcup_{k=1}^\infty A_k = \bigcup_{k=1}^\infty A_k \setminus A_{k-1},$$
+since $A_{k-1} \subset A_k$ for all $k\in \N.$ \textbf{Problem 2A.8} implies that
+$$| A_k | = | A_k \cap (-k+1, k-1) | + | A_k \cap (\R \setminus (-k+1, k-1))|. $$
+Notice that $A_k \cap (-k+1, k-1) = A_{k-1}$ and $A_k \cap (\R \setminus (-k+1, k-1)) = A_k \setminus A_{k-1}$. Since $| A_k |$ is finite for all $k \in \N$, we have
+\begin{eqnarray*}
+\left| \bigcup_{k=1}^\infty A_k \setminus A_{k-1} \right| &\leq & \sum_{k=1}^\infty | A_k \setminus A_{k-1} | \\
+&=& \lim_{n \to \infty} \sum_{k=1}^n | A_k \setminus A_{k-1} |\\
+&=& \lim_{n \to \infty} \sum_{k=1}^n | A_k | - | A_{k-1} | \\
+&=& \lim_{n \to \infty} | A_n |.
+\end{eqnarray*}
+Hence $| A | \leq \lim_{n \to \infty} | A_n |.$
+\end{proof}
+
 
 % -------------------------------
 \begin{problem}{2A.10} Prove that $| [0,1] \setminus \Q | = 1.$
 \end{problem}
 \begin{proof}
-    Since $\Q$ is countable, $| \Q | = 0$. By \textbf{Problem 2A.3}, we have $1 \geq [0,1] \setminus \Q \geq |[0,1]| - | \Q | = 1$. Then $|[0,1] \setminus \Q | = 1.$
+    Since $\Q$ is countable, $| \Q | = 0$. By \textbf{Problem 2A.3}, we have $| [0,1] \setminus \Q |\geq |[0,1]| - | \Q | = 1$. Also, the set $[0,1] \setminus \Q$ is contained in $[0,1]$. Then, by the monotonicity of the outher measure, we have $|[0,1] \setminus \Q | \leq | [0,1] | = 1.$ Hence $|[0,1] \setminus \Q | = 1$.
 \end{proof}
 
 % -------------------------------
@@ -97,7 +134,30 @@ $$\left\lvert \bigcup_{n=1}^\infty I_n\right\rvert = \sum_{n=1}^\infty l(I_n).$$
 \end{problem}
 
 \begin{proof}
-Let $O = \bigcup_{n=1}^\infty I_n$. By the countable subadditivity of the outer measure, we have that $\left\lvert O \right\rvert \leq \sum_{n=1}^\infty l(I_n).$
+First, we will prove by induction on $n$ that
+$$\left| \bigcup_{k=1}^n I_k \right| = \sum
+_{k=1}^n l(I_k).$$
+If one of the intervals has infinite measure, then the equation clearly holds. 
+Assume then that every interval has finite measure. \textbf{Problem 2A.7} establishes the case $n=2.$ Assume that the equation holds for all $n < m$. Let $\{I_k\}_{k=1}^m$, $I_k = (a_k, b_k)$ be a finite family of disjoint open intervals. Assume, without loss of generality, that the intervals satisfy $a_k < a_{k+1}$, for every $k =1, \ldots m-1.$ Similar to the proof of \textbf{Problem 2A.7}, define
+$$ J = \left(\bigcup_{k=1}^{m-2} I_k\right) \cup I_{m-1} \cup [b_{m-1}, a_m] \cup I_m.$$
+Notice that $I_{m-1} \cup [b_{m-1}, a_m] \cup I_m = (a_{m-1}, b_m).$ Then, by induction
+\begin{eqnarray*}
+\left| \bigcup_{k=1}^{m} I_k \right| &=& | J \setminus [b_{m-1}, a_m] | \\
+&\geq& | J | - | [b_{m-1}, a_m] | \\
+&=& \sum_{k=1}^{m-2}l(I_k) + (b_m - a_{m-1}) - (a_m - b_{m-1}) \\
+&=& \sum_{k=1}^{m-2}l(I_k) + (b_{m-1} - a_{m-1}) + (b_m - a_{m}) \\
+&=& \sum_{k=1}^{m}l(I_k)
+\end{eqnarray*}
+And by the subadditivity of the outher measure we have 
+$$\left| \bigcup_{k=1}^m I_k \right| \leq \sum
+_{k=1}^m l(I_k).$$
+Therefore the equation holds for all $n$
+
+Now we will prove the problem. It only suffice to show that 
+$$\left\lvert \bigcup_{k=1}^\infty I_k\right\rvert \geq \sum_{k=1}^\infty l(I_k).$$
+Notice that, for each $k \in \N$, we have $\bigcup_{k=1}^n I_n \subset \bigcup_{k=1}^\infty I_k.$ Then, by the previous result we have
+$$\left\lvert \bigcup_{k=1}^n I_k\right\rvert =  \sum_{k=1}^n l(I_k) \leq \left\lvert \bigcup_{k=1}^\infty I_k\right\rvert$$
+for all $n \in \N.$ Taking $n \to \infty$ in the previous inequality we obtain the result.
 \end{proof}
 
 % -------------------------------
@@ -128,7 +188,7 @@ $$F = \R \setminus \bigcup_{k=1}^\infty \left(r_k - \frac{1}{2^k}, r_k + \frac{1
     Suppose $\epsilon > 0$. Prove that there exists a subset $F$ of $[0, 1]$ such that $F$ is closed, every element of $F$ is an irrational number, and $|F| > 1 - \epsilon$.
 \end{problem}
 \begin{proof}
-    Let $\{r_n\}$ be a sequence that contains every rational number in $[0,1]$ and let $\epsilon > 0$. Since the geometric series
+    Let $\{r_n\}$ be a sequence that contains every rational number in $[0,1]$ only once and let $\epsilon > 0$. Since the geometric series
     $$\sum_{n=0}^{\infty}  2^{-n}$$
     converges, there exists $k\in \N$ such that
     $$\sum_{n=k}^{\infty}  2^{-n} < \epsilon.$$
@@ -139,4 +199,467 @@ $$F = \R \setminus \bigcup_{k=1}^\infty \left(r_k - \frac{1}{2^k}, r_k + \frac{1
     Let $F = [0, 1] \setminus O$. Notice that $F$ is closed, it consist of only irrational numbers, and by the previous inequality and \textbf{Problem 2A.3} we have 
     $$|F| = |[0,1 ] \setminus O| \geq 1- |O| > 1 - \epsilon.$$
 \end{proof}
+
+
+\section*{Measurable Spaces and Functions}
+
+% -------------------------------
+\begin{problem}{2B.1} Show that $S = \{ \bigcup_{n\in K}(n, n+1]: K \subset \Z \}$ is a $\sigma$-algebra on $\R.$
+\end{problem}
+\begin{proof}
+    Notice that $\R = \bigcup_{n \in \Z}(n, n+1]$. Hence $\R \in S.$ If $A \in S$, by definition $A = \bigcup_{n \in K}(n, n+1]$ for some subset $K$ of $\Z.$ Let $B = \bigcup_{m \in \Z \setminus K }(m, m+1]$. Clearly, $A \cup B = \R.$ If $x \in A$, then there is $n \in K$ such that $n < x \leq n+1.$ And since $n \notin \Z \setminus K$, $x \notin B.$ Hence $A \cap B = \emptyset.$ That is, $B = \R \setminus A$, which shows that $\R \setminus A \in S.$ 
+    Finally, let $\{A_k\}_{k=1}^\infty$ be a sequence in $S.$ By definition, for each $k \in \Z$ there exists $M_k \subset \Z$ such that $A_k = \bigcup_{m \in M_k} (m, m+1].$ Then
+$$A = \bigcup_{k=1}^\infty A_k = \bigcup_{k=1}^\infty\left( \bigcup_{m \in M_k} (m, m+1] \right) = \bigcup_{m \in M} (m, m+1], $$
+where $M = \bigcup_{k=1}^\infty M_k$. Since $M \subset \Z$, the set $A$ is an element of $S$. Therefore $S$ is a $\sigma$-algebra.
+\end{proof}
+
+% -------------------------------
+\begin{problem}{2B.3}
+Suppose $S$ is the smallest $\sigma$-algebra on R containing $\{(r,s] : r,s \in \Q\}$. Prove
+that $S$ is the collection of Borel subsets of $\R$
+\end{problem}
+\begin{proof}
+Since every interval of the form $(r, s]$ is a Borel set, we have $S \subset B$. We will show that $S \subset B.$
+Let $(a,b)$ be an open interval. For each $n \in \N$, let $r_n \in \Q$ such that $a < r_n < a + 1/n$. If $s\in Q$, $s < b$, we have
+$$ (a, s] = \bigcup_{n=1}^\infty (r_n, s].$$
+Now, for each $n \in \N$, let $s_n \in \Q$ with
+$b - 1/n  < s_n < b $. Then
+$$(a, b) = \bigcup_{n=1}^\infty (a, s_n].$$
+Since every open interval is in $S$, $B \subset S.$
+% ASCOOO
+\end{proof}
+
+%-------------------------------
+\begin{problem}{2B.7}
+Prove that the collection of Borel subsets of $\R$ is translation invariant. More precisely,
+prove that if $B \subset \R$ is a Borel set and $t \in \R$ , then $t + B $ is a Borel set.
+\end{problem}
+\begin{proof}
+    Let $t \in \R$ and let $f: \R \rightarrow \R$ be a function defined by $f(x) = x - t$ for all $x \in \R$. Since $f$ is a polynomial, it is continuous, hence measurable. Then, for any Borel set $B \subset \R$, $f^{-1}(B)$ is a Borel set. But $f^{-1}(B) = B + t$. Therefore $B + t$ is a Borel set for any Borel set $B$ and any $t \in \R.$
+\end{proof}
+
+%-------------------------------
+\begin{problem}{2B.8}
+Prove that the collection of Borel subsets of $\R$ is dilation invariant. More precisely,
+prove that if $B \subset \R$ is a Borel set and $t \in \R$ , then $tB $ is a Borel set.
+\end{problem}
+\begin{proof}
+    Let $t \in \R$, $t \neq 0$, and let $f: \R \rightarrow \R$ be a function defined by $f(x) = x / t$ for all $x \in \R$. Since $f$ is a polynomial, it is continuous, hence measurable. Then, for any Borel set $B \subset \R$, $f^{-1}(B)$ is a Borel set. But $f^{-1}(B) = t B$. Therefore $B + t$ is a Borel set for any Borel set $B$ and any $t \in \R$ different from $0$. 
+    
+    If $t = 0$, then $t B = \{0\}$ for any set $B \subset \R$. Since it is finite, it is a Borel set.
+\end{proof}
+
+%-------------------------------
+\begin{problem}{2B.9}
+Give an example of a measurable space $(X, S)$ and a function $f : X \rightarrow \R$ such
+that $|f|$ is $S$-measurable but $f$ is not $S$-measurable
+\end{problem}
+\begin{proof}
+    Let $X = \{0,1\}$, $S = \{\emptyset, X\}$ and 
+    $$f(x) = \begin{cases}
+        1 & \text{ if } x = 1;\\
+        -1 & \text{ if } x = 0.
+    \end{cases}$$
+Notice that $f$ is not measurable, since $f^{-1}(0, \infty) = \{1\} \notin S.$ But $|f| \equiv 1,$ which is measurable.
+\end{proof}
+
+% -------------------------------
+\begin{problem}{2B.10}
+Show that the set of real numbers that have a decimal expansion with the digit 5
+appearing infinitely often is a Borel set
+\end{problem}
+\begin{proof}
+Let $E = \{5 k: k \in \N, k \text{ odd}\}.$ $E$ is measurable, since is countable. For each $n \in \N$, let $f_n: \R \rightarrow \R$ defined by
+$$f_n(x) = 10^n \{x\},$$
+where $\{x\} = x - \lfloor x \rfloor.$ Since each $f_n$ is an increasing function, it is measurable. Hence, the sets 
+$A_n = f_n^{-1}(E)$ are measurable. Notice that 
+$$A_n = \{x \in \R: 5 \text{ appears at position } n \text{ of its decimal expansion }\}.$$
+Define $$ A = \bigcap_{m=1}^\infty \bigcup_{n = m}^\infty A_n$$
+Clearly $A$ is measurable. Moreover, $A$ is the set of real numbers with $5$ appearing in its decimal expansion infinitely often.
+% REVISAR
+\end{proof}
+% HAY OTRA DEMOSTRACION: COMO EN CANTOR
+
+% -------------------------------
+\begin{problem}{2B.12} Suppose $f: \R \rightarrow \R$ is a function.
+\begin{itemize}
+    \item[(a)] For $k \in \N$, let 
+    $$ G_k = \{ a \in \R: \text{ there exists } \delta > 0 \text{ such that } |f(b) - f(c) | < 1 / k \text{ for all } b, c \in (a-\delta, a + \delta )\}.$$
+    Prove that $G_k$ is an open subset of $\R$ for each $k \in \N.$
+    \item[(b)] Prove that the set of points at which $f$ is continuous equals $\bigcap_{k=1}^\infty G_k.$
+\item[(c)] Conclude that the set of points at which $f$ is continuous is a Borel set.
+\end{itemize}
+\end{problem}
+\begin{proof} \text{ }
+    \begin{itemize}
+        \item[(a)] Let $k \in \N$ and let $a \in G_k$. Then there exists $\delta > 0$ such that 
+    $$|f(b) - f(c)| < 1 / k$$ 
+    for all $b, c \in (a - \delta, a + \delta).$ Since $(a - \delta, a + \delta)$ is open, for each $b\in (a - \delta, a + \delta)$ there exists $\delta_b > 0$ such that $(b - \delta_b, b + \delta_b) \subset (a - \delta, a + \delta).$ Then, if $c, d \in (b - \delta_b, b + \delta_b)$, we have 
+    $$|f(c) - f(d)|  < 1 / k.$$
+    Hence $b \in G_k$, which shows that the neighborhood $(a - \delta, a + \delta) $ of $a$  is contained in $G_k$. Therefore $G_k$ is open for all $k\in \N.$
+
+    \item[(b)] Let $G = \bigcap_{k=1}^\infty G_k$ and let $\epsilon > 0$. If $x \in G$, then $x \in G_k$ for all $k\in \N$; in particular, $k$ such that $1 / k < \epsilon$. Then there exists $\delta > 0$ such that
+    $|f(b) - f(c)| < 1 / k < \epsilon,$
+    for all $b, c \in (x - \delta, x + \delta)$. If we fix $b = x$, the previous statement implies that $f$ is continuous at $x$.
+
+    Now let $x \in \R$ be a point of continuity of $f$. Then, for all $k \in \N$, there exists $\delta_k > 0$ such that $|f(x) - f(a)| < 1 / 2k$, for all $a \in (x-\delta_k, x + \delta_k).$ If $b,c \in (x-\delta_k, x + \delta_k)$, then
+    $$|f(b) - f(c) | \leq |f(b) - f(a)| + |f(a) - f(c) | < 1 / k.$$
+    Hence, $x \in G_k$ for all $k\in \N.$ Therefore $x \in G.$
+    \item[(c)] Since $G$, the set of points of continuity of $f$, is a countable intersection of open sets, it is a Borel set.
+    \end{itemize}
+    % REVISAR
+\end{proof}
+
+% -------------------------------
+\begin{problem}{2B.14} \text{ }
+\begin{itemize} 
+    \item[(a)] Suppose $f_1, f_2, \ldots$ is a sequence of functions from a set $X$ to $\R$. Explain why
+    $$\{x \in X: \text{ the sequence  } f_1(x), f_2(x), \ldots \text{ has a limit in } \R\} = \bigcap_{n=1}^\infty \bigcup_{j=1}^\infty \bigcap_{k=j}^\infty (f_j - f_k)^{-1}\left( \left( -\frac{1}{n}, \frac{1}{n} \right) \right). $$
+    \item[(b)] Suppose $(X, S)$ is a measure space and $f_1, f_2, \ldots$ is a sequence of $S$-measurable functions from $X$ to $\R$. Prove that 
+    $$\{x \in X: \text{ the sequence} f_1(x), f_2(x), \ldots \text{ has a limit in } \R \}$$
+    is an $S$-measurable subset on $X.$
+\end{itemize}
+\end{problem}
+\begin{proof}
+    \text{ TODO }
+    %\begin{itemize}
+     %   \item[(a)] The RHS of the equation is the set of points where $\{f_k(x)\}_{k=1}^\infty$ is a Cauchy sequence: let $\epsilon > 0$, then there exists $n \in \N$ such that $1 / n < \epsilon$
+
+    %\end{itemize}
+\end{proof}
+
+% -------------------------------
+\begin{problem}{2B.17}
+Suppose $X$ is a Borel subset of $\R$ and $f: X \rightarrow \R$ is a function such that $\{x \in X: f \text{ is not continuous at } x \}$ is a countable set. Prove $f$ is a Borel measurable function
+\end{problem}
+\begin{proof}
+    Let $a\in \R$ and let $A = f^{-1}((a, \infty))$. Let $x \in A$ such that $f$ is continuous at $x.$ Since $(a, \infty)$ is open, there exists a neighborhood $V_{f(x)}$ of $f(x)$ such that $V_{f(x)} \subset (a, \infty).$ Since $f$ is continuous at $x$, there exists a neighborhood $U_x$ of $x$ such that $f(U_x) \subset V_{f(x)}.$
+    
+    Let $O = \bigcup U_x$, where the union is taken over all $x$ such that $f$ is continuous at $x.$ Notice that, if $F = A \cap \{x \in X: f \text{ is not continuous at } x \}$, then
+    $$ A = O \cup F.$$
+    Since $O$ is open, $O$ is a Borel set, and since $F$ is at most numerable, it is also a Borel set. Therefore $A$ is a Borel set, proving that $f$ is a Borel measurable function.
+\end{proof}
+
+
+% -------------------------------
+\begin{problem}{2B.18}
+    Suppose $f : \R \rightarrow \R$ is differentiable at every element of $\R$. Prove that $f^\prime$ is a Borel measurable function from $\R$ to $\R.$
+\end{problem}
+\begin{proof}
+Define the sequence $f_k(x) = k\cdot (f(x + 1/k) - f(x))$. Since $f$ is differentiable, it is continuous, hence measurable. Then each $f_k$ is measurable. Notice that
+$$\lim_{k \to \infty} f_k(x) = f^\prime(x),$$
+for all $x \in \R.$ Therefore $f^{\prime}$ is measurable.
+\end{proof}
+
+% -------------------------------
+\begin{problem}{2B.22}
+Suppose $B \subset \R$ and $f : B \rightarrow \R $ is an increasing function. Prove that $f$ is
+continuous at every element of $B$ except for a countable subset of $B$.
+\end{problem}
+\begin{proof}
+    We will prove that both $\lim_{x \to a^-} f$ and $\lim_{x \to a^+} f$ exists for all $a \in B$. Let $a \in B$  and define
+    $$\alpha = \sup \{f(x): x < a\} .$$
+    Then $\alpha < \infty$,  since $f(a)$ is an upper bound of $\{f(x): x < a\}$.
+    If $\epsilon > 0$, then $\alpha - \epsilon$ is not an upper bound of $\{f(x): x < a\}$, i.e., there is $\delta > 0$ such that  with $\alpha - \epsilon < f(a - \delta)$. Let $I = (a-\delta, a)$. Since $f$ is an increasing function, we have
+    $f(I) \subset (\alpha - \epsilon, \alpha)$. Therefore $$\lim_{x \to a^-} f = \alpha.$$
+    With similar arguments (defining $\beta = \inf \{f(x) : f(x) > a\}$) we can show that the right limit $\lim_{x \to a^+} f$ exists. 
+
+    Now, if $f$ is continuous at $a \in B$, then $\lim_{x \to a^-} f = \lim_{x \to a^+} f$; otherwise, $\lim_{x \to a^-} f < \lim_{x \to a^-} f$. Define, for each $a \in B$ which is not a point of continuity of $f$, a rational number $r(a)$ such that 
+    $$\lim_{x \to a^-} f < r(a) < \lim_{x \to a^+} f.$$
+    Let $a, b \in B$ two points if discontinuity of $f$ such that $a < b$. Since $f$ is an increasing function, we have
+    $$\lim_{x \to a^+} \leq \lim_{x \to b^-}.$$ Then $r(a) < r(b).$
+    We have established an injective correspondence between the set of discontinuities of $f$ and a subset of $\Q$, which is countable. Therefore $f$ is countable in $B$, except for a countable subset of $B.$ 
+\end{proof}
+
+% -------------------------------
+\begin{problem}{2B.23}
+Suppose $f : \R \rightarrow \R$ is a strictly increasing function. Prove that the inverse $f^{-1}: f(\R) \rightarrow \R$ is a continuous function. 
+\end{problem}
+\begin{proof}
+    It is sufficient to prove that for any interval $(a,b)$ in $\R$, $f((a,b))$ is open in $f(\R).$ If $x \in (a,b)$, since $f$ is strictly increasing, 
+    $$f(a) < f(x) < f(b).$$
+    This means that $f((a,b)) = (f(a), f(b)) \cap f(\R)$, which is open in the induced topology of $\R$ on $f(\R).$ Therefore $f$ is an open map, and since $f$ is injective, $f^{-1}$ exists and is continuous.
+\end{proof}
+
+% -------------------------------
+\begin{problem}{2B.24}
+Suppose $f : \R \rightarrow \R$ is a strictly increasing function and $B \subset \R$ is a Borel set. Prove that $f(B)$ is a Borel set.
+\end{problem}
+\begin{proof}
+    By \textbf{Problem 2B.23}, $g = f^{-1}$ is continuous. Then $g$ is a Borel measurable function. That is, if $B$ is a Borel set, then $g^{-1}(B)$ is a Borel set in $f(\R).$ But $g^{-1}(B) = f(B)$, which shows that $f(B)$ is a Borel set. 
+\end{proof}
+
+% -------------------------------
+\begin{problem}{2B.25}
+Suppose $B \subset \R$ and $f : B \rightarrow \R$ is an increasing function. Prove that there exists a sequence $f_1, f_2, \ldots$ of strictly increasing functions from $B$ to $\R$ such that
+$$ f(x) = \lim_{k \to \infty} f_k(x)$$
+for every $x \in B.$
+\end{problem}
+\begin{proof}
+Define, for each $k\in \N$, the following sequence:
+$$f_k(x) = f(x) + \frac{x}{k}.$$
+
+Clearly, each $f_k$ is strictly increasing; and a direct computation shows that 
+$$\lim_{k \to \infty} f_k(x) = f(x).$$
+\end{proof}
+
+% -------------------------------
+\begin{problem}{2B.26}
+Suppose $B \subset \R$ and $f : B \rightarrow \R$ is a bounded increasing function. Prove that there exists an increasing function $g: \R \rightarrow \R$ such that $g(x) = f (x)$ for all $x \in B$.
+\end{problem}
+
+% -------------------------------
+\begin{problem}{2B.30}
+Show that 
+$$\lim_{j \to \infty} \left( \lim_{k \to \infty} \cos(j! \pi x))^k \right) = \begin{cases}
+    1 & \text{ if } x \text{ is rational,}\\
+    0 & \text{ if } x \text{ is irrational.}
+\end{cases}$$
+for every $x \in \R.$
+\end{problem}
+\begin{proof}
+    Let $x$ be an irrational number. Then, for every $j \in \N$, the number $j! \pi x$ is never of the form $n \pi$ with $n \in \Z$. Hence $| \cos(j! \pi x) | < 1.$ If we take $j,k \to \infty$, we have $\cos(j! \pi x))^k \to 0$. 
+    
+    Now, let $x$ be a rational number. Then, for sufficient large $j$, $j! \pi x$ is of the form $n \pi$ with $n \in \Z$. Moreover,  $j! \pi x$ is always of the form $n \pi$, with $n$ even. Hence $\cos(j! \pi x) = 1$, for sufficient large $j.$ If we take $j,k \to \infty$, we have $\cos(j! \pi x) \to 1$.
+\end{proof}
+
+
+
+
+\section*{Measure and Their Properties}
+
+%------------------------------
+\begin{problem}{2C.1} Explain why there does not exist a measure space $(X, S, \mu)$ with the property that $\{\mu(E) : E \in S\} = [0,1).$
+\end{problem}
+\begin{proof}
+    Let $\alpha = \mu(X)$ and suppose that $\{\mu(E) : E \in S\} = [0,1).$ By hypothesis, for each $n\in \N$, there exists $E_n \in S$ such that $\mu(E_n) = (n-1) / n$. Notice that $\alpha$ is an upper bound of the set $\{(n-1) / n : n \in \N\}$. Hence $1 = \sup \{(n-1) / n : n \in \N\} \leq \alpha.$ But $\alpha < 1$, which is a contradiction. Hence the hypothesis that $\{\mu(E) : E \in S\} = [0,1)$ must be false.
+\end{proof}
+
+%------------------------------
+\begin{problem}{2C.2} Suppose $\mu$ is a measure on $(\N, 2^\N)$. Prove that there is a sequence $w_1, w_2, \ldots$ in $[0, \infty]$ such that 
+$$\mu(E) = \sum_{k \in E} w_k$$
+for every set $E\subset \N.$
+\end{problem}
+\begin{proof}
+    Since every singleton $\{n\}$ is an element of $2^\N$, we can define $w_n = \mu(\{n\}).$ If $E \subset \N$, then 
+    $$E = \bigcup_{n \in E} \{n\}.$$
+    Since this union consists of disjoint sets, we have
+    $$\mu(E) = \mu \left( \bigcup_{n\in E} \{n\} \right) = \sum_{n \in E } w_n. $$
+\end{proof}
+
+
+\begin{problem}{2C.3} Give an example of a measure $\mu$ on $(\N, 2^\N)$ such that 
+$$\{\mu(E) : E \in S\} = [0,1]$$
+\end{problem}
+\begin{proof}
+    Define, for each subset $E$ in $2^\N$, the map $\mu: 2^\N \rightarrow \R$ defined by
+    $$\mu(E) = \sum_{n=1}^\infty \frac{x_n}{2^n}$$
+    with $x_n = 1$ if $n \in E$ and $x_n = 0$ otherwise. It is a standard result that any $x \in [0,1]$ can be written in the form
+    $$x =  \sum_{n=1}^\infty \frac{x_n}{2^n},$$
+    with $x_n \in \{0,1\}$ for all $n\in \N$, and any series of this form converges to a number in $[0,1].$ Hence the range of $\mu$ is $[0,1].$
+    
+    To prove that $\mu$ is a measure, notice that $\mu(\emptyset) = 0$, since the associated sequence $\{x_n\}$ of $\emptyset$ consist of only zeros. Let $\{E_k\}$ be a disjoint sequence of subsets of $\N,$ and let $\{x_n^k\}$ be the associated sequence of $E_k$. 
+    If $x_n^k = 1$ for some $k,n \in \N$, then $x_n^k = 0$ for all $m \neq n$, since the sequence $\{E_k\}$ is disjoint. Then
+    $$\sum_{k=1}^\infty x_n^k = 1,$$
+    if $n \in E_k$ for some $k\in \N$ and
+    $$\sum_{k=1}^\infty x_n^k = 0,$$
+    otherwise. Let $\{y_n\}$ be the sequence defined by $y_n = \sum_{k=1}^\infty x_n^k,$ and let $\{x_n\}$ be the associated sequence of $E = \bigcup_k E_k$. If $x_n = 1$, then $n \in E$, which means that $n \in E_k$ for some $k\in \N.$ That is, $y_n = 1.$ If $x_n = 0$, then $n \notin E$, which implies that $n \notin E_k$ for all $k\in N$. Hence $y_n = 0.$ This shows that $\{x_n\} = \{y_n\}$. Therefore
+    $$\mu(E) = \sum_{n=1}^\infty \frac{x_n}{2^n} = \sum_{n=1}^\infty \frac{y_n}{2^n} = \sum_{n=1}^\infty \sum_{k=1}^\infty  \frac{x_n^k}{2^n} = \sum_{k=1}^\infty \sum_{n=1}^\infty \frac{x_n^k}{2^n} = \sum_{k=1}^\infty \mu(E_k).$$
+    Therefore $\mu$ is a measure.
+\end{proof}
+
+
+\begin{problem}{2C.5} Suppose $(X, S, \mu)$ is a measure space such that $\mu(X) < \infty$. Prove that if $\mathcal A$ is a set of disjoint sets in $S$ such that $\mu(A) > 0$ for every $A \in \mathcal A$, then $\mathcal A$ is a countable set.
+\end{problem}
+\begin{proof}
+    Define, for each $n\in \N$, the sequence 
+    $$\mathcal{A}_n = \{A \in \mathcal{A}: \mu(A) \geq 1 / n\}.$$
+Notice that $\bigcup_{n} \mathcal A_n = \mathcal{A}$. Suppose that one of the this sets, say $\mathcal{A}_k$, is infinite. Let  $\{A_n\}$ be a sequence in $\mathcal A_k$. Then $A = \bigcup_n A_n$ is an element of $S$ and, since the sequence is disjoint, we have
+$$ \infty = \sum_{n=1}^\infty \frac{1}{k} \leq \sum_{n=1}^\infty \mu(A_n) = \mu(A) \leq \mu(X) < \infty$$
+which is a contradiction. Hence all sets $\mathcal A_n$ must be finite. Since $\mathcal A $ is a countable union of finite sets, it is countable.
+\end{proof}
+
+
+
+% -----------------------------------
+\begin{problem}{2C.8}
+Give an example of a set $X$, a $\sigma$-algebra $S$ of subsets of $X$, a set $\mathcal A$ of subsets of $X$ such that the smallest $\sigma$-algebra on $X$ containing $\mathcal A$ is $S$, and two measures $\mu$ and
+$\nu$ on $(X, S)$ such that $\mu(A) = \nu(A)$ for all $A \in \mathcal{A}$ and $\mu(X) = \nu(X) < \infty$, but $\mu \neq \nu$.
+\end{problem}
+\textit{Solution.} 
+%Let $\mathcal{A} = \{\{x\}: x \in X\}.$ Then the smallest $\sigma$-algebra $S$ on $X$ containing $\mathcal{A}$ is $S = \{E \subset X: E \text{ is countable or } X\setminus E \text{ is countable} \}$. Define $\mu: S \rightarrow \R$ and $\nu: S \rightarrow \R$ by
+%$$\mu(E) = \begin{cases}
+  %  0 & \text{ if } E \text{ is countable,}\\
+  %  1 & \text{ if } E \text{ is uncountable,}\\
+%\end{cases} \ \ \nu(E) = \begin{cases}
+%0 & \text{ if } E \text{ is countable,}\\
+%2 & \text{ if } E \text{ is uncountable.}\\
+%\end{cases}$$
+%Clearly $\mu(\{x\}) = \nu(\{x\}) = 0$ for all $x\in X.$
+
+% -----------------------------------
+\begin{problem}{2C.9}
+Suppose $\mu$ and $\nu$ are measures on a measurable space $(X, S)$. Prove that $\mu + \mu$
+is a measure on $(X, S)$
+\end{problem}
+\begin{proof}
+    \text{ }
+    \begin{itemize}
+        \item Notice, $(\mu + \nu)(\emptyset) = \mu(\emptyset) + \nu(\emptyset) = 0 + 0 = 0.$
+        \item Let $\{E_n\}$ be a disjoint sequence of measurable sets. Then
+        $$(\mu + \nu)\left(\bigcup_n E_n\right) = \mu\left(\bigcup_n E_n\right) + \nu \left(\bigcup_n E_n\right) = \sum_n \mu(E_n) + \sum_n \nu(E_n) = \sum_n (\mu + \nu)(E_n).$$
+    \end{itemize}
+Therefore, the sum $\mu + \nu$ is a measure.
+\end{proof}
+
+% --------------------------------------------
+\begin{problem}{2C.12}
+Suppose $X$ is a set and $S$ is the $\sigma$-algebra of all subsets $E$ of $X$ such that $E$ is countable or $X \setminus E$ is countable. Give a complete description of the set of all measures on $(X, S)$.
+\end{problem}
+\textit{Solution.} Since every singleton $\{x\}$ is measurable, a measure $\mu$ on $(X, S)$ induces a non negative function $f_\mu: X \rightarrow [0, \infty],$ defined by
+$$f_\mu(x) = \mu(\{x\}).$$
+Let $A = \{ x \in X: f_\mu(x) > 0\}.$ If $\mu(X) < \infty$, then by \textbf{Problem 2C.5}, $A$ is countable and therefore measurable. 
+
+
+\section*{Lebesgue Measure}
+% -----------------------------------
+\begin{problem}{2D.19}
+Evaluate $\int_0^1 \Lambda,$ where $\Lambda$ is the Cantor function.
+\end{problem}
+\textit{Solution.} Since $\Lambda$ is continuous on $[0,1]$ it is Riemann integrable.
+
+% -----------------------------------
+\begin{problem}{2D.22}
+\text{ }
+\begin{itemize}
+    \item[(a)] Suppose $x$ is a rational number in $[0,1]$. Explain why $\Lambda(x)$ is a rational number.
+    \item[(b)] Suppose $x \in C$ is such that $\Lambda(x)$ is rational. Explain why $x$ is rational.
+\end{itemize}
+\end{problem}
+\textit{Solution.} \begin{itemize}
+    \item[(a)] Let $x$ be a rational number in $[0,1]$. Then either of the following cases holds: 1) the digits in its ternary expansion are all zero, except for a finite set; 2) the digits in its ternary expansion form a finite sequence that repeats indefinitely.
+\end{itemize}
+
+
+\section*{Convergence of Measurable Functions}
+
+% -----------------------------------
+\begin{problem}{2E.2} Give an example of a sequence of functions from $\N$ to $\R$ that converges pointwise on $\N$ but does not converge uniformly on $\N$.
+\end{problem}
+\textit{Solution}. Consider the sequence $\{f_k\}$ of functions from $\N$ to $\R$ defined by
+\begin{equation*}
+    f_n(k) = \begin{cases}
+        1 & \text{if } n \ge k; \\
+        0 & \text{otherwise.}
+    \end{cases}
+\end{equation*} 
+Notice that, for every $k \in \N$, $f_n(k) \to 1$, for sufficiently large $n$. But, this sequence does not converges uniformly: fixed $n\in N$ and let $ 1 > \epsilon > 0$ and let $k > n + 1$. Then
+$$|f_m(k) - 1 | = 1 > \epsilon,$$
+for $k > m > n.$
+
+
+% -----------------------------------
+\begin{problem}{2E.3} Give an example of a sequence of continuous functions $f_1, f_2, \ldots$  from $[0, 1]$ to $\R$ that converges pointwise to a function $f : [0, 1] \rightarrow \R$ that is not a bounded function.
+\end{problem}
+\textit{Solution}. Consider the sequence $\{f_k\}$ of functions from $[0,1]$ to $\R$ defined by
+\begin{equation*}
+    f_k(x) = \begin{cases}
+        k^2 x & \text{if } x \in [0, 1 / k]; \\
+        1 / x & \text{if } x \in [1/k, 1].
+    \end{cases}
+\end{equation*}
+This sequence converges pointwise to the function
+\begin{equation*}
+    f_k(x) = \begin{cases}
+        1 / x & \text{if } x > 0;\\
+        0 & \text{if } x = 0.
+    \end{cases}
+\end{equation*}
+The function $f$ is not bounded.
+
+
+% -----------------------------------
+\begin{problem}{2E.8} Suppose $\mu$ is the measure on $(\N, 2^\N)$ defined by
+$$\mu(E) = \sum_{n \in E} \frac{1}{2^n}.$$
+Prove that for every $\epsilon > 0$, there exists a set $E \subset \N$ with $\mu(\N \setminus E)$ such that $f_1, f_2 \ldots$ converges uniformly on $E$ for every sequence of functions $f_1, f_2k \ldots$ from $\N$ to $\R$ that converges pointwise on $\N.$
+\end{problem}
+Notice that $\mu(\N) = \sum_{n=1}^\infty \frac{1}{2^n} = 1$. Then if $\epsilon > 0$, there exists $m \in N$ such that 
+$$\sum_{n=m}^\infty \frac{1}{2^n} < \epsilon.$$
+Let $E = \{1, 2, \ldots, m - 1\}$. Then, $\mu(\N \setminus E) < \epsilon$, and since $E$ is finite, every sequence of functions $f_1, f_2 \ldots$ that converges pointwise on $\N$ converges uniformly on $E.$
+
+\section*{Integration with Respect to a Measure}
+% -----------------------------------
+% -----------------------------------
+\begin{problem}{3A.1} Suppose $(X, S, \mu)$ is a measure space and $f: X \rightarrow [0, \infty]$ is an $S-$measurable function such that $\int f d\mu < \infty.$ Explain why 
+$$\inf_E f = 0$$
+for each $E \in S$ such that $\mu(E) = \infty.$
+\end{problem}
+\begin{proof}
+    Let $E \in S$ such that $\mu(E) = \infty.$ Define $\varphi = \inf_E f \chi_E + \inf_{E^c} f \chi_{E^c}.$ Since $\varphi \le f$ and is simple, we have
+    $$\mu(E) \cdot \inf_E \leq \int_X f d \mu < \infty,$$
+    and this is only possible if $\inf_E f  = 0.$
+\end{proof}
+% -----------------------------------
+% -----------------------------------
+
+% -----------------------------------
+% -----------------------------------
+\begin{problem}{3A.2}
+    Suppose $X$ is a set, $S$ is a $\sigma$-algebra on $X$, and $c \in X$. Define the Dirac measure $\delta_c$ on $(X, S)$ by
+    $$ \delta_c(E) = 
+    \begin{cases}
+    1 & \text{ if } c \in E,\\
+    0 & \text{ otherwise. } 
+    \end{cases}
+    $$
+    Prove that if $f: X \rightarrow [0, \infty]$ is $S-$measurable, then $\int f d\delta_c = f(c).$
+\end{problem}
+\begin{proof}
+    Let $\varphi = \sum_{k=1}^n \inf_{A_i} f \cdot \chi_{A_k}$ be a simple function such that $\varphi \le f.$ Since $\{A_k\}$ is an $S-$partition of $X$, there is only one $A_j$ that contains $c.$ Hence
+    $$\int \varphi d \delta_c = \inf_{A_j} f \le f(c).$$ Taking the supremum over all $S-$partitions of $X$ we get $\int f d\delta_c \le f(c).$
+    Now consider the set $A = \{x \in X: f(x) \geq f(c)\}$. Since $f$ is $S-$measurable the set $A$ is an element of $S$. Notice that $\inf_A f = f(c).$ Then 
+    $$f(c) =  \inf_A f \delta_c(A) \le \int f d\delta_c.$$
+    The result follows from the previous inequalities. 
+\end{proof}
+% -----------------------------------
+% -----------------------------------
+
+
+% -----------------------------------
+% -----------------------------------
+\begin{problem}{3A.3} Suppose $(X, S, \mu)$ is a measure space and $f: X \rightarrow [0, \infty] $ is an $S-$measurable function. Prove that 
+$$\int f d\mu > 0 \text{  if and only if   }   \mu(\{x \in X : f(x) > 0 \}) > 0 $$   
+\end{problem}
+\begin{proof}
+    Let $A = \{x \in X : f(x) > 0 \}$, and suppose that $\mu(A) > 0.$ Consider the sequence of $S-$measurable sets $A_n = \{ x \in X: f(x) > 1/n\}$. This sequence is non-decreasing and its union is $A.$ Then there exists $k \in \N$ such that $\mu(A_k) > 0.$ Hence 
+    $$0 <  \mu(A_k) / k  \leq \mu(A_k)\inf_{A_k} f \le \int_X f d\mu.$$
+    Now suppose that $\int_X f d\mu > 0$. Then
+    $$0 < \int_X f d\mu = \int_A f d\mu + \int_{X\setminus A} f d\mu = \int_A f d\mu,$$
+    since $f$ is identically zero at ${X\setminus A}$. This inequality implies that there is a $S-$measurable subset $E$ of $A$ such that
+    $0 < \mu(E) \cdot \inf_E f$. That is, $m(E) > 0$ and therefore $\mu(A) > 0.$
+\end{proof}
+% -----------------------------------
+% -----------------------------------
+
+
+
+
+% -----------------------------------
+% -----------------------------------
+\begin{problem}{3A.18} Give an example of a sequence $\{x_k\}$ of real numbers such that 
+$$ \lim_{n \to \infty } \sum_{k=1}^{n} x_k$$
+exists in $\R$, but $\int x d\mu $ is not defined, where $\mu$ is counting measure on $\N$ and $x$ is the function from $\N$ to $\R$ defined by $x(k) = x_k$.
+\end{problem}
+\begin{proof}
+Recall that the Taylor series of $\ln(x)$ at $x = 1$ is 
+$$\sum_{k=1}^{\infty} \frac{(-1)^{k + 1}(x-1)^{k} }{k}.$$
+Hence $\sum_{k=1}^{\infty} \frac{(-1)^{k + 1}}{k} = \ln(2)$. Now
+$$\sum_{k=1}^\infty \frac{-1}{2k} = - \frac{1}{2} \sum_{k=1}^\infty \frac{1}{k} = -\infty,$$
+and $$\sum_{k=1}^\infty \frac{1}{2k} \leq \sum_{k=1}^\infty \frac{1}{2k-1}, $$
+which shows that the right hind side of the previous inequality diverges. Hence $x_k = \frac{(-1)^{k + 1}}{k}$ is an example of what the problem requires. 
+\end{proof}
+% -----------------------------------
+% -----------------------------------
+
+
 \end{document}
